@@ -1,16 +1,15 @@
-# Prerequisites
-*.d
+# Folder OBJ
+obj/
+
+# Folder Debug
+Debug/
+
 
 # Object files
 *.o
 *.ko
 *.obj
 *.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
 
 # Precompiled Headers
 *.gch
@@ -35,18 +34,13 @@
 *.i*86
 *.x86_64
 *.hex
+*.cdt
+*.dsk
+*.sna
 
 # Debug files
 *.dSYM/
 *.su
-*.idb
-*.pdb
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+#Visual Studio hidden files
+*.vs

@@ -1,0 +1,226 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.6.8 #9946 (Linux)
+                              4 ;--------------------------------------------------------
+                              5 	.module PlayerManager
+                              6 	.optsdcc -mz80
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _strCopy
+                             12 	.globl _players_num
+                             13 	.globl _players_list
+                             14 	.globl _man_player_init
+                             15 	.globl _man_player_createPlayer
+                             16 	.globl _man_player_get_player
+                             17 	.globl _man_player_update
+                             18 	.globl _man_player_render
+                             19 ;--------------------------------------------------------
+                             20 ; special function registers
+                             21 ;--------------------------------------------------------
+                             22 ;--------------------------------------------------------
+                             23 ; ram data
+                             24 ;--------------------------------------------------------
+                             25 	.area _DATA
+   0000                      26 _players_list::
+   0000                      27 	.ds 64
+   0040                      28 _players_num::
+   0040                      29 	.ds 1
+                             30 ;--------------------------------------------------------
+                             31 ; ram data
+                             32 ;--------------------------------------------------------
+                             33 	.area _INITIALIZED
+                             34 ;--------------------------------------------------------
+                             35 ; absolute external ram data
+                             36 ;--------------------------------------------------------
+                             37 	.area _DABS (ABS)
+                             38 ;--------------------------------------------------------
+                             39 ; global & static initialisations
+                             40 ;--------------------------------------------------------
+                             41 	.area _HOME
+                             42 	.area _GSINIT
+                             43 	.area _GSFINAL
+                             44 	.area _GSINIT
+                             45 ;--------------------------------------------------------
+                             46 ; Home
+                             47 ;--------------------------------------------------------
+                             48 	.area _HOME
+                             49 	.area _HOME
+                             50 ;--------------------------------------------------------
+                             51 ; code
+                             52 ;--------------------------------------------------------
+                             53 	.area _CODE
+                             54 ;src/man/PlayerManager.c:33: void man_player_init(){
+                             55 ;	---------------------------------
+                             56 ; Function man_player_init
+                             57 ; ---------------------------------
+   0000                      58 _man_player_init::
+                             59 ;src/man/PlayerManager.c:34: players_num = 0;
+   0000 21r40r00      [10]   60 	ld	hl,#_players_num + 0
+   0003 36 00         [10]   61 	ld	(hl), #0x00
+   0005 C9            [10]   62 	ret
+                             63 ;src/man/PlayerManager.c:43: void man_player_createPlayer(u8 x, u8 y, u8 *name, u8 life){
+                             64 ;	---------------------------------
+                             65 ; Function man_player_createPlayer
+                             66 ; ---------------------------------
+   0006                      67 _man_player_createPlayer::
+   0006 DD E5         [15]   68 	push	ix
+   0008 DD 21 00 00   [14]   69 	ld	ix,#0
+   000C DD 39         [15]   70 	add	ix,sp
+                             71 ;src/man/PlayerManager.c:44: players_list[players_num].active = NO;
+   000E 01r00r00      [10]   72 	ld	bc, #_players_list+0
+   0011 FD 21r40r00   [14]   73 	ld	iy, #_players_num
+   0015 FD 6E 00      [19]   74 	ld	l, 0 (iy)
+   0018 26 00         [ 7]   75 	ld	h, #0x00
+   001A 29            [11]   76 	add	hl, hl
+   001B 29            [11]   77 	add	hl, hl
+   001C 29            [11]   78 	add	hl, hl
+   001D 29            [11]   79 	add	hl, hl
+   001E 29            [11]   80 	add	hl, hl
+   001F 09            [11]   81 	add	hl, bc
+   0020 36 00         [10]   82 	ld	(hl), #0x00
+                             83 ;src/man/PlayerManager.c:45: strCopy(name, &players_list[players_num].name[0]);
+   0022 FD 6E 00      [19]   84 	ld	l, 0 (iy)
+   0025 26 00         [ 7]   85 	ld	h, #0x00
+   0027 29            [11]   86 	add	hl, hl
+   0028 29            [11]   87 	add	hl, hl
+   0029 29            [11]   88 	add	hl, hl
+   002A 29            [11]   89 	add	hl, hl
+   002B 29            [11]   90 	add	hl, hl
+   002C 09            [11]   91 	add	hl, bc
+   002D 23            [ 6]   92 	inc	hl
+   002E C5            [11]   93 	push	bc
+   002F E5            [11]   94 	push	hl
+   0030 DD 6E 06      [19]   95 	ld	l,6 (ix)
+   0033 DD 66 07      [19]   96 	ld	h,7 (ix)
+   0036 E5            [11]   97 	push	hl
+   0037 CDr00r00      [17]   98 	call	_strCopy
+   003A F1            [10]   99 	pop	af
+   003B F1            [10]  100 	pop	af
+   003C C1            [10]  101 	pop	bc
+                            102 ;src/man/PlayerManager.c:46: players_list[players_num].x = x;
+   003D FD 21r40r00   [14]  103 	ld	iy, #_players_num
+   0041 FD 6E 00      [19]  104 	ld	l, 0 (iy)
+   0044 26 00         [ 7]  105 	ld	h, #0x00
+   0046 29            [11]  106 	add	hl, hl
+   0047 29            [11]  107 	add	hl, hl
+   0048 29            [11]  108 	add	hl, hl
+   0049 29            [11]  109 	add	hl, hl
+   004A 29            [11]  110 	add	hl, hl
+   004B 09            [11]  111 	add	hl, bc
+   004C 11 17 00      [10]  112 	ld	de, #0x0017
+   004F 19            [11]  113 	add	hl, de
+   0050 DD 7E 04      [19]  114 	ld	a, 4 (ix)
+   0053 77            [ 7]  115 	ld	(hl), a
+                            116 ;src/man/PlayerManager.c:47: players_list[players_num].y = y;
+   0054 FD 6E 00      [19]  117 	ld	l, 0 (iy)
+   0057 26 00         [ 7]  118 	ld	h, #0x00
+   0059 29            [11]  119 	add	hl, hl
+   005A 29            [11]  120 	add	hl, hl
+   005B 29            [11]  121 	add	hl, hl
+   005C 29            [11]  122 	add	hl, hl
+   005D 29            [11]  123 	add	hl, hl
+   005E 09            [11]  124 	add	hl, bc
+   005F 11 18 00      [10]  125 	ld	de, #0x0018
+   0062 19            [11]  126 	add	hl, de
+   0063 DD 7E 05      [19]  127 	ld	a, 5 (ix)
+   0066 77            [ 7]  128 	ld	(hl), a
+                            129 ;src/man/PlayerManager.c:48: players_list[players_num].px = x;
+   0067 FD 6E 00      [19]  130 	ld	l, 0 (iy)
+   006A 26 00         [ 7]  131 	ld	h, #0x00
+   006C 29            [11]  132 	add	hl, hl
+   006D 29            [11]  133 	add	hl, hl
+   006E 29            [11]  134 	add	hl, hl
+   006F 29            [11]  135 	add	hl, hl
+   0070 29            [11]  136 	add	hl, hl
+   0071 09            [11]  137 	add	hl, bc
+   0072 11 19 00      [10]  138 	ld	de, #0x0019
+   0075 19            [11]  139 	add	hl, de
+   0076 DD 7E 04      [19]  140 	ld	a, 4 (ix)
+   0079 77            [ 7]  141 	ld	(hl), a
+                            142 ;src/man/PlayerManager.c:49: players_list[players_num].py = y;
+   007A FD 6E 00      [19]  143 	ld	l, 0 (iy)
+   007D 26 00         [ 7]  144 	ld	h, #0x00
+   007F 29            [11]  145 	add	hl, hl
+   0080 29            [11]  146 	add	hl, hl
+   0081 29            [11]  147 	add	hl, hl
+   0082 29            [11]  148 	add	hl, hl
+   0083 29            [11]  149 	add	hl, hl
+   0084 09            [11]  150 	add	hl, bc
+   0085 11 1A 00      [10]  151 	ld	de, #0x001a
+   0088 19            [11]  152 	add	hl, de
+   0089 DD 7E 05      [19]  153 	ld	a, 5 (ix)
+   008C 77            [ 7]  154 	ld	(hl), a
+                            155 ;src/man/PlayerManager.c:50: players_list[players_num].life = life;
+   008D FD 6E 00      [19]  156 	ld	l, 0 (iy)
+   0090 26 00         [ 7]  157 	ld	h, #0x00
+   0092 29            [11]  158 	add	hl, hl
+   0093 29            [11]  159 	add	hl, hl
+   0094 29            [11]  160 	add	hl, hl
+   0095 29            [11]  161 	add	hl, hl
+   0096 29            [11]  162 	add	hl, hl
+   0097 09            [11]  163 	add	hl, bc
+   0098 11 1B 00      [10]  164 	ld	de, #0x001b
+   009B 19            [11]  165 	add	hl, de
+   009C DD 7E 08      [19]  166 	ld	a, 8 (ix)
+   009F 77            [ 7]  167 	ld	(hl), a
+                            168 ;src/man/PlayerManager.c:51: players_list[players_num].score = 0;
+   00A0 FD 6E 00      [19]  169 	ld	l, 0 (iy)
+   00A3 26 00         [ 7]  170 	ld	h, #0x00
+   00A5 29            [11]  171 	add	hl, hl
+   00A6 29            [11]  172 	add	hl, hl
+   00A7 29            [11]  173 	add	hl, hl
+   00A8 29            [11]  174 	add	hl, hl
+   00A9 29            [11]  175 	add	hl, hl
+   00AA 09            [11]  176 	add	hl, bc
+   00AB 01 1C 00      [10]  177 	ld	bc, #0x001c
+   00AE 09            [11]  178 	add	hl, bc
+   00AF AF            [ 4]  179 	xor	a, a
+   00B0 77            [ 7]  180 	ld	(hl), a
+   00B1 23            [ 6]  181 	inc	hl
+   00B2 77            [ 7]  182 	ld	(hl), a
+   00B3 23            [ 6]  183 	inc	hl
+   00B4 AF            [ 4]  184 	xor	a, a
+   00B5 77            [ 7]  185 	ld	(hl), a
+   00B6 23            [ 6]  186 	inc	hl
+   00B7 77            [ 7]  187 	ld	(hl), a
+   00B8 DD E1         [14]  188 	pop	ix
+   00BA C9            [10]  189 	ret
+                            190 ;src/man/PlayerManager.c:60: TPlayer* man_player_get_player(u8 player){
+                            191 ;	---------------------------------
+                            192 ; Function man_player_get_player
+                            193 ; ---------------------------------
+   00BB                     194 _man_player_get_player::
+   00BB DD E5         [15]  195 	push	ix
+   00BD DD 21 00 00   [14]  196 	ld	ix,#0
+   00C1 DD 39         [15]  197 	add	ix,sp
+                            198 ;src/man/PlayerManager.c:61: return &players_list[player]; 
+   00C3 01r00r00      [10]  199 	ld	bc, #_players_list+0
+   00C6 DD 6E 04      [19]  200 	ld	l, 4 (ix)
+   00C9 26 00         [ 7]  201 	ld	h, #0x00
+   00CB 29            [11]  202 	add	hl, hl
+   00CC 29            [11]  203 	add	hl, hl
+   00CD 29            [11]  204 	add	hl, hl
+   00CE 29            [11]  205 	add	hl, hl
+   00CF 29            [11]  206 	add	hl, hl
+   00D0 09            [11]  207 	add	hl, bc
+   00D1 DD E1         [14]  208 	pop	ix
+   00D3 C9            [10]  209 	ret
+                            210 ;src/man/PlayerManager.c:70: void man_player_update(){
+                            211 ;	---------------------------------
+                            212 ; Function man_player_update
+                            213 ; ---------------------------------
+   00D4                     214 _man_player_update::
+                            215 ;src/man/PlayerManager.c:72: }
+   00D4 C9            [10]  216 	ret
+                            217 ;src/man/PlayerManager.c:80: void man_player_render(){
+                            218 ;	---------------------------------
+                            219 ; Function man_player_render
+                            220 ; ---------------------------------
+   00D5                     221 _man_player_render::
+                            222 ;src/man/PlayerManager.c:82: }
+   00D5 C9            [10]  223 	ret
+                            224 	.area _CODE
+                            225 	.area _INITIALIZER
+                            226 	.area _CABS (ABS)

@@ -1,6 +1,6 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
-; Version 3.6.8 #9946 (Mac OS X x86_64)
+; Version 3.6.8 #9946 (Linux)
 ;--------------------------------------------------------
 	.module text
 	.optsdcc -mz80
@@ -168,54 +168,54 @@ _drawText::
 	ld	-46 (ix), a
 ;src/text/text.c:108: character = text[x];
 	ld	a, 4 (ix)
-	ld	-2 (ix), a
+	ld	-36 (ix), a
 	ld	a, 5 (ix)
-	ld	-1 (ix), a
-	ld	l,-2 (ix)
-	ld	h,-1 (ix)
+	ld	-35 (ix), a
+	ld	l,-36 (ix)
+	ld	h,-35 (ix)
 	ld	a, (hl)
 	ld	-3 (ix), a
 ;src/text/text.c:110: while (character != '\0') {
 	ld	hl, #0x0001
 	add	hl, sp
-	ld	-5 (ix), l
-	ld	-4 (ix), h
-	ld	a, -5 (ix)
+	ld	-31 (ix), l
+	ld	-30 (ix), h
+	ld	a, -31 (ix)
+	ld	-38 (ix), a
+	ld	a, -30 (ix)
+	ld	-37 (ix), a
+	ld	a, -31 (ix)
 	ld	-7 (ix), a
-	ld	a, -4 (ix)
+	ld	a, -30 (ix)
 	ld	-6 (ix), a
-	ld	a, -5 (ix)
-	ld	-9 (ix), a
-	ld	a, -4 (ix)
-	ld	-8 (ix), a
-	ld	a, -5 (ix)
-	ld	-11 (ix), a
-	ld	a, -4 (ix)
-	ld	-10 (ix), a
-	ld	a, -5 (ix)
-	ld	-13 (ix), a
-	ld	a, -4 (ix)
-	ld	-12 (ix), a
-	ld	a, -5 (ix)
-	ld	-15 (ix), a
-	ld	a, -4 (ix)
-	ld	-14 (ix), a
-	ld	a, -5 (ix)
-	ld	-17 (ix), a
-	ld	a, -4 (ix)
-	ld	-16 (ix), a
-	ld	a, -5 (ix)
-	ld	-19 (ix), a
-	ld	a, -4 (ix)
-	ld	-18 (ix), a
-	ld	a, -5 (ix)
-	ld	-21 (ix), a
-	ld	a, -4 (ix)
-	ld	-20 (ix), a
-	ld	a, -5 (ix)
+	ld	a, -31 (ix)
+	ld	-29 (ix), a
+	ld	a, -30 (ix)
+	ld	-28 (ix), a
+	ld	a, -31 (ix)
 	ld	-23 (ix), a
-	ld	a, -4 (ix)
+	ld	a, -30 (ix)
 	ld	-22 (ix), a
+	ld	a, -31 (ix)
+	ld	-13 (ix), a
+	ld	a, -30 (ix)
+	ld	-12 (ix), a
+	ld	a, -31 (ix)
+	ld	-5 (ix), a
+	ld	a, -30 (ix)
+	ld	-4 (ix), a
+	ld	a, -31 (ix)
+	ld	-27 (ix), a
+	ld	a, -30 (ix)
+	ld	-26 (ix), a
+	ld	a, -31 (ix)
+	ld	-18 (ix), a
+	ld	a, -30 (ix)
+	ld	-17 (ix), a
+	ld	a, -31 (ix)
+	ld	-25 (ix), a
+	ld	a, -30 (ix)
+	ld	-24 (ix), a
 	ld	a, 9 (ix)
 	dec	a
 	jr	NZ,00304$
@@ -224,24 +224,24 @@ _drawText::
 00304$:
 	xor	a,a
 00305$:
-	ld	-24 (ix), a
+	ld	-32 (ix), a
 	ld	a, 9 (ix)
 	ld	c, a
 	add	a, a
 	add	a, a
 	add	a, a
 	add	a, c
-	ld	-25 (ix), a
-	ld	a, -5 (ix)
-	ld	-27 (ix), a
-	ld	a, -4 (ix)
-	ld	-26 (ix), a
-	ld	a, -25 (ix)
-	ld	-28 (ix), a
-	ld	a, -5 (ix)
-	ld	-30 (ix), a
-	ld	a, -4 (ix)
-	ld	-29 (ix), a
+	ld	-14 (ix), a
+	ld	a, -31 (ix)
+	ld	-16 (ix), a
+	ld	a, -30 (ix)
+	ld	-15 (ix), a
+	ld	a, -14 (ix)
+	ld	-19 (ix), a
+	ld	a, -31 (ix)
+	ld	-21 (ix), a
+	ld	a, -30 (ix)
+	ld	-20 (ix), a
 	ld	-41 (ix), #0x00
 00159$:
 	ld	a, -3 (ix)
@@ -383,7 +383,7 @@ _drawText::
 00321$:
 	xor	a,a
 00322$:
-	ld	-31 (ix), a
+	ld	-33 (ix), a
 ;src/text/text.c:156: else if(*pChar == 0xee) colorchar[i]=color2;
 	ld	a, e
 	sub	a, #0xee
@@ -393,7 +393,7 @@ _drawText::
 00323$:
 	xor	a,a
 00324$:
-	ld	-32 (ix), a
+	ld	-34 (ix), a
 ;src/text/text.c:157: else if(*pChar == 0xdd) colorchar[i]=color3;
 	ld	a, e
 	sub	a, #0xdd
@@ -403,7 +403,7 @@ _drawText::
 00325$:
 	xor	a,a
 00326$:
-	ld	-33 (ix), a
+	ld	-1 (ix), a
 ;src/text/text.c:158: else if(*pChar == 0xff) colorchar[i]=color4;
 	ld	a, e
 	inc	a
@@ -413,19 +413,19 @@ _drawText::
 00327$:
 	xor	a,a
 00328$:
-	ld	-34 (ix), a
+	ld	-2 (ix), a
 ;src/text/text.c:153: if(size==1) {
-	ld	a, -24 (ix)
+	ld	a, -32 (ix)
 	or	a, a
 	jp	Z, 00141$
 ;src/text/text.c:155: if(*pChar == 0x55) colorchar[i]=color1;
-	ld	a, -31 (ix)
+	ld	a, -33 (ix)
 	or	a, a
 	jr	Z,00126$
-	ld	a, -23 (ix)
+	ld	a, -25 (ix)
 	add	a, -42 (ix)
 	ld	e, a
-	ld	a, -22 (ix)
+	ld	a, -24 (ix)
 	adc	a, #0x00
 	ld	d, a
 	ld	a, -43 (ix)
@@ -433,13 +433,13 @@ _drawText::
 	jp	00163$
 00126$:
 ;src/text/text.c:156: else if(*pChar == 0xee) colorchar[i]=color2;
-	ld	a, -32 (ix)
+	ld	a, -34 (ix)
 	or	a, a
 	jr	Z,00123$
-	ld	a, -21 (ix)
+	ld	a, -18 (ix)
 	add	a, -42 (ix)
 	ld	e, a
-	ld	a, -20 (ix)
+	ld	a, -17 (ix)
 	adc	a, #0x00
 	ld	d, a
 	ld	a, -44 (ix)
@@ -447,13 +447,13 @@ _drawText::
 	jp	00163$
 00123$:
 ;src/text/text.c:157: else if(*pChar == 0xdd) colorchar[i]=color3;
-	ld	a, -33 (ix)
+	ld	a, -1 (ix)
 	or	a, a
 	jr	Z,00120$
-	ld	a, -19 (ix)
+	ld	a, -27 (ix)
 	add	a, -42 (ix)
 	ld	e, a
-	ld	a, -18 (ix)
+	ld	a, -26 (ix)
 	adc	a, #0x00
 	ld	d, a
 	ld	a, -45 (ix)
@@ -461,13 +461,13 @@ _drawText::
 	jp	00163$
 00120$:
 ;src/text/text.c:158: else if(*pChar == 0xff) colorchar[i]=color4;
-	ld	a, -34 (ix)
+	ld	a, -2 (ix)
 	or	a, a
 	jr	Z,00117$
-	ld	a, -17 (ix)
+	ld	a, -5 (ix)
 	add	a, -42 (ix)
 	ld	e, a
-	ld	a, -16 (ix)
+	ld	a, -4 (ix)
 	adc	a, #0x00
 	ld	d, a
 	ld	a, -46 (ix)
@@ -475,10 +475,10 @@ _drawText::
 	jp	00163$
 00117$:
 ;src/text/text.c:159: else colorchar[i]=*pChar;
-	ld	a, -15 (ix)
+	ld	a, -13 (ix)
 	add	a, -42 (ix)
 	ld	l, a
-	ld	a, -14 (ix)
+	ld	a, -12 (ix)
 	adc	a, #0x00
 	ld	h, a
 	ld	(hl), e
@@ -511,23 +511,23 @@ _drawText::
 	inc	d
 	inc	d
 ;src/text/text.c:166: if(*pChar == 0x55) {
-	ld	a, -31 (ix)
+	ld	a, -33 (ix)
 	or	a, a
 	jr	Z,00138$
 ;src/text/text.c:167: colorchar[pos]=color1;
-	ld	a, -13 (ix)
+	ld	a, -23 (ix)
 	add	a, l
 	ld	l, a
-	ld	a, -12 (ix)
+	ld	a, -22 (ix)
 	adc	a, #0x00
 	ld	h, a
 	ld	a, -43 (ix)
 	ld	(hl), a
 ;src/text/text.c:168: colorchar[pos+FONT2_W]=color1;
-	ld	a, -13 (ix)
+	ld	a, -23 (ix)
 	add	a, d
 	ld	e, a
-	ld	a, -12 (ix)
+	ld	a, -22 (ix)
 	adc	a, #0x00
 	ld	d, a
 	ld	a, -43 (ix)
@@ -535,23 +535,23 @@ _drawText::
 	jp	00163$
 00138$:
 ;src/text/text.c:170: else if(*pChar == 0xee) {
-	ld	a, -32 (ix)
+	ld	a, -34 (ix)
 	or	a, a
 	jr	Z,00135$
 ;src/text/text.c:171: colorchar[pos]=color2;
-	ld	a, -11 (ix)
+	ld	a, -29 (ix)
 	add	a, l
 	ld	l, a
-	ld	a, -10 (ix)
+	ld	a, -28 (ix)
 	adc	a, #0x00
 	ld	h, a
 	ld	a, -44 (ix)
 	ld	(hl), a
 ;src/text/text.c:172: colorchar[pos+FONT2_W]=color2;
-	ld	a, -11 (ix)
+	ld	a, -29 (ix)
 	add	a, d
 	ld	e, a
-	ld	a, -10 (ix)
+	ld	a, -28 (ix)
 	adc	a, #0x00
 	ld	d, a
 	ld	a, -44 (ix)
@@ -559,23 +559,23 @@ _drawText::
 	jr	00163$
 00135$:
 ;src/text/text.c:174: else if(*pChar == 0xdd) {
-	ld	a, -33 (ix)
+	ld	a, -1 (ix)
 	or	a, a
 	jr	Z,00132$
 ;src/text/text.c:175: colorchar[pos]=color3;
-	ld	a, -9 (ix)
+	ld	a, -7 (ix)
 	add	a, l
 	ld	l, a
-	ld	a, -8 (ix)
+	ld	a, -6 (ix)
 	adc	a, #0x00
 	ld	h, a
 	ld	a, -45 (ix)
 	ld	(hl), a
 ;src/text/text.c:176: colorchar[pos+FONT2_W]=color3;
-	ld	a, -9 (ix)
+	ld	a, -7 (ix)
 	add	a, d
 	ld	e, a
-	ld	a, -8 (ix)
+	ld	a, -6 (ix)
 	adc	a, #0x00
 	ld	d, a
 	ld	a, -45 (ix)
@@ -583,23 +583,23 @@ _drawText::
 	jr	00163$
 00132$:
 ;src/text/text.c:178: else if(*pChar == 0xff) {
-	ld	a, -34 (ix)
+	ld	a, -2 (ix)
 	or	a, a
 	jr	Z,00129$
 ;src/text/text.c:179: colorchar[pos]=color4;
-	ld	a, -7 (ix)
+	ld	a, -38 (ix)
 	add	a, l
 	ld	l, a
-	ld	a, -6 (ix)
+	ld	a, -37 (ix)
 	adc	a, #0x00
 	ld	h, a
 	ld	a, -46 (ix)
 	ld	(hl), a
 ;src/text/text.c:180: colorchar[pos+FONT2_W]=color4;
-	ld	a, -7 (ix)
+	ld	a, -38 (ix)
 	add	a, d
 	ld	e, a
-	ld	a, -6 (ix)
+	ld	a, -37 (ix)
 	adc	a, #0x00
 	ld	d, a
 	ld	a, -46 (ix)
@@ -607,18 +607,18 @@ _drawText::
 	jr	00163$
 00129$:
 ;src/text/text.c:183: colorchar[pos]=*pChar;
-	ld	a, -5 (ix)
+	ld	a, -31 (ix)
 	add	a, l
 	ld	l, a
-	ld	a, -4 (ix)
+	ld	a, -30 (ix)
 	adc	a, #0x00
 	ld	h, a
 	ld	(hl), e
 ;src/text/text.c:184: colorchar[pos+FONT2_W]=*pChar;
-	ld	a, -5 (ix)
+	ld	a, -31 (ix)
 	add	a, d
 	ld	e, a
-	ld	a, -4 (ix)
+	ld	a, -30 (ix)
 	adc	a, #0x00
 	ld	d, a
 	ld	l,-40 (ix)
@@ -639,38 +639,38 @@ _drawText::
 	push	hl
 	call	_cpct_getScreenPtr
 ;src/text/text.c:194: if(transparent) cpct_drawSpriteMaskedAlignedTable(colorchar, pvideo, FONT2_W, FONT2_H*size, g_tablatrans);
-	ld	-36 (ix), l
-	ld	-35 (ix), h
+	ld	-9 (ix), l
+	ld	-8 (ix), h
 	ld	a, 10 (ix)
 	or	a, a
 	jr	Z,00145$
 	ld	de, #_g_tablatrans
-	ld	c,-30 (ix)
-	ld	b,-29 (ix)
+	ld	c,-21 (ix)
+	ld	b,-20 (ix)
 	push	de
-	ld	d, -28 (ix)
+	ld	d, -19 (ix)
 	ld	e,#0x02
 	push	de
-	ld	l,-36 (ix)
-	ld	h,-35 (ix)
+	ld	l,-9 (ix)
+	ld	h,-8 (ix)
 	push	hl
 	push	bc
 	call	_cpct_drawSpriteMaskedAlignedTable
 	jr	00146$
 00145$:
 ;src/text/text.c:195: else cpct_drawSprite (colorchar, pvideo, FONT2_W, FONT2_H*size);
-	ld	a, -27 (ix)
-	ld	-38 (ix), a
-	ld	a, -26 (ix)
-	ld	-37 (ix), a
-	ld	d, -25 (ix)
+	ld	a, -16 (ix)
+	ld	-11 (ix), a
+	ld	a, -15 (ix)
+	ld	-10 (ix), a
+	ld	d, -14 (ix)
 	ld	e,#0x02
 	push	de
-	ld	l,-36 (ix)
-	ld	h,-35 (ix)
+	ld	l,-9 (ix)
+	ld	h,-8 (ix)
 	push	hl
-	ld	l,-38 (ix)
-	ld	h,-37 (ix)
+	ld	l,-11 (ix)
+	ld	h,-10 (ix)
 	push	hl
 	call	_cpct_drawSprite
 00146$:
@@ -689,10 +689,10 @@ _drawText::
 00152$:
 ;src/text/text.c:201: character = text[++x];
 	inc	-41 (ix)
-	ld	a, -2 (ix)
+	ld	a, -36 (ix)
 	add	a, -41 (ix)
 	ld	l, a
-	ld	a, -1 (ix)
+	ld	a, -35 (ix)
 	adc	a, #0x00
 	ld	h, a
 	ld	a, (hl)

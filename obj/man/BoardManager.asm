@@ -1,6 +1,6 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
-; Version 3.6.8 #9946 (Mac OS X x86_64)
+; Version 3.6.8 #9946 (Linux)
 ;--------------------------------------------------------
 	.module BoardManager
 	.optsdcc -mz80
@@ -26,7 +26,7 @@
 ;--------------------------------------------------------
 	.area _DATA
 _board::
-	.ds 152
+	.ds 153
 ;--------------------------------------------------------
 ; ram data
 ;--------------------------------------------------------
@@ -155,7 +155,7 @@ _man_board_init::
 	ld	l, (hl)
 	ld	a, e
 	sub	a, l
-	jr	NC,00108$
+	jr	NC,00101$
 ;src/man/BoardManager.c:45: board.cells[j][i] = (cpct_rand8() % NUM_COLORS);
 	ld	a, -2 (ix)
 	add	a, e
@@ -183,7 +183,10 @@ _man_board_init::
 ;src/man/BoardManager.c:44: for (i=0; i<board.height; i++){
 	inc	e
 	jr	00104$
-00108$:
+00101$:
+;src/man/BoardManager.c:47: board.updated = YES;
+	ld	hl, #(_board + 0x0098)
+	ld	(hl), #0x01
 ;src/man/BoardManager.c:43: for (j=0; j<board.width; j++){
 	inc	d
 	jr	00107$
@@ -191,14 +194,14 @@ _man_board_init::
 	ld	sp, ix
 	pop	ix
 	ret
-;src/man/BoardManager.c:59: void man_board_update(){
+;src/man/BoardManager.c:60: void man_board_update(){
 ;	---------------------------------
 ; Function man_board_update
 ; ---------------------------------
 _man_board_update::
-;src/man/BoardManager.c:61: }
+;src/man/BoardManager.c:62: }
 	ret
-;src/man/BoardManager.c:69: void man_board_render(){
+;src/man/BoardManager.c:70: void man_board_render(){
 ;	---------------------------------
 ; Function man_board_render
 ; ---------------------------------
@@ -209,94 +212,117 @@ _man_board_render::
 	push	af
 	push	af
 	dec	sp
-;src/man/BoardManager.c:73: for (j=0; j<board.height; j++){
-	ld	-5 (ix), #0x00
-00110$:
+;src/man/BoardManager.c:73: if (board.updated = YES){
+	ld	bc, #_board + 152
+	ld	a, #0x01
+	ld	(bc), a
+;src/man/BoardManager.c:74: for (j=0; j<board.height; j++){
+	ld	e, #0x00
+00112$:
 	ld	hl, #_board + 145
-	ld	a,-5 (ix)
-	sub	a,(hl)
-	jp	NC, 00112$
-;src/man/BoardManager.c:74: for (i=0; i<board.width; i++){
-	ld	a, -5 (ix)
-	ld	c, a
+	ld	d, (hl)
+	ld	a, e
+	sub	a, d
+	jp	NC, 00105$
+;src/man/BoardManager.c:75: for (i=0; i<board.width; i++){
+	push	de
+	ld	a, e
 	add	a, a
-	add	a, c
+	add	a, e
 	add	a, a
 	add	a, a
-	add	a, c
-	ld	-1 (ix), a
-	ld	l, -5 (ix)
-	ld	c, l
+	add	a, e
+	pop	de
+	ld	-4 (ix), a
+	push	de
+	ld	l, e
 	add	hl, hl
-	add	hl, bc
+	add	hl, de
 	add	hl, hl
 	add	hl, hl
+	pop	de
 	ld	a, #<(_board)
 	add	a, l
-	ld	-3 (ix), a
+	ld	-2 (ix), a
 	ld	a, #>(_board)
 	adc	a, #0x00
-	ld	-2 (ix), a
-	ld	c, #0x00
-00107$:
+	ld	-1 (ix), a
+	ld	d, #0x00
+00109$:
 	ld	hl, #_board + 144
-	ld	b, (hl)
-	ld	a, c
-	sub	a, b
-	jr	NC,00111$
-;src/man/BoardManager.c:75: vmem = cpct_getScreenPtr (CPCT_VMEM_START, board.x + (i*5), board.y + (j*13));
+	ld	l, (hl)
+	ld	a, d
+	sub	a, l
+	jr	NC,00113$
+;src/man/BoardManager.c:76: vmem = cpct_getScreenPtr (CPCT_VMEM_START, board.x + (i*5), board.y + (j*13));
 	ld	a,(#_board + 147)
-	add	a, -1 (ix)
-	ld	d, a
+	add	a, -4 (ix)
+	ld	-5 (ix), a
 	ld	hl, #_board + 146
-	ld	b, (hl)
-	ld	l, c
-	add	hl, hl
-	add	hl, hl
-	add	hl, bc
-	ld	a, b
-	add	a, l
-	ld	b, a
-	push	bc
-	ld	e, b
+	ld	a, (hl)
+	ld	-3 (ix), a
 	push	de
+	ld	l, d
+	ld	e, l
+	add	hl, hl
+	add	hl, hl
+	add	hl, de
+	pop	de
+	ld	a, -3 (ix)
+	add	a, l
+	ld	-3 (ix), a
+	push	bc
+	push	de
+	ld	h, -5 (ix)
+	ld	l, -3 (ix)
+	push	hl
 	ld	hl, #0xc000
 	push	hl
 	call	_cpct_getScreenPtr
+	pop	de
 	pop	bc
 	push	hl
 	pop	iy
-;src/man/BoardManager.c:77: if (board.cells[j][i]!=255){
-	ld	l,-3 (ix)
-	ld	h,-2 (ix)
-	ld	b, #0x00
-	add	hl, bc
-	ld	a, (hl)
-;src/man/BoardManager.c:78: cpct_drawSpriteBlended(vmem, SP_TILES_0_H, SP_TILES_0_W, tiles[board.cells[j][i]]); // Faster Sprites with XOR
-;src/man/BoardManager.c:77: if (board.cells[j][i]!=255){
-	ld	-4 (ix), a
+;src/man/BoardManager.c:78: if (board.cells[j][i]!=255){
+	ld	a, -2 (ix)
+	add	a, d
+	ld	l, a
+	ld	a, -1 (ix)
+	adc	a, #0x00
+	ld	h, a
+	ld	l, (hl)
+;src/man/BoardManager.c:79: cpct_drawSpriteBlended(vmem, SP_TILES_0_H, SP_TILES_0_W, tiles[board.cells[j][i]]); // Faster Sprites with XOR
+;src/man/BoardManager.c:78: if (board.cells[j][i]!=255){
+	ld	a, l
 	inc	a
 	jr	Z,00102$
-;src/man/BoardManager.c:78: cpct_drawSpriteBlended(vmem, SP_TILES_0_H, SP_TILES_0_W, tiles[board.cells[j][i]]); // Faster Sprites with XOR
-	ld	l, -4 (ix)
+;src/man/BoardManager.c:79: cpct_drawSpriteBlended(vmem, SP_TILES_0_H, SP_TILES_0_W, tiles[board.cells[j][i]]); // Faster Sprites with XOR
 	ld	h, #0x00
 	add	hl, hl
-	ld	de, #_tiles
-	add	hl, de
-	ld	e, (hl)
+	ld	a, #<(_tiles)
+	add	a, l
+	ld	l, a
+	ld	a, #>(_tiles)
+	adc	a, h
+	ld	h, a
+	ld	a, (hl)
 	inc	hl
-	ld	d, (hl)
+	ld	h, (hl)
+	ld	l, a
 	push	bc
 	push	de
+	push	hl
 	ld	hl, #0x040c
 	push	hl
 	push	iy
 	call	_cpct_drawSpriteBlended
+	pop	de
 	pop	bc
-	jr	00108$
+	jr	00110$
 00102$:
-;src/man/BoardManager.c:80: cpct_drawSolidBox (vmem, 0, SP_TILES_0_W, SP_TILES_0_H);	
+;src/man/BoardManager.c:81: cpct_drawSolidBox (vmem, 0, SP_TILES_0_W, SP_TILES_0_H);	
 	push	bc
+	push	de
 	ld	hl, #0x0c04
 	push	hl
 	xor	a, a
@@ -304,16 +330,23 @@ _man_board_render::
 	inc	sp
 	push	iy
 	call	_cpct_drawSolidBox
+	pop	af
+	pop	af
+	inc	sp
+	pop	de
 	pop	bc
-00108$:
-;src/man/BoardManager.c:74: for (i=0; i<board.width; i++){
-	inc	c
-	jr	00107$
-00111$:
-;src/man/BoardManager.c:73: for (j=0; j<board.height; j++){
-	inc	-5 (ix)
-	jp	00110$
-00112$:
+00110$:
+;src/man/BoardManager.c:75: for (i=0; i<board.width; i++){
+	inc	d
+	jp	00109$
+00113$:
+;src/man/BoardManager.c:74: for (j=0; j<board.height; j++){
+	inc	e
+	jp	00112$
+00105$:
+;src/man/BoardManager.c:85: board.updated = NO;
+	xor	a, a
+	ld	(bc), a
 	ld	sp, ix
 	pop	ix
 	ret

@@ -1,0 +1,47 @@
+XL2
+H 9 areas 6 global symbols
+M InputSystem
+O -mz80
+S _cpct_isKeyPressed Ref0000
+S _keys1 Ref0000
+S _man_player_get_player Ref0000
+S .__.ABS. Def0000
+A _CODE size 56 flags 0 addr 0
+S _sys_input_init Def0000
+S _sys_input_update Def0001
+A _DATA size 0 flags 0 addr 0
+A _INITIALIZED size 0 flags 0 addr 0
+A _DABS size 0 flags 8 addr 0
+A _HOME size 0 flags 0 addr 0
+A _GSINIT size 0 flags 0 addr 0
+A _GSFINAL size 0 flags 0 addr 0
+A _INITIALIZER size 0 flags 0 addr 0
+A _CABS size 0 flags 8 addr 0
+T 00 00
+R 00 00 00 00
+T 00 00 C9
+R 00 00 00 00
+T 01 00
+R 00 00 00 00
+T 01 00 AF F5 33 CD 00 00 33 4D 44 2A 04 00 C5 CD
+R 00 00 00 00 02 06 02 00 02 0C 01 00
+T 0F 00 00 00 C1 7D B7 28 07 21 17 00 09 5E 1D 73
+R 00 00 00 00 02 02 00 00
+T 1D 00
+R 00 00 00 00
+T 1D 00 2A 06 00 C5 CD 00 00 C1 7D B7 28 07 21
+R 00 00 00 00 02 03 01 00 02 07 00 00
+T 2A 00 17 00 09 5E 1C 73
+R 00 00 00 00
+T 30 00
+R 00 00 00 00
+T 30 00 2A 00 00 C5 CD 00 00 C1 7D B7 28 07 21
+R 00 00 00 00 02 03 01 00 02 07 00 00
+T 3D 00 18 00 09 5E 1D 73
+R 00 00 00 00
+T 43 00
+R 00 00 00 00
+T 43 00 2A 02 00 C5 CD 00 00 C1 7D B7 C8 21 18 00
+R 00 00 00 00 02 03 01 00 02 07 00 00
+T 51 00 09 4E 0C 71 C9
+R 00 00 00 00

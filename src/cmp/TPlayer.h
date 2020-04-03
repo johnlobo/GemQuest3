@@ -13,14 +13,19 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //------------------------------------------------------------------------------
-
-#ifndef _TEXT_H_
-#define _TEXT_H_
+#ifndef _TPLAYER_H_
+#define _TPLAYER_H_
 
 #include <cpctelera.h>
 
-u8 strLength(u8 str[]);
-void strCopy(u8 *source, u8 *destination);
-void drawText(const u8 text[], u8 xPos, u8 yPos, u8 color, u8 size, u8 transparent);
+typedef struct {
+    u8 active;
+    u8 name[20];
+    u8 *portrait;
+    u8 x,y;
+    u8 px,py;
+    u8 life;
+    u32 score;
+} TPlayer;
 
 #endif

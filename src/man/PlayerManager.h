@@ -13,14 +13,17 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //------------------------------------------------------------------------------
-
-#ifndef _TEXT_H_
-#define _TEXT_H_
+#ifndef _PLAYERMANAGER_H_
+#define _PLAYERMANAGER_H_
 
 #include <cpctelera.h>
+#include "../cmp/TPlayer.h"
 
-u8 strLength(u8 str[]);
-void strCopy(u8 *source, u8 *destination);
-void drawText(const u8 text[], u8 xPos, u8 yPos, u8 color, u8 size, u8 transparent);
+void man_player_init();
+void man_player_createPlayer(u8 x, u8 y, u8 *name, u8 life);
+TPlayer* man_player_get_player(u8 player);
+void man_player_update();
+void man_player_render();
 
 #endif
+

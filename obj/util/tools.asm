@@ -1,6 +1,6 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
-; Version 3.6.8 #9946 (Mac OS X x86_64)
+; Version 3.6.8 #9946 (Linux)
 ;--------------------------------------------------------
 	.module tools
 	.optsdcc -mz80
@@ -129,6 +129,9 @@ _drawWindow::
 	ld	h, b
 	push	hl
 	call	_cpct_drawSolidBox
+	pop	af
+	pop	af
+	inc	sp
 	pop	de
 ;src/util/tools.c:53: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x + 1, y + height);
 	ld	a, 5 (ix)
@@ -163,6 +166,9 @@ _drawWindow::
 	inc	sp
 	push	bc
 	call	_cpct_drawSolidBox
+	pop	af
+	pop	af
+	inc	sp
 	pop	de
 ;src/util/tools.c:56: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x + 1, y + 2);
 	ld	a, 5 (ix)
@@ -194,6 +200,9 @@ _drawWindow::
 	inc	sp
 	push	hl
 	call	_cpct_drawSolidBox
+	pop	af
+	pop	af
+	inc	sp
 	pop	de
 ;src/util/tools.c:58: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x + 1, y + height - 2);
 	dec	-1 (ix)
@@ -225,6 +234,9 @@ _drawWindow::
 	inc	sp
 	push	hl
 	call	_cpct_drawSolidBox
+	pop	af
+	pop	af
+	inc	sp
 	pop	de
 ;src/util/tools.c:61: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x + 1, y + 4);
 	ld	a, 5 (ix)
@@ -265,10 +277,12 @@ _drawWindow::
 	inc	sp
 	push	bc
 	call	_cpct_drawSolidBox
+	pop	af
 ;src/util/tools.c:65: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x, y + 2);
+	inc	sp
 	ld	h, -2 (ix)
 	ld	l, 4 (ix)
-	push	hl
+	ex	(sp),hl
 	ld	hl, #0xc000
 	push	hl
 	call	_cpct_getScreenPtr
@@ -289,10 +303,12 @@ _drawWindow::
 	inc	sp
 	push	bc
 	call	_cpct_drawSolidBox
+	pop	af
 ;src/util/tools.c:69: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x, y + 4);
+	inc	sp
 	ld	h, -3 (ix)
 	ld	l, 4 (ix)
-	push	hl
+	ex	(sp),hl
 	ld	hl, #0xc000
 	push	hl
 	call	_cpct_getScreenPtr
@@ -317,10 +333,12 @@ _drawWindow::
 	inc	sp
 	push	bc
 	call	_cpct_drawSolidBox
+	pop	af
 ;src/util/tools.c:73: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x, y + height - 2);
+	inc	sp
 	ld	h, -1 (ix)
 	ld	l, 4 (ix)
-	push	hl
+	ex	(sp),hl
 	ld	hl, #0xc000
 	push	hl
 	call	_cpct_getScreenPtr
@@ -341,6 +359,9 @@ _drawWindow::
 	inc	sp
 	push	bc
 	call	_cpct_drawSolidBox
+	pop	af
+	pop	af
+	inc	sp
 ;src/util/tools.c:76: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x + width - 3, y + 2);
 	ld	a, 4 (ix)
 	add	a, 6 (ix)
@@ -378,6 +399,9 @@ _drawWindow::
 	inc	sp
 	push	hl
 	call	_cpct_drawSolidBox
+	pop	af
+	pop	af
+	inc	sp
 	pop	bc
 ;src/util/tools.c:79: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x + width - 3, y + 4);
 	push	bc
@@ -409,6 +433,9 @@ _drawWindow::
 	push	bc
 	push	de
 	call	_cpct_drawSolidBox
+	pop	af
+	pop	af
+	inc	sp
 	pop	bc
 ;src/util/tools.c:82: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x + width - 3, y + height - 2);
 	ld	a, -1 (ix)
@@ -436,7 +463,7 @@ _drawWindow::
 	inc	sp
 	push	bc
 	call	_cpct_drawSolidBox
-	ld	sp, ix
+	ld	sp,ix
 	pop	ix
 	ret
 ;src/util/tools.c:94: void updateNumber(u8 number)
@@ -468,6 +495,9 @@ _updateNumber::
 	inc	sp
 	push	bc
 	call	_cpct_drawSolidBox
+	pop	af
+	pop	af
+	inc	sp
 ;src/util/tools.c:101: sprintf(text, "%02d", number);
 	ld	e, 4 (ix)
 	ld	d, #0x00

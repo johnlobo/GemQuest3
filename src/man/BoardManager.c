@@ -44,6 +44,7 @@ void man_board_init(u8 x, u8 y, u8 width, u8 height){
         for (i=0; i<board.height; i++){
             board.cells[j][i] = (cpct_rand8() % NUM_COLORS);
         }
+	board.updated = YES;
     }
     //destroyMatches(cpct_rand8() % 3); //Destroys the matches found except a random number between 0 and 2
 	//printBoard();
@@ -69,16 +70,18 @@ void man_board_update(){
 void man_board_render(){
     u8 i,j;
     u8* vmem;
-    
-    for (j=0; j<board.height; j++){
-        for (i=0; i<board.width; i++){
-            vmem = cpct_getScreenPtr (CPCT_VMEM_START, board.x + (i*5), board.y + (j*13));
-            //cpct_drawSpriteMaskedAlignedTable(tiles[board.cells[i][j]], vmem, SP_TILES_0_W, SP_TILES_0_H, g_tablatrans);
-            if (board.cells[j][i]!=255){
-				cpct_drawSpriteBlended(vmem, SP_TILES_0_H, SP_TILES_0_W, tiles[board.cells[j][i]]); // Faster Sprites with XOR
-			} else {
-				cpct_drawSolidBox (vmem, 0, SP_TILES_0_W, SP_TILES_0_H);	
-			}
-        }
-    }       
+    if (board.updated = YES){
+    	for (j=0; j<board.height; j++){
+    	    for (i=0; i<board.width; i++){
+    	        vmem = cpct_getScreenPtr (CPCT_VMEM_START, board.x + (i*5), board.y + (j*13));
+    	        //cpct_drawSpriteMaskedAlignedTable(tiles[board.cells[i][j]], vmem, SP_TILES_0_W, SP_TILES_0_H, g_tablatrans);
+    	        if (board.cells[j][i]!=255){
+					cpct_drawSpriteBlended(vmem, SP_TILES_0_H, SP_TILES_0_W, tiles[board.cells[j][i]]); // Faster Sprites with XOR
+				} else {
+					cpct_drawSolidBox (vmem, 0, SP_TILES_0_W, SP_TILES_0_H);	
+				}
+    	    }
+    	}
+		board.updated = NO;
+	}
 }

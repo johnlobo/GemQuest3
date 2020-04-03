@@ -14,13 +14,28 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //------------------------------------------------------------------------------
 
-#ifndef _TEXT_H_
-#define _TEXT_H_
-
 #include <cpctelera.h>
+#include "../cmp/TPlayer.h"
+#include "../man/PlayerManager.h"
+#include "../defines.h"
 
-u8 strLength(u8 str[]);
-void strCopy(u8 *source, u8 *destination);
-void drawText(const u8 text[], u8 xPos, u8 yPos, u8 color, u8 size, u8 transparent);
+void sys_input_init() {
+   
+}
 
-#endif
+void sys_input_update() {
+   TPlayer *player = man_player_get_player(0);
+   
+   if (cpct_isKeyPressed(keys1.left)) {
+      player->x = player->x - 1;
+   }
+   if (cpct_isKeyPressed(keys1.right)) {
+      player->x = player->x + 1;
+   }
+   if (cpct_isKeyPressed(keys1.up)) {
+      player->y = player->y - 1;
+   }
+   if (cpct_isKeyPressed(keys1.down)) {
+      player->y = player->y + 1;
+   }
+}

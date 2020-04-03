@@ -1,6 +1,6 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
-; Version 3.6.8 #9946 (Mac OS X x86_64)
+; Version 3.6.8 #9946 (Linux)
 ;--------------------------------------------------------
 	.module main
 	.optsdcc -mz80
@@ -244,12 +244,12 @@ _main::
 	call	_initMain
 ;src/main.c:116: man_game_init();
 	call	_man_game_init
-;src/main.c:119: man_game_update();
-	call	_man_game_update
-;src/main.c:120: man_game_render();
-	call	_man_game_render
-;src/main.c:121: while (1){
+;src/main.c:119: while (1){
 00102$:
+;src/main.c:121: man_game_update();
+	call	_man_game_update
+;src/main.c:122: man_game_render();
+	call	_man_game_render
 	jr	00102$
 	.area _CODE
 	.area _INITIALIZER

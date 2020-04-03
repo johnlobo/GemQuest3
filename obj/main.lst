@@ -1,6 +1,6 @@
                               1 ;--------------------------------------------------------
                               2 ; File Created by SDCC : free open source ANSI-C Compiler
-                              3 ; Version 3.6.8 #9946 (Mac OS X x86_64)
+                              3 ; Version 3.6.8 #9946 (Linux)
                               4 ;--------------------------------------------------------
                               5 	.module main
                               6 	.optsdcc -mz80
@@ -279,13 +279,13 @@
    00BE CDr3Cr00      [17]  244 	call	_initMain
                             245 ;src/main.c:116: man_game_init();
    00C1 CDr00r00      [17]  246 	call	_man_game_init
-                            247 ;src/main.c:119: man_game_update();
-   00C4 CDr00r00      [17]  248 	call	_man_game_update
-                            249 ;src/main.c:120: man_game_render();
-   00C7 CDr00r00      [17]  250 	call	_man_game_render
-                            251 ;src/main.c:121: while (1){
-   00CA                     252 00102$:
-   00CA 18 FE         [12]  253 	jr	00102$
+                            247 ;src/main.c:119: while (1){
+   00C4                     248 00102$:
+                            249 ;src/main.c:121: man_game_update();
+   00C4 CDr00r00      [17]  250 	call	_man_game_update
+                            251 ;src/main.c:122: man_game_render();
+   00C7 CDr00r00      [17]  252 	call	_man_game_render
+   00CA 18 F8         [12]  253 	jr	00102$
                             254 	.area _CODE
                             255 	.area _INITIALIZER
                             256 	.area _CABS (ABS)

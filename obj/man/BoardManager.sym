@@ -15,8 +15,8 @@ Symbol Table
     _cpct_getScreenPtr                                             **** GX
   0 _man_board_create                                              0000 GR
   0 _man_board_init                                                0037 GR
-  0 _man_board_render                                              00B8 GR
-  0 _man_board_update                                              00B7 GR
+  0 _man_board_render                                              00BD GR
+  0 _man_board_update                                              00BC GR
     _sp_tiles_0                                                    **** GX
     _sp_tiles_1                                                    **** GX
     _sp_tiles_2                                                    **** GX
@@ -33,8 +33,8 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size  163   flags    0
-   1 _DATA                                      size   98   flags    0
+   0 _CODE                                      size  186   flags    0
+   1 _DATA                                      size   99   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8
    4 _HOME                                      size    0   flags    0

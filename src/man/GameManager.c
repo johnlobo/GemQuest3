@@ -1,5 +1,7 @@
 #include <cpctelera.h>
 #include "BoardManager.h"
+#include "PlayerManager.h"
+#include "../sys/InputSystem.h"
 #include "../util/util.h"
 
 //////////////////////////////////////////////////////////////////
@@ -14,6 +16,11 @@ void man_game_init(){
     
     // Clean up Screen filling them up with 0's
     clearScreen(BG_COLOR);
+    
+    man_player_init();
+    man_player_createPlayer(0,0,"David\0",100);
+    man_player_createPlayer(8,8,"Malo1\0",100);
+    sys_input_init();
 }
 
 //////////////////////////////////////////////////////////////////
@@ -23,7 +30,7 @@ void man_game_init(){
 // Returns: void.
 //
 void man_game_update(){
-
+    sys_input_update();
 }
 
 //////////////////////////////////////////////////////////////////
@@ -34,4 +41,5 @@ void man_game_update(){
 //
 void man_game_render(){
     man_board_render();
+    man_player_render();
 }

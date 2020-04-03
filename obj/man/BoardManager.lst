@@ -1,6 +1,6 @@
                               1 ;--------------------------------------------------------
                               2 ; File Created by SDCC : free open source ANSI-C Compiler
-                              3 ; Version 3.6.8 #9946 (Linux)
+                              3 ; Version 3.6.8 #9946 (Mac OS X x86_64)
                               4 ;--------------------------------------------------------
                               5 	.module BoardManager
                               6 	.optsdcc -mz80
@@ -223,7 +223,7 @@
    00D3 56            [ 7]  223 	ld	d, (hl)
    00D4 7B            [ 4]  224 	ld	a, e
    00D5 92            [ 4]  225 	sub	a, d
-   00D6 D2r7Fr01      [10]  226 	jp	NC, 00105$
+   00D6 D2r7Cr01      [10]  226 	jp	NC, 00105$
                             227 ;src/man/BoardManager.c:75: for (i=0; i<board.width; i++){
    00D9 D5            [11]  228 	push	de
    00DA 7B            [ 4]  229 	ld	a, e
@@ -233,7 +233,7 @@
    00DE 87            [ 4]  233 	add	a, a
    00DF 83            [ 4]  234 	add	a, e
    00E0 D1            [10]  235 	pop	de
-   00E1 DD 77 FC      [19]  236 	ld	-4 (ix), a
+   00E1 DD 77 FD      [19]  236 	ld	-3 (ix), a
    00E4 D5            [11]  237 	push	de
    00E5 6B            [ 4]  238 	ld	l, e
    00E6 29            [11]  239 	add	hl, hl
@@ -253,14 +253,14 @@
    00FD 6E            [ 7]  253 	ld	l, (hl)
    00FE 7A            [ 4]  254 	ld	a, d
    00FF 95            [ 4]  255 	sub	a, l
-   0100 30 79         [12]  256 	jr	NC,00113$
+   0100 30 76         [12]  256 	jr	NC,00113$
                             257 ;src/man/BoardManager.c:76: vmem = cpct_getScreenPtr (CPCT_VMEM_START, board.x + (i*5), board.y + (j*13));
    0102 3Ar93r00      [13]  258 	ld	a,(#_board + 147)
-   0105 DD 86 FC      [19]  259 	add	a, -4 (ix)
-   0108 DD 77 FB      [19]  260 	ld	-5 (ix), a
+   0105 DD 86 FD      [19]  259 	add	a, -3 (ix)
+   0108 DD 77 FC      [19]  260 	ld	-4 (ix), a
    010B 21r92r00      [10]  261 	ld	hl, #_board + 146
    010E 7E            [ 7]  262 	ld	a, (hl)
-   010F DD 77 FD      [19]  263 	ld	-3 (ix), a
+   010F DD 77 FB      [19]  263 	ld	-5 (ix), a
    0112 D5            [11]  264 	push	de
    0113 6A            [ 4]  265 	ld	l, d
    0114 5D            [ 4]  266 	ld	e, l
@@ -268,13 +268,13 @@
    0116 29            [11]  268 	add	hl, hl
    0117 19            [11]  269 	add	hl, de
    0118 D1            [10]  270 	pop	de
-   0119 DD 7E FD      [19]  271 	ld	a, -3 (ix)
+   0119 DD 7E FB      [19]  271 	ld	a, -5 (ix)
    011C 85            [ 4]  272 	add	a, l
-   011D DD 77 FD      [19]  273 	ld	-3 (ix), a
+   011D DD 77 FB      [19]  273 	ld	-5 (ix), a
    0120 C5            [11]  274 	push	bc
    0121 D5            [11]  275 	push	de
-   0122 DD 66 FB      [19]  276 	ld	h, -5 (ix)
-   0125 DD 6E FD      [19]  277 	ld	l, -3 (ix)
+   0122 DD 66 FC      [19]  276 	ld	h, -4 (ix)
+   0125 DD 6E FB      [19]  277 	ld	l, -5 (ix)
    0128 E5            [11]  278 	push	hl
    0129 21 00 C0      [10]  279 	ld	hl, #0xc000
    012C E5            [11]  280 	push	hl
@@ -318,7 +318,7 @@
    015D CDr00r00      [17]  318 	call	_cpct_drawSpriteBlended
    0160 D1            [10]  319 	pop	de
    0161 C1            [10]  320 	pop	bc
-   0162 18 13         [12]  321 	jr	00110$
+   0162 18 10         [12]  321 	jr	00110$
    0164                     322 00102$:
                             323 ;src/man/BoardManager.c:81: cpct_drawSolidBox (vmem, 0, SP_TILES_0_W, SP_TILES_0_H);	
    0164 C5            [11]  324 	push	bc
@@ -330,26 +330,23 @@
    016C 33            [ 6]  330 	inc	sp
    016D FD E5         [15]  331 	push	iy
    016F CDr00r00      [17]  332 	call	_cpct_drawSolidBox
-   0172 F1            [10]  333 	pop	af
-   0173 F1            [10]  334 	pop	af
-   0174 33            [ 6]  335 	inc	sp
-   0175 D1            [10]  336 	pop	de
-   0176 C1            [10]  337 	pop	bc
-   0177                     338 00110$:
-                            339 ;src/man/BoardManager.c:75: for (i=0; i<board.width; i++){
-   0177 14            [ 4]  340 	inc	d
-   0178 C3rFAr00      [10]  341 	jp	00109$
-   017B                     342 00113$:
-                            343 ;src/man/BoardManager.c:74: for (j=0; j<board.height; j++){
-   017B 1C            [ 4]  344 	inc	e
-   017C C3rD0r00      [10]  345 	jp	00112$
-   017F                     346 00105$:
-                            347 ;src/man/BoardManager.c:85: board.updated = NO;
-   017F AF            [ 4]  348 	xor	a, a
-   0180 02            [ 7]  349 	ld	(bc), a
-   0181 DD F9         [10]  350 	ld	sp, ix
-   0183 DD E1         [14]  351 	pop	ix
-   0185 C9            [10]  352 	ret
-                            353 	.area _CODE
-                            354 	.area _INITIALIZER
-                            355 	.area _CABS (ABS)
+   0172 D1            [10]  333 	pop	de
+   0173 C1            [10]  334 	pop	bc
+   0174                     335 00110$:
+                            336 ;src/man/BoardManager.c:75: for (i=0; i<board.width; i++){
+   0174 14            [ 4]  337 	inc	d
+   0175 C3rFAr00      [10]  338 	jp	00109$
+   0178                     339 00113$:
+                            340 ;src/man/BoardManager.c:74: for (j=0; j<board.height; j++){
+   0178 1C            [ 4]  341 	inc	e
+   0179 C3rD0r00      [10]  342 	jp	00112$
+   017C                     343 00105$:
+                            344 ;src/man/BoardManager.c:85: board.updated = NO;
+   017C AF            [ 4]  345 	xor	a, a
+   017D 02            [ 7]  346 	ld	(bc), a
+   017E DD F9         [10]  347 	ld	sp, ix
+   0180 DD E1         [14]  348 	pop	ix
+   0182 C9            [10]  349 	ret
+                            350 	.area _CODE
+                            351 	.area _INITIALIZER
+                            352 	.area _CABS (ABS)

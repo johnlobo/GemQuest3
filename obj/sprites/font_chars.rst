@@ -1,6 +1,6 @@
                               1 ;--------------------------------------------------------
                               2 ; File Created by SDCC : free open source ANSI-C Compiler
-                              3 ; Version 3.6.8 #9946 (Linux)
+                              3 ; Version 3.6.8 #9946 (Mac OS X x86_64)
                               4 ;--------------------------------------------------------
                               5 	.module font_chars
                               6 	.optsdcc -mz80

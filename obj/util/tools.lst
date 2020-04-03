@@ -1,6 +1,6 @@
                               1 ;--------------------------------------------------------
                               2 ; File Created by SDCC : free open source ANSI-C Compiler
-                              3 ; Version 3.6.8 #9946 (Linux)
+                              3 ; Version 3.6.8 #9946 (Mac OS X x86_64)
                               4 ;--------------------------------------------------------
                               5 	.module tools
                               6 	.optsdcc -mz80
@@ -129,909 +129,879 @@
    005A 60            [ 4]  129 	ld	h, b
    005B E5            [11]  130 	push	hl
    005C CDr00r00      [17]  131 	call	_cpct_drawSolidBox
-   005F F1            [10]  132 	pop	af
-   0060 F1            [10]  133 	pop	af
-   0061 33            [ 6]  134 	inc	sp
-   0062 D1            [10]  135 	pop	de
-                            136 ;src/util/tools.c:53: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x + 1, y + height);
-   0063 DD 7E 05      [19]  137 	ld	a, 5 (ix)
-   0066 DD 86 07      [19]  138 	add	a, 7 (ix)
-   0069 DD 77 FF      [19]  139 	ld	-1 (ix), a
+   005F D1            [10]  132 	pop	de
+                            133 ;src/util/tools.c:53: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x + 1, y + height);
+   0060 DD 7E 05      [19]  134 	ld	a, 5 (ix)
+   0063 DD 86 07      [19]  135 	add	a, 7 (ix)
+   0066 DD 77 FF      [19]  136 	ld	-1 (ix), a
+   0069 D5            [11]  137 	push	de
+   006A F5            [11]  138 	push	af
+   006B 33            [ 6]  139 	inc	sp
    006C D5            [11]  140 	push	de
-   006D F5            [11]  141 	push	af
-   006E 33            [ 6]  142 	inc	sp
-   006F D5            [11]  143 	push	de
-   0070 33            [ 6]  144 	inc	sp
-   0071 21 00 C0      [10]  145 	ld	hl, #0xc000
-   0074 E5            [11]  146 	push	hl
-   0075 CDr00r00      [17]  147 	call	_cpct_getScreenPtr
-   0078 4D            [ 4]  148 	ld	c, l
-   0079 44            [ 4]  149 	ld	b, h
-   007A D1            [10]  150 	pop	de
-                            151 ;src/util/tools.c:54: cpct_drawSolidBox(pvideo, cpct_px2byteM0(fgColor, fgColor), width - 4, 2);
-   007B C5            [11]  152 	push	bc
-   007C D5            [11]  153 	push	de
-   007D DD 66 08      [19]  154 	ld	h, 8 (ix)
-   0080 DD 6E 08      [19]  155 	ld	l, 8 (ix)
-   0083 E5            [11]  156 	push	hl
-   0084 CDr00r00      [17]  157 	call	_cpct_px2byteM0
-   0087 DD 75 FE      [19]  158 	ld	-2 (ix), l
-   008A D1            [10]  159 	pop	de
-   008B C1            [10]  160 	pop	bc
-   008C D5            [11]  161 	push	de
-   008D 16 02         [ 7]  162 	ld	d,#0x02
-   008F D5            [11]  163 	push	de
-   0090 DD 7E FE      [19]  164 	ld	a, -2 (ix)
-   0093 F5            [11]  165 	push	af
-   0094 33            [ 6]  166 	inc	sp
-   0095 C5            [11]  167 	push	bc
-   0096 CDr00r00      [17]  168 	call	_cpct_drawSolidBox
-   0099 F1            [10]  169 	pop	af
-   009A F1            [10]  170 	pop	af
-   009B 33            [ 6]  171 	inc	sp
-   009C D1            [10]  172 	pop	de
-                            173 ;src/util/tools.c:56: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x + 1, y + 2);
-   009D DD 7E 05      [19]  174 	ld	a, 5 (ix)
-   00A0 C6 02         [ 7]  175 	add	a, #0x02
-   00A2 DD 77 FE      [19]  176 	ld	-2 (ix), a
-   00A5 D5            [11]  177 	push	de
-   00A6 F5            [11]  178 	push	af
-   00A7 33            [ 6]  179 	inc	sp
-   00A8 D5            [11]  180 	push	de
-   00A9 33            [ 6]  181 	inc	sp
-   00AA 21 00 C0      [10]  182 	ld	hl, #0xc000
-   00AD E5            [11]  183 	push	hl
-   00AE CDr00r00      [17]  184 	call	_cpct_getScreenPtr
-   00B1 D1            [10]  185 	pop	de
-                            186 ;src/util/tools.c:57: cpct_drawSolidBox(pvideo, cpct_px2byteM0(BG_COLOR, BG_COLOR), width - 4, 2);
-   00B2 E5            [11]  187 	push	hl
-   00B3 D5            [11]  188 	push	de
-   00B4 01 00 00      [10]  189 	ld	bc, #0x0000
-   00B7 C5            [11]  190 	push	bc
-   00B8 CDr00r00      [17]  191 	call	_cpct_px2byteM0
-   00BB 4D            [ 4]  192 	ld	c, l
-   00BC D1            [10]  193 	pop	de
-   00BD E1            [10]  194 	pop	hl
-   00BE D5            [11]  195 	push	de
-   00BF 16 02         [ 7]  196 	ld	d,#0x02
-   00C1 D5            [11]  197 	push	de
-   00C2 79            [ 4]  198 	ld	a, c
-   00C3 F5            [11]  199 	push	af
-   00C4 33            [ 6]  200 	inc	sp
-   00C5 E5            [11]  201 	push	hl
-   00C6 CDr00r00      [17]  202 	call	_cpct_drawSolidBox
-   00C9 F1            [10]  203 	pop	af
-   00CA F1            [10]  204 	pop	af
-   00CB 33            [ 6]  205 	inc	sp
-   00CC D1            [10]  206 	pop	de
-                            207 ;src/util/tools.c:58: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x + 1, y + height - 2);
-   00CD DD 35 FF      [23]  208 	dec	-1 (ix)
-   00D0 DD 35 FF      [23]  209 	dec	-1 (ix)
-   00D3 D5            [11]  210 	push	de
-   00D4 DD 7E FF      [19]  211 	ld	a, -1 (ix)
-   00D7 F5            [11]  212 	push	af
-   00D8 33            [ 6]  213 	inc	sp
-   00D9 D5            [11]  214 	push	de
-   00DA 33            [ 6]  215 	inc	sp
-   00DB 21 00 C0      [10]  216 	ld	hl, #0xc000
-   00DE E5            [11]  217 	push	hl
-   00DF CDr00r00      [17]  218 	call	_cpct_getScreenPtr
-   00E2 D1            [10]  219 	pop	de
-                            220 ;src/util/tools.c:59: cpct_drawSolidBox(pvideo, cpct_px2byteM0(BG_COLOR, BG_COLOR), width - 4, 2);
-   00E3 E5            [11]  221 	push	hl
-   00E4 D5            [11]  222 	push	de
-   00E5 01 00 00      [10]  223 	ld	bc, #0x0000
-   00E8 C5            [11]  224 	push	bc
-   00E9 CDr00r00      [17]  225 	call	_cpct_px2byteM0
-   00EC 4D            [ 4]  226 	ld	c, l
-   00ED D1            [10]  227 	pop	de
-   00EE E1            [10]  228 	pop	hl
-   00EF D5            [11]  229 	push	de
-   00F0 16 02         [ 7]  230 	ld	d,#0x02
-   00F2 D5            [11]  231 	push	de
-   00F3 79            [ 4]  232 	ld	a, c
-   00F4 F5            [11]  233 	push	af
-   00F5 33            [ 6]  234 	inc	sp
-   00F6 E5            [11]  235 	push	hl
-   00F7 CDr00r00      [17]  236 	call	_cpct_drawSolidBox
-   00FA F1            [10]  237 	pop	af
-   00FB F1            [10]  238 	pop	af
-   00FC 33            [ 6]  239 	inc	sp
-   00FD D1            [10]  240 	pop	de
-                            241 ;src/util/tools.c:61: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x + 1, y + 4);
-   00FE DD 7E 05      [19]  242 	ld	a, 5 (ix)
-   0101 C6 04         [ 7]  243 	add	a, #0x04
-   0103 DD 77 FD      [19]  244 	ld	-3 (ix), a
-   0106 D5            [11]  245 	push	de
-   0107 F5            [11]  246 	push	af
-   0108 33            [ 6]  247 	inc	sp
-   0109 D5            [11]  248 	push	de
-   010A 33            [ 6]  249 	inc	sp
-   010B 21 00 C0      [10]  250 	ld	hl, #0xc000
-   010E E5            [11]  251 	push	hl
-   010F CDr00r00      [17]  252 	call	_cpct_getScreenPtr
-   0112 4D            [ 4]  253 	ld	c, l
-   0113 44            [ 4]  254 	ld	b, h
-   0114 D1            [10]  255 	pop	de
-                            256 ;src/util/tools.c:62: cpct_drawSolidBox(pvideo, cpct_px2byteM0(bgColor, bgColor), width - 4, height - 6);
-   0115 DD 7E 07      [19]  257 	ld	a, 7 (ix)
-   0118 C6 FA         [ 7]  258 	add	a, #0xfa
-   011A DD 77 FC      [19]  259 	ld	-4 (ix), a
-   011D C5            [11]  260 	push	bc
-   011E D5            [11]  261 	push	de
-   011F DD 66 09      [19]  262 	ld	h, 9 (ix)
-   0122 DD 6E 09      [19]  263 	ld	l, 9 (ix)
-   0125 E5            [11]  264 	push	hl
-   0126 CDr00r00      [17]  265 	call	_cpct_px2byteM0
-   0129 7D            [ 4]  266 	ld	a, l
-   012A D1            [10]  267 	pop	de
-   012B 57            [ 4]  268 	ld	d, a
-   012C C1            [10]  269 	pop	bc
-   012D DD 7E FC      [19]  270 	ld	a, -4 (ix)
-   0130 F5            [11]  271 	push	af
-   0131 33            [ 6]  272 	inc	sp
-   0132 7B            [ 4]  273 	ld	a, e
-   0133 F5            [11]  274 	push	af
-   0134 33            [ 6]  275 	inc	sp
-   0135 D5            [11]  276 	push	de
-   0136 33            [ 6]  277 	inc	sp
-   0137 C5            [11]  278 	push	bc
-   0138 CDr00r00      [17]  279 	call	_cpct_drawSolidBox
-   013B F1            [10]  280 	pop	af
-                            281 ;src/util/tools.c:65: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x, y + 2);
-   013C 33            [ 6]  282 	inc	sp
-   013D DD 66 FE      [19]  283 	ld	h, -2 (ix)
-   0140 DD 6E 04      [19]  284 	ld	l, 4 (ix)
-   0143 E3            [19]  285 	ex	(sp),hl
-   0144 21 00 C0      [10]  286 	ld	hl, #0xc000
-   0147 E5            [11]  287 	push	hl
-   0148 CDr00r00      [17]  288 	call	_cpct_getScreenPtr
-                            289 ;src/util/tools.c:66: cpct_drawSolidBox(pvideo, cpct_px2byteM0(BG_COLOR, fgColor), 1, 2);
-   014B E5            [11]  290 	push	hl
-   014C DD 7E 08      [19]  291 	ld	a, 8 (ix)
-   014F F5            [11]  292 	push	af
-   0150 33            [ 6]  293 	inc	sp
-   0151 AF            [ 4]  294 	xor	a, a
-   0152 F5            [11]  295 	push	af
-   0153 33            [ 6]  296 	inc	sp
-   0154 CDr00r00      [17]  297 	call	_cpct_px2byteM0
-   0157 55            [ 4]  298 	ld	d, l
-   0158 C1            [10]  299 	pop	bc
-   0159 21 01 02      [10]  300 	ld	hl, #0x0201
-   015C E5            [11]  301 	push	hl
-   015D D5            [11]  302 	push	de
-   015E 33            [ 6]  303 	inc	sp
-   015F C5            [11]  304 	push	bc
-   0160 CDr00r00      [17]  305 	call	_cpct_drawSolidBox
-   0163 F1            [10]  306 	pop	af
-                            307 ;src/util/tools.c:69: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x, y + 4);
-   0164 33            [ 6]  308 	inc	sp
-   0165 DD 66 FD      [19]  309 	ld	h, -3 (ix)
-   0168 DD 6E 04      [19]  310 	ld	l, 4 (ix)
-   016B E3            [19]  311 	ex	(sp),hl
-   016C 21 00 C0      [10]  312 	ld	hl, #0xc000
-   016F E5            [11]  313 	push	hl
-   0170 CDr00r00      [17]  314 	call	_cpct_getScreenPtr
-                            315 ;src/util/tools.c:70: cpct_drawSolidBox(pvideo, cpct_px2byteM0(fgColor, BG_COLOR), 1, height - 6);
-   0173 E5            [11]  316 	push	hl
-   0174 AF            [ 4]  317 	xor	a, a
-   0175 F5            [11]  318 	push	af
-   0176 33            [ 6]  319 	inc	sp
-   0177 DD 7E 08      [19]  320 	ld	a, 8 (ix)
-   017A F5            [11]  321 	push	af
-   017B 33            [ 6]  322 	inc	sp
-   017C CDr00r00      [17]  323 	call	_cpct_px2byteM0
-   017F 55            [ 4]  324 	ld	d, l
-   0180 C1            [10]  325 	pop	bc
-   0181 DD 7E FC      [19]  326 	ld	a, -4 (ix)
-   0184 F5            [11]  327 	push	af
-   0185 33            [ 6]  328 	inc	sp
-   0186 3E 01         [ 7]  329 	ld	a, #0x01
-   0188 F5            [11]  330 	push	af
-   0189 33            [ 6]  331 	inc	sp
-   018A D5            [11]  332 	push	de
-   018B 33            [ 6]  333 	inc	sp
-   018C C5            [11]  334 	push	bc
-   018D CDr00r00      [17]  335 	call	_cpct_drawSolidBox
-   0190 F1            [10]  336 	pop	af
-                            337 ;src/util/tools.c:73: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x, y + height - 2);
-   0191 33            [ 6]  338 	inc	sp
-   0192 DD 66 FF      [19]  339 	ld	h, -1 (ix)
-   0195 DD 6E 04      [19]  340 	ld	l, 4 (ix)
-   0198 E3            [19]  341 	ex	(sp),hl
-   0199 21 00 C0      [10]  342 	ld	hl, #0xc000
-   019C E5            [11]  343 	push	hl
-   019D CDr00r00      [17]  344 	call	_cpct_getScreenPtr
-                            345 ;src/util/tools.c:74: cpct_drawSolidBox(pvideo, cpct_px2byteM0(BG_COLOR, fgColor), 1, 2);
-   01A0 E5            [11]  346 	push	hl
-   01A1 DD 7E 08      [19]  347 	ld	a, 8 (ix)
-   01A4 F5            [11]  348 	push	af
-   01A5 33            [ 6]  349 	inc	sp
-   01A6 AF            [ 4]  350 	xor	a, a
-   01A7 F5            [11]  351 	push	af
-   01A8 33            [ 6]  352 	inc	sp
-   01A9 CDr00r00      [17]  353 	call	_cpct_px2byteM0
-   01AC 55            [ 4]  354 	ld	d, l
-   01AD C1            [10]  355 	pop	bc
-   01AE 21 01 02      [10]  356 	ld	hl, #0x0201
-   01B1 E5            [11]  357 	push	hl
-   01B2 D5            [11]  358 	push	de
-   01B3 33            [ 6]  359 	inc	sp
-   01B4 C5            [11]  360 	push	bc
-   01B5 CDr00r00      [17]  361 	call	_cpct_drawSolidBox
-   01B8 F1            [10]  362 	pop	af
-   01B9 F1            [10]  363 	pop	af
-   01BA 33            [ 6]  364 	inc	sp
-                            365 ;src/util/tools.c:76: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x + width - 3, y + 2);
-   01BB DD 7E 04      [19]  366 	ld	a, 4 (ix)
-   01BE DD 86 06      [19]  367 	add	a, 6 (ix)
-   01C1 C6 FD         [ 7]  368 	add	a, #0xfd
-   01C3 47            [ 4]  369 	ld	b, a
-   01C4 C5            [11]  370 	push	bc
-   01C5 DD 7E FE      [19]  371 	ld	a, -2 (ix)
-   01C8 F5            [11]  372 	push	af
-   01C9 33            [ 6]  373 	inc	sp
-   01CA C5            [11]  374 	push	bc
-   01CB 33            [ 6]  375 	inc	sp
-   01CC 21 00 C0      [10]  376 	ld	hl, #0xc000
-   01CF E5            [11]  377 	push	hl
-   01D0 CDr00r00      [17]  378 	call	_cpct_getScreenPtr
-   01D3 C1            [10]  379 	pop	bc
-                            380 ;src/util/tools.c:77: cpct_drawSolidBox(pvideo, cpct_px2byteM0(fgColor, BG_COLOR), 1, 2);
-   01D4 E5            [11]  381 	push	hl
-   01D5 C5            [11]  382 	push	bc
-   01D6 AF            [ 4]  383 	xor	a, a
-   01D7 F5            [11]  384 	push	af
-   01D8 33            [ 6]  385 	inc	sp
-   01D9 DD 7E 08      [19]  386 	ld	a, 8 (ix)
-   01DC F5            [11]  387 	push	af
-   01DD 33            [ 6]  388 	inc	sp
-   01DE CDr00r00      [17]  389 	call	_cpct_px2byteM0
-   01E1 4D            [ 4]  390 	ld	c, l
-   01E2 F1            [10]  391 	pop	af
-   01E3 47            [ 4]  392 	ld	b, a
-   01E4 E1            [10]  393 	pop	hl
-   01E5 C5            [11]  394 	push	bc
-   01E6 11 01 02      [10]  395 	ld	de, #0x0201
-   01E9 D5            [11]  396 	push	de
-   01EA 79            [ 4]  397 	ld	a, c
-   01EB F5            [11]  398 	push	af
-   01EC 33            [ 6]  399 	inc	sp
-   01ED E5            [11]  400 	push	hl
-   01EE CDr00r00      [17]  401 	call	_cpct_drawSolidBox
-   01F1 F1            [10]  402 	pop	af
-   01F2 F1            [10]  403 	pop	af
-   01F3 33            [ 6]  404 	inc	sp
-   01F4 C1            [10]  405 	pop	bc
-                            406 ;src/util/tools.c:79: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x + width - 3, y + 4);
-   01F5 C5            [11]  407 	push	bc
-   01F6 DD 7E FD      [19]  408 	ld	a, -3 (ix)
-   01F9 F5            [11]  409 	push	af
-   01FA 33            [ 6]  410 	inc	sp
-   01FB C5            [11]  411 	push	bc
-   01FC 33            [ 6]  412 	inc	sp
-   01FD 21 00 C0      [10]  413 	ld	hl, #0xc000
-   0200 E5            [11]  414 	push	hl
-   0201 CDr00r00      [17]  415 	call	_cpct_getScreenPtr
-   0204 E5            [11]  416 	push	hl
-   0205 DD 7E 08      [19]  417 	ld	a, 8 (ix)
-   0208 F5            [11]  418 	push	af
-   0209 33            [ 6]  419 	inc	sp
-   020A AF            [ 4]  420 	xor	a, a
-   020B F5            [11]  421 	push	af
-   020C 33            [ 6]  422 	inc	sp
-   020D CDr00r00      [17]  423 	call	_cpct_px2byteM0
-   0210 4D            [ 4]  424 	ld	c, l
-   0211 D1            [10]  425 	pop	de
-   0212 F1            [10]  426 	pop	af
-   0213 47            [ 4]  427 	ld	b, a
-   0214 C5            [11]  428 	push	bc
-   0215 DD 7E FC      [19]  429 	ld	a, -4 (ix)
-   0218 F5            [11]  430 	push	af
-   0219 33            [ 6]  431 	inc	sp
-   021A 06 01         [ 7]  432 	ld	b, #0x01
-   021C C5            [11]  433 	push	bc
-   021D D5            [11]  434 	push	de
-   021E CDr00r00      [17]  435 	call	_cpct_drawSolidBox
-   0221 F1            [10]  436 	pop	af
-   0222 F1            [10]  437 	pop	af
-   0223 33            [ 6]  438 	inc	sp
-   0224 C1            [10]  439 	pop	bc
-                            440 ;src/util/tools.c:82: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x + width - 3, y + height - 2);
-   0225 DD 7E FF      [19]  441 	ld	a, -1 (ix)
-   0228 F5            [11]  442 	push	af
-   0229 33            [ 6]  443 	inc	sp
-   022A C5            [11]  444 	push	bc
-   022B 33            [ 6]  445 	inc	sp
-   022C 21 00 C0      [10]  446 	ld	hl, #0xc000
-   022F E5            [11]  447 	push	hl
-   0230 CDr00r00      [17]  448 	call	_cpct_getScreenPtr
-                            449 ;src/util/tools.c:83: cpct_drawSolidBox(pvideo, cpct_px2byteM0(fgColor, BG_COLOR), 1, 2);
-   0233 E5            [11]  450 	push	hl
-   0234 AF            [ 4]  451 	xor	a, a
-   0235 F5            [11]  452 	push	af
-   0236 33            [ 6]  453 	inc	sp
-   0237 DD 7E 08      [19]  454 	ld	a, 8 (ix)
-   023A F5            [11]  455 	push	af
-   023B 33            [ 6]  456 	inc	sp
-   023C CDr00r00      [17]  457 	call	_cpct_px2byteM0
-   023F 55            [ 4]  458 	ld	d, l
-   0240 C1            [10]  459 	pop	bc
-   0241 21 01 02      [10]  460 	ld	hl, #0x0201
-   0244 E5            [11]  461 	push	hl
-   0245 D5            [11]  462 	push	de
-   0246 33            [ 6]  463 	inc	sp
-   0247 C5            [11]  464 	push	bc
-   0248 CDr00r00      [17]  465 	call	_cpct_drawSolidBox
-   024B DD F9         [10]  466 	ld	sp,ix
-   024D DD E1         [14]  467 	pop	ix
-   024F C9            [10]  468 	ret
-                            469 ;src/util/tools.c:94: void updateNumber(u8 number)
-                            470 ;	---------------------------------
-                            471 ; Function updateNumber
-                            472 ; ---------------------------------
-   0250                     473 _updateNumber::
-   0250 DD E5         [15]  474 	push	ix
-   0252 DD 21 00 00   [14]  475 	ld	ix,#0
-   0256 DD 39         [15]  476 	add	ix,sp
-   0258 F5            [11]  477 	push	af
-   0259 3B            [ 6]  478 	dec	sp
-                            479 ;src/util/tools.c:99: pvmem = cpct_getScreenPtr(SCR_VMEM, 58, 80);
-   025A 21 3A 50      [10]  480 	ld	hl, #0x503a
-   025D E5            [11]  481 	push	hl
-   025E 21 00 C0      [10]  482 	ld	hl, #0xc000
-   0261 E5            [11]  483 	push	hl
-   0262 CDr00r00      [17]  484 	call	_cpct_getScreenPtr
-                            485 ;src/util/tools.c:100: cpct_drawSolidBox(pvmem, cpct_px2byteM0(14, 14), 8, 14);
-   0265 E5            [11]  486 	push	hl
-   0266 21 0E 0E      [10]  487 	ld	hl, #0x0e0e
-   0269 E5            [11]  488 	push	hl
-   026A CDr00r00      [17]  489 	call	_cpct_px2byteM0
-   026D 55            [ 4]  490 	ld	d, l
-   026E C1            [10]  491 	pop	bc
-   026F 21 08 0E      [10]  492 	ld	hl, #0x0e08
-   0272 E5            [11]  493 	push	hl
-   0273 D5            [11]  494 	push	de
-   0274 33            [ 6]  495 	inc	sp
-   0275 C5            [11]  496 	push	bc
-   0276 CDr00r00      [17]  497 	call	_cpct_drawSolidBox
-   0279 F1            [10]  498 	pop	af
-   027A F1            [10]  499 	pop	af
-   027B 33            [ 6]  500 	inc	sp
-                            501 ;src/util/tools.c:101: sprintf(text, "%02d", number);
-   027C DD 5E 04      [19]  502 	ld	e, 4 (ix)
-   027F 16 00         [ 7]  503 	ld	d, #0x00
-   0281 21 00 00      [10]  504 	ld	hl, #0x0000
-   0284 39            [11]  505 	add	hl, sp
-   0285 4D            [ 4]  506 	ld	c, l
-   0286 44            [ 4]  507 	ld	b, h
-   0287 E5            [11]  508 	push	hl
-   0288 D5            [11]  509 	push	de
-   0289 11rB1r02      [10]  510 	ld	de, #___str_0
-   028C D5            [11]  511 	push	de
-   028D C5            [11]  512 	push	bc
-   028E CDr00r00      [17]  513 	call	_sprintf
-   0291 21 06 00      [10]  514 	ld	hl, #6
-   0294 39            [11]  515 	add	hl, sp
-   0295 F9            [ 6]  516 	ld	sp, hl
-   0296 E1            [10]  517 	pop	hl
-                            518 ;src/util/tools.c:102: drawText(text, 58, 80, COLORTXT_YELLOW, DOUBLEHEIGHT, TRANSPARENT);
-   0297 01 02 01      [10]  519 	ld	bc, #0x0102
-   029A C5            [11]  520 	push	bc
-   029B 01 50 01      [10]  521 	ld	bc, #0x0150
-   029E C5            [11]  522 	push	bc
-   029F 3E 3A         [ 7]  523 	ld	a, #0x3a
-   02A1 F5            [11]  524 	push	af
-   02A2 33            [ 6]  525 	inc	sp
-   02A3 E5            [11]  526 	push	hl
-   02A4 CDr00r00      [17]  527 	call	_drawText
-   02A7 21 07 00      [10]  528 	ld	hl, #7
-   02AA 39            [11]  529 	add	hl, sp
-   02AB F9            [ 6]  530 	ld	sp, hl
-   02AC DD F9         [10]  531 	ld	sp, ix
-   02AE DD E1         [14]  532 	pop	ix
-   02B0 C9            [10]  533 	ret
-   02B1                     534 ___str_0:
-   02B1 25 30 32 64         535 	.ascii "%02d"
-   02B5 00                  536 	.db 0x00
-                            537 ;src/util/tools.c:112: u8 resultNumber()
-                            538 ;	---------------------------------
-                            539 ; Function resultNumber
-                            540 ; ---------------------------------
-   02B6                     541 _resultNumber::
-                            542 ;src/util/tools.c:116: selection = 1;
-   02B6 0E 01         [ 7]  543 	ld	c, #0x01
-                            544 ;src/util/tools.c:117: drawText("UP/DOWN:CHANGE LEVEL", 16, 92, COLORTXT_MAUVE, NORMALHEIGHT, TRANSPARENT);
-   02B8 C5            [11]  545 	push	bc
-   02B9 21 01 01      [10]  546 	ld	hl, #0x0101
-   02BC E5            [11]  547 	push	hl
-   02BD 21 5C 05      [10]  548 	ld	hl, #0x055c
-   02C0 E5            [11]  549 	push	hl
-   02C1 3E 10         [ 7]  550 	ld	a, #0x10
-   02C3 F5            [11]  551 	push	af
-   02C4 33            [ 6]  552 	inc	sp
-   02C5 21r74r03      [10]  553 	ld	hl, #___str_1
-   02C8 E5            [11]  554 	push	hl
-   02C9 CDr00r00      [17]  555 	call	_drawText
-   02CC 21 07 00      [10]  556 	ld	hl, #7
-   02CF 39            [11]  557 	add	hl, sp
-   02D0 F9            [ 6]  558 	ld	sp, hl
-   02D1 21 01 01      [10]  559 	ld	hl, #0x0101
-   02D4 E5            [11]  560 	push	hl
-   02D5 21 68 05      [10]  561 	ld	hl, #0x0568
-   02D8 E5            [11]  562 	push	hl
-   02D9 3E 10         [ 7]  563 	ld	a, #0x10
-   02DB F5            [11]  564 	push	af
-   02DC 33            [ 6]  565 	inc	sp
-   02DD 21r89r03      [10]  566 	ld	hl, #___str_2
-   02E0 E5            [11]  567 	push	hl
-   02E1 CDr00r00      [17]  568 	call	_drawText
-   02E4 21 07 00      [10]  569 	ld	hl, #7
-   02E7 39            [11]  570 	add	hl, sp
-   02E8 F9            [ 6]  571 	ld	sp, hl
-   02E9 3E 01         [ 7]  572 	ld	a, #0x01
-   02EB F5            [11]  573 	push	af
-   02EC 33            [ 6]  574 	inc	sp
-   02ED CDr50r02      [17]  575 	call	_updateNumber
-   02F0 33            [ 6]  576 	inc	sp
-   02F1 C1            [10]  577 	pop	bc
-                            578 ;src/util/tools.c:120: while (1)
-   02F2                     579 00117$:
-                            580 ;src/util/tools.c:123: cpct_waitHalts(20);
-   02F2 C5            [11]  581 	push	bc
-   02F3 2E 14         [ 7]  582 	ld	l, #0x14
-   02F5 CDr00r00      [17]  583 	call	_cpct_waitHalts
-   02F8 C1            [10]  584 	pop	bc
-                            585 ;src/util/tools.c:124: if ((cpct_isKeyPressed(keys1.up)) || (cpct_isKeyPressed(keys1.j_up)))
-   02F9 2Ar00r00      [16]  586 	ld	hl, (#_keys1 + 0)
-   02FC C5            [11]  587 	push	bc
-   02FD CDr00r00      [17]  588 	call	_cpct_isKeyPressed
-   0300 C1            [10]  589 	pop	bc
-   0301 7D            [ 4]  590 	ld	a, l
-   0302 B7            [ 4]  591 	or	a, a
-   0303 20 0C         [12]  592 	jr	NZ,00108$
-   0305 2Ar0Cr00      [16]  593 	ld	hl, (#(_keys1 + 0x000c) + 0)
-   0308 C5            [11]  594 	push	bc
-   0309 CDr00r00      [17]  595 	call	_cpct_isKeyPressed
-   030C C1            [10]  596 	pop	bc
-   030D 7D            [ 4]  597 	ld	a, l
-   030E B7            [ 4]  598 	or	a, a
-   030F 28 13         [12]  599 	jr	Z,00109$
-   0311                     600 00108$:
-                            601 ;src/util/tools.c:126: selection++;
-   0311 0C            [ 4]  602 	inc	c
-                            603 ;src/util/tools.c:127: if (selection > 17)
-   0312 3E 11         [ 7]  604 	ld	a, #0x11
-   0314 91            [ 4]  605 	sub	a, c
-   0315 30 02         [12]  606 	jr	NC,00102$
-                            607 ;src/util/tools.c:128: selection = 1;
-   0317 0E 01         [ 7]  608 	ld	c, #0x01
-   0319                     609 00102$:
-                            610 ;src/util/tools.c:129: updateNumber(selection);
-   0319 C5            [11]  611 	push	bc
-   031A 79            [ 4]  612 	ld	a, c
-   031B F5            [11]  613 	push	af
-   031C 33            [ 6]  614 	inc	sp
-   031D CDr50r02      [17]  615 	call	_updateNumber
-   0320 33            [ 6]  616 	inc	sp
-   0321 C1            [10]  617 	pop	bc
-   0322 18 29         [12]  618 	jr	00110$
-   0324                     619 00109$:
-                            620 ;src/util/tools.c:131: else if ((cpct_isKeyPressed(keys1.down)) || (cpct_isKeyPressed(keys1.j_down)))
-   0324 2Ar02r00      [16]  621 	ld	hl, (#(_keys1 + 0x0002) + 0)
-   0327 C5            [11]  622 	push	bc
-   0328 CDr00r00      [17]  623 	call	_cpct_isKeyPressed
-   032B C1            [10]  624 	pop	bc
-   032C 7D            [ 4]  625 	ld	a, l
-   032D B7            [ 4]  626 	or	a, a
-   032E 20 0C         [12]  627 	jr	NZ,00105$
-   0330 2Ar0Er00      [16]  628 	ld	hl, (#(_keys1 + 0x000e) + 0)
-   0333 C5            [11]  629 	push	bc
-   0334 CDr00r00      [17]  630 	call	_cpct_isKeyPressed
-   0337 C1            [10]  631 	pop	bc
-   0338 7D            [ 4]  632 	ld	a, l
-   0339 B7            [ 4]  633 	or	a, a
-   033A 28 11         [12]  634 	jr	Z,00110$
-   033C                     635 00105$:
-                            636 ;src/util/tools.c:133: selection--;
-   033C 0D            [ 4]  637 	dec	c
-                            638 ;src/util/tools.c:134: if (selection < 1)
-   033D 79            [ 4]  639 	ld	a, c
-   033E D6 01         [ 7]  640 	sub	a, #0x01
-   0340 30 02         [12]  641 	jr	NC,00104$
-                            642 ;src/util/tools.c:135: selection = 17;
-   0342 0E 11         [ 7]  643 	ld	c, #0x11
-   0344                     644 00104$:
-                            645 ;src/util/tools.c:136: updateNumber(selection);
-   0344 C5            [11]  646 	push	bc
-   0345 79            [ 4]  647 	ld	a, c
-   0346 F5            [11]  648 	push	af
-   0347 33            [ 6]  649 	inc	sp
-   0348 CDr50r02      [17]  650 	call	_updateNumber
-   034B 33            [ 6]  651 	inc	sp
-   034C C1            [10]  652 	pop	bc
-   034D                     653 00110$:
-                            654 ;src/util/tools.c:138: if ((cpct_isKeyPressed(keys1.fire1)) || (cpct_isKeyPressed(keys1.j_fire1)) || (cpct_isKeyPressed(keys1.j_fire2)))
-   034D 2Ar08r00      [16]  655 	ld	hl, (#(_keys1 + 0x0008) + 0)
-   0350 C5            [11]  656 	push	bc
-   0351 CDr00r00      [17]  657 	call	_cpct_isKeyPressed
-   0354 C1            [10]  658 	pop	bc
-   0355 7D            [ 4]  659 	ld	a, l
-   0356 B7            [ 4]  660 	or	a, a
-   0357 20 19         [12]  661 	jr	NZ,00112$
-   0359 2Ar14r00      [16]  662 	ld	hl, (#(_keys1 + 0x0014) + 0)
-   035C C5            [11]  663 	push	bc
-   035D CDr00r00      [17]  664 	call	_cpct_isKeyPressed
-   0360 C1            [10]  665 	pop	bc
-   0361 7D            [ 4]  666 	ld	a, l
-   0362 B7            [ 4]  667 	or	a, a
-   0363 20 0D         [12]  668 	jr	NZ,00112$
-   0365 2Ar16r00      [16]  669 	ld	hl, (#(_keys1 + 0x0016) + 0)
-   0368 C5            [11]  670 	push	bc
-   0369 CDr00r00      [17]  671 	call	_cpct_isKeyPressed
-   036C C1            [10]  672 	pop	bc
-   036D 7D            [ 4]  673 	ld	a, l
-   036E B7            [ 4]  674 	or	a, a
-   036F CArF2r02      [10]  675 	jp	Z, 00117$
-   0372                     676 00112$:
-                            677 ;src/util/tools.c:140: return selection;
-   0372 69            [ 4]  678 	ld	l, c
-   0373 C9            [10]  679 	ret
-   0374                     680 ___str_1:
-   0374 55 50 2F 44 4F 57   681 	.ascii "UP/DOWN:CHANGE LEVEL"
+   006D 33            [ 6]  141 	inc	sp
+   006E 21 00 C0      [10]  142 	ld	hl, #0xc000
+   0071 E5            [11]  143 	push	hl
+   0072 CDr00r00      [17]  144 	call	_cpct_getScreenPtr
+   0075 4D            [ 4]  145 	ld	c, l
+   0076 44            [ 4]  146 	ld	b, h
+   0077 D1            [10]  147 	pop	de
+                            148 ;src/util/tools.c:54: cpct_drawSolidBox(pvideo, cpct_px2byteM0(fgColor, fgColor), width - 4, 2);
+   0078 C5            [11]  149 	push	bc
+   0079 D5            [11]  150 	push	de
+   007A DD 66 08      [19]  151 	ld	h, 8 (ix)
+   007D DD 6E 08      [19]  152 	ld	l, 8 (ix)
+   0080 E5            [11]  153 	push	hl
+   0081 CDr00r00      [17]  154 	call	_cpct_px2byteM0
+   0084 DD 75 FE      [19]  155 	ld	-2 (ix), l
+   0087 D1            [10]  156 	pop	de
+   0088 C1            [10]  157 	pop	bc
+   0089 D5            [11]  158 	push	de
+   008A 16 02         [ 7]  159 	ld	d,#0x02
+   008C D5            [11]  160 	push	de
+   008D DD 7E FE      [19]  161 	ld	a, -2 (ix)
+   0090 F5            [11]  162 	push	af
+   0091 33            [ 6]  163 	inc	sp
+   0092 C5            [11]  164 	push	bc
+   0093 CDr00r00      [17]  165 	call	_cpct_drawSolidBox
+   0096 D1            [10]  166 	pop	de
+                            167 ;src/util/tools.c:56: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x + 1, y + 2);
+   0097 DD 7E 05      [19]  168 	ld	a, 5 (ix)
+   009A C6 02         [ 7]  169 	add	a, #0x02
+   009C DD 77 FE      [19]  170 	ld	-2 (ix), a
+   009F D5            [11]  171 	push	de
+   00A0 F5            [11]  172 	push	af
+   00A1 33            [ 6]  173 	inc	sp
+   00A2 D5            [11]  174 	push	de
+   00A3 33            [ 6]  175 	inc	sp
+   00A4 21 00 C0      [10]  176 	ld	hl, #0xc000
+   00A7 E5            [11]  177 	push	hl
+   00A8 CDr00r00      [17]  178 	call	_cpct_getScreenPtr
+   00AB D1            [10]  179 	pop	de
+                            180 ;src/util/tools.c:57: cpct_drawSolidBox(pvideo, cpct_px2byteM0(BG_COLOR, BG_COLOR), width - 4, 2);
+   00AC E5            [11]  181 	push	hl
+   00AD D5            [11]  182 	push	de
+   00AE 01 00 00      [10]  183 	ld	bc, #0x0000
+   00B1 C5            [11]  184 	push	bc
+   00B2 CDr00r00      [17]  185 	call	_cpct_px2byteM0
+   00B5 4D            [ 4]  186 	ld	c, l
+   00B6 D1            [10]  187 	pop	de
+   00B7 E1            [10]  188 	pop	hl
+   00B8 D5            [11]  189 	push	de
+   00B9 16 02         [ 7]  190 	ld	d,#0x02
+   00BB D5            [11]  191 	push	de
+   00BC 79            [ 4]  192 	ld	a, c
+   00BD F5            [11]  193 	push	af
+   00BE 33            [ 6]  194 	inc	sp
+   00BF E5            [11]  195 	push	hl
+   00C0 CDr00r00      [17]  196 	call	_cpct_drawSolidBox
+   00C3 D1            [10]  197 	pop	de
+                            198 ;src/util/tools.c:58: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x + 1, y + height - 2);
+   00C4 DD 35 FF      [23]  199 	dec	-1 (ix)
+   00C7 DD 35 FF      [23]  200 	dec	-1 (ix)
+   00CA D5            [11]  201 	push	de
+   00CB DD 7E FF      [19]  202 	ld	a, -1 (ix)
+   00CE F5            [11]  203 	push	af
+   00CF 33            [ 6]  204 	inc	sp
+   00D0 D5            [11]  205 	push	de
+   00D1 33            [ 6]  206 	inc	sp
+   00D2 21 00 C0      [10]  207 	ld	hl, #0xc000
+   00D5 E5            [11]  208 	push	hl
+   00D6 CDr00r00      [17]  209 	call	_cpct_getScreenPtr
+   00D9 D1            [10]  210 	pop	de
+                            211 ;src/util/tools.c:59: cpct_drawSolidBox(pvideo, cpct_px2byteM0(BG_COLOR, BG_COLOR), width - 4, 2);
+   00DA E5            [11]  212 	push	hl
+   00DB D5            [11]  213 	push	de
+   00DC 01 00 00      [10]  214 	ld	bc, #0x0000
+   00DF C5            [11]  215 	push	bc
+   00E0 CDr00r00      [17]  216 	call	_cpct_px2byteM0
+   00E3 4D            [ 4]  217 	ld	c, l
+   00E4 D1            [10]  218 	pop	de
+   00E5 E1            [10]  219 	pop	hl
+   00E6 D5            [11]  220 	push	de
+   00E7 16 02         [ 7]  221 	ld	d,#0x02
+   00E9 D5            [11]  222 	push	de
+   00EA 79            [ 4]  223 	ld	a, c
+   00EB F5            [11]  224 	push	af
+   00EC 33            [ 6]  225 	inc	sp
+   00ED E5            [11]  226 	push	hl
+   00EE CDr00r00      [17]  227 	call	_cpct_drawSolidBox
+   00F1 D1            [10]  228 	pop	de
+                            229 ;src/util/tools.c:61: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x + 1, y + 4);
+   00F2 DD 7E 05      [19]  230 	ld	a, 5 (ix)
+   00F5 C6 04         [ 7]  231 	add	a, #0x04
+   00F7 DD 77 FD      [19]  232 	ld	-3 (ix), a
+   00FA D5            [11]  233 	push	de
+   00FB F5            [11]  234 	push	af
+   00FC 33            [ 6]  235 	inc	sp
+   00FD D5            [11]  236 	push	de
+   00FE 33            [ 6]  237 	inc	sp
+   00FF 21 00 C0      [10]  238 	ld	hl, #0xc000
+   0102 E5            [11]  239 	push	hl
+   0103 CDr00r00      [17]  240 	call	_cpct_getScreenPtr
+   0106 4D            [ 4]  241 	ld	c, l
+   0107 44            [ 4]  242 	ld	b, h
+   0108 D1            [10]  243 	pop	de
+                            244 ;src/util/tools.c:62: cpct_drawSolidBox(pvideo, cpct_px2byteM0(bgColor, bgColor), width - 4, height - 6);
+   0109 DD 7E 07      [19]  245 	ld	a, 7 (ix)
+   010C C6 FA         [ 7]  246 	add	a, #0xfa
+   010E DD 77 FC      [19]  247 	ld	-4 (ix), a
+   0111 C5            [11]  248 	push	bc
+   0112 D5            [11]  249 	push	de
+   0113 DD 66 09      [19]  250 	ld	h, 9 (ix)
+   0116 DD 6E 09      [19]  251 	ld	l, 9 (ix)
+   0119 E5            [11]  252 	push	hl
+   011A CDr00r00      [17]  253 	call	_cpct_px2byteM0
+   011D 7D            [ 4]  254 	ld	a, l
+   011E D1            [10]  255 	pop	de
+   011F 57            [ 4]  256 	ld	d, a
+   0120 C1            [10]  257 	pop	bc
+   0121 DD 7E FC      [19]  258 	ld	a, -4 (ix)
+   0124 F5            [11]  259 	push	af
+   0125 33            [ 6]  260 	inc	sp
+   0126 7B            [ 4]  261 	ld	a, e
+   0127 F5            [11]  262 	push	af
+   0128 33            [ 6]  263 	inc	sp
+   0129 D5            [11]  264 	push	de
+   012A 33            [ 6]  265 	inc	sp
+   012B C5            [11]  266 	push	bc
+   012C CDr00r00      [17]  267 	call	_cpct_drawSolidBox
+                            268 ;src/util/tools.c:65: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x, y + 2);
+   012F DD 66 FE      [19]  269 	ld	h, -2 (ix)
+   0132 DD 6E 04      [19]  270 	ld	l, 4 (ix)
+   0135 E5            [11]  271 	push	hl
+   0136 21 00 C0      [10]  272 	ld	hl, #0xc000
+   0139 E5            [11]  273 	push	hl
+   013A CDr00r00      [17]  274 	call	_cpct_getScreenPtr
+                            275 ;src/util/tools.c:66: cpct_drawSolidBox(pvideo, cpct_px2byteM0(BG_COLOR, fgColor), 1, 2);
+   013D E5            [11]  276 	push	hl
+   013E DD 7E 08      [19]  277 	ld	a, 8 (ix)
+   0141 F5            [11]  278 	push	af
+   0142 33            [ 6]  279 	inc	sp
+   0143 AF            [ 4]  280 	xor	a, a
+   0144 F5            [11]  281 	push	af
+   0145 33            [ 6]  282 	inc	sp
+   0146 CDr00r00      [17]  283 	call	_cpct_px2byteM0
+   0149 55            [ 4]  284 	ld	d, l
+   014A C1            [10]  285 	pop	bc
+   014B 21 01 02      [10]  286 	ld	hl, #0x0201
+   014E E5            [11]  287 	push	hl
+   014F D5            [11]  288 	push	de
+   0150 33            [ 6]  289 	inc	sp
+   0151 C5            [11]  290 	push	bc
+   0152 CDr00r00      [17]  291 	call	_cpct_drawSolidBox
+                            292 ;src/util/tools.c:69: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x, y + 4);
+   0155 DD 66 FD      [19]  293 	ld	h, -3 (ix)
+   0158 DD 6E 04      [19]  294 	ld	l, 4 (ix)
+   015B E5            [11]  295 	push	hl
+   015C 21 00 C0      [10]  296 	ld	hl, #0xc000
+   015F E5            [11]  297 	push	hl
+   0160 CDr00r00      [17]  298 	call	_cpct_getScreenPtr
+                            299 ;src/util/tools.c:70: cpct_drawSolidBox(pvideo, cpct_px2byteM0(fgColor, BG_COLOR), 1, height - 6);
+   0163 E5            [11]  300 	push	hl
+   0164 AF            [ 4]  301 	xor	a, a
+   0165 F5            [11]  302 	push	af
+   0166 33            [ 6]  303 	inc	sp
+   0167 DD 7E 08      [19]  304 	ld	a, 8 (ix)
+   016A F5            [11]  305 	push	af
+   016B 33            [ 6]  306 	inc	sp
+   016C CDr00r00      [17]  307 	call	_cpct_px2byteM0
+   016F 55            [ 4]  308 	ld	d, l
+   0170 C1            [10]  309 	pop	bc
+   0171 DD 7E FC      [19]  310 	ld	a, -4 (ix)
+   0174 F5            [11]  311 	push	af
+   0175 33            [ 6]  312 	inc	sp
+   0176 3E 01         [ 7]  313 	ld	a, #0x01
+   0178 F5            [11]  314 	push	af
+   0179 33            [ 6]  315 	inc	sp
+   017A D5            [11]  316 	push	de
+   017B 33            [ 6]  317 	inc	sp
+   017C C5            [11]  318 	push	bc
+   017D CDr00r00      [17]  319 	call	_cpct_drawSolidBox
+                            320 ;src/util/tools.c:73: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x, y + height - 2);
+   0180 DD 66 FF      [19]  321 	ld	h, -1 (ix)
+   0183 DD 6E 04      [19]  322 	ld	l, 4 (ix)
+   0186 E5            [11]  323 	push	hl
+   0187 21 00 C0      [10]  324 	ld	hl, #0xc000
+   018A E5            [11]  325 	push	hl
+   018B CDr00r00      [17]  326 	call	_cpct_getScreenPtr
+                            327 ;src/util/tools.c:74: cpct_drawSolidBox(pvideo, cpct_px2byteM0(BG_COLOR, fgColor), 1, 2);
+   018E E5            [11]  328 	push	hl
+   018F DD 7E 08      [19]  329 	ld	a, 8 (ix)
+   0192 F5            [11]  330 	push	af
+   0193 33            [ 6]  331 	inc	sp
+   0194 AF            [ 4]  332 	xor	a, a
+   0195 F5            [11]  333 	push	af
+   0196 33            [ 6]  334 	inc	sp
+   0197 CDr00r00      [17]  335 	call	_cpct_px2byteM0
+   019A 55            [ 4]  336 	ld	d, l
+   019B C1            [10]  337 	pop	bc
+   019C 21 01 02      [10]  338 	ld	hl, #0x0201
+   019F E5            [11]  339 	push	hl
+   01A0 D5            [11]  340 	push	de
+   01A1 33            [ 6]  341 	inc	sp
+   01A2 C5            [11]  342 	push	bc
+   01A3 CDr00r00      [17]  343 	call	_cpct_drawSolidBox
+                            344 ;src/util/tools.c:76: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x + width - 3, y + 2);
+   01A6 DD 7E 04      [19]  345 	ld	a, 4 (ix)
+   01A9 DD 86 06      [19]  346 	add	a, 6 (ix)
+   01AC C6 FD         [ 7]  347 	add	a, #0xfd
+   01AE 47            [ 4]  348 	ld	b, a
+   01AF C5            [11]  349 	push	bc
+   01B0 DD 7E FE      [19]  350 	ld	a, -2 (ix)
+   01B3 F5            [11]  351 	push	af
+   01B4 33            [ 6]  352 	inc	sp
+   01B5 C5            [11]  353 	push	bc
+   01B6 33            [ 6]  354 	inc	sp
+   01B7 21 00 C0      [10]  355 	ld	hl, #0xc000
+   01BA E5            [11]  356 	push	hl
+   01BB CDr00r00      [17]  357 	call	_cpct_getScreenPtr
+   01BE C1            [10]  358 	pop	bc
+                            359 ;src/util/tools.c:77: cpct_drawSolidBox(pvideo, cpct_px2byteM0(fgColor, BG_COLOR), 1, 2);
+   01BF E5            [11]  360 	push	hl
+   01C0 C5            [11]  361 	push	bc
+   01C1 AF            [ 4]  362 	xor	a, a
+   01C2 F5            [11]  363 	push	af
+   01C3 33            [ 6]  364 	inc	sp
+   01C4 DD 7E 08      [19]  365 	ld	a, 8 (ix)
+   01C7 F5            [11]  366 	push	af
+   01C8 33            [ 6]  367 	inc	sp
+   01C9 CDr00r00      [17]  368 	call	_cpct_px2byteM0
+   01CC 4D            [ 4]  369 	ld	c, l
+   01CD F1            [10]  370 	pop	af
+   01CE 47            [ 4]  371 	ld	b, a
+   01CF E1            [10]  372 	pop	hl
+   01D0 C5            [11]  373 	push	bc
+   01D1 11 01 02      [10]  374 	ld	de, #0x0201
+   01D4 D5            [11]  375 	push	de
+   01D5 79            [ 4]  376 	ld	a, c
+   01D6 F5            [11]  377 	push	af
+   01D7 33            [ 6]  378 	inc	sp
+   01D8 E5            [11]  379 	push	hl
+   01D9 CDr00r00      [17]  380 	call	_cpct_drawSolidBox
+   01DC C1            [10]  381 	pop	bc
+                            382 ;src/util/tools.c:79: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x + width - 3, y + 4);
+   01DD C5            [11]  383 	push	bc
+   01DE DD 7E FD      [19]  384 	ld	a, -3 (ix)
+   01E1 F5            [11]  385 	push	af
+   01E2 33            [ 6]  386 	inc	sp
+   01E3 C5            [11]  387 	push	bc
+   01E4 33            [ 6]  388 	inc	sp
+   01E5 21 00 C0      [10]  389 	ld	hl, #0xc000
+   01E8 E5            [11]  390 	push	hl
+   01E9 CDr00r00      [17]  391 	call	_cpct_getScreenPtr
+   01EC E5            [11]  392 	push	hl
+   01ED DD 7E 08      [19]  393 	ld	a, 8 (ix)
+   01F0 F5            [11]  394 	push	af
+   01F1 33            [ 6]  395 	inc	sp
+   01F2 AF            [ 4]  396 	xor	a, a
+   01F3 F5            [11]  397 	push	af
+   01F4 33            [ 6]  398 	inc	sp
+   01F5 CDr00r00      [17]  399 	call	_cpct_px2byteM0
+   01F8 4D            [ 4]  400 	ld	c, l
+   01F9 D1            [10]  401 	pop	de
+   01FA F1            [10]  402 	pop	af
+   01FB 47            [ 4]  403 	ld	b, a
+   01FC C5            [11]  404 	push	bc
+   01FD DD 7E FC      [19]  405 	ld	a, -4 (ix)
+   0200 F5            [11]  406 	push	af
+   0201 33            [ 6]  407 	inc	sp
+   0202 06 01         [ 7]  408 	ld	b, #0x01
+   0204 C5            [11]  409 	push	bc
+   0205 D5            [11]  410 	push	de
+   0206 CDr00r00      [17]  411 	call	_cpct_drawSolidBox
+   0209 C1            [10]  412 	pop	bc
+                            413 ;src/util/tools.c:82: pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x + width - 3, y + height - 2);
+   020A DD 7E FF      [19]  414 	ld	a, -1 (ix)
+   020D F5            [11]  415 	push	af
+   020E 33            [ 6]  416 	inc	sp
+   020F C5            [11]  417 	push	bc
+   0210 33            [ 6]  418 	inc	sp
+   0211 21 00 C0      [10]  419 	ld	hl, #0xc000
+   0214 E5            [11]  420 	push	hl
+   0215 CDr00r00      [17]  421 	call	_cpct_getScreenPtr
+                            422 ;src/util/tools.c:83: cpct_drawSolidBox(pvideo, cpct_px2byteM0(fgColor, BG_COLOR), 1, 2);
+   0218 E5            [11]  423 	push	hl
+   0219 AF            [ 4]  424 	xor	a, a
+   021A F5            [11]  425 	push	af
+   021B 33            [ 6]  426 	inc	sp
+   021C DD 7E 08      [19]  427 	ld	a, 8 (ix)
+   021F F5            [11]  428 	push	af
+   0220 33            [ 6]  429 	inc	sp
+   0221 CDr00r00      [17]  430 	call	_cpct_px2byteM0
+   0224 55            [ 4]  431 	ld	d, l
+   0225 C1            [10]  432 	pop	bc
+   0226 21 01 02      [10]  433 	ld	hl, #0x0201
+   0229 E5            [11]  434 	push	hl
+   022A D5            [11]  435 	push	de
+   022B 33            [ 6]  436 	inc	sp
+   022C C5            [11]  437 	push	bc
+   022D CDr00r00      [17]  438 	call	_cpct_drawSolidBox
+   0230 DD F9         [10]  439 	ld	sp, ix
+   0232 DD E1         [14]  440 	pop	ix
+   0234 C9            [10]  441 	ret
+                            442 ;src/util/tools.c:94: void updateNumber(u8 number)
+                            443 ;	---------------------------------
+                            444 ; Function updateNumber
+                            445 ; ---------------------------------
+   0235                     446 _updateNumber::
+   0235 DD E5         [15]  447 	push	ix
+   0237 DD 21 00 00   [14]  448 	ld	ix,#0
+   023B DD 39         [15]  449 	add	ix,sp
+   023D F5            [11]  450 	push	af
+   023E 3B            [ 6]  451 	dec	sp
+                            452 ;src/util/tools.c:99: pvmem = cpct_getScreenPtr(SCR_VMEM, 58, 80);
+   023F 21 3A 50      [10]  453 	ld	hl, #0x503a
+   0242 E5            [11]  454 	push	hl
+   0243 21 00 C0      [10]  455 	ld	hl, #0xc000
+   0246 E5            [11]  456 	push	hl
+   0247 CDr00r00      [17]  457 	call	_cpct_getScreenPtr
+                            458 ;src/util/tools.c:100: cpct_drawSolidBox(pvmem, cpct_px2byteM0(14, 14), 8, 14);
+   024A E5            [11]  459 	push	hl
+   024B 21 0E 0E      [10]  460 	ld	hl, #0x0e0e
+   024E E5            [11]  461 	push	hl
+   024F CDr00r00      [17]  462 	call	_cpct_px2byteM0
+   0252 55            [ 4]  463 	ld	d, l
+   0253 C1            [10]  464 	pop	bc
+   0254 21 08 0E      [10]  465 	ld	hl, #0x0e08
+   0257 E5            [11]  466 	push	hl
+   0258 D5            [11]  467 	push	de
+   0259 33            [ 6]  468 	inc	sp
+   025A C5            [11]  469 	push	bc
+   025B CDr00r00      [17]  470 	call	_cpct_drawSolidBox
+                            471 ;src/util/tools.c:101: sprintf(text, "%02d", number);
+   025E DD 5E 04      [19]  472 	ld	e, 4 (ix)
+   0261 16 00         [ 7]  473 	ld	d, #0x00
+   0263 21 00 00      [10]  474 	ld	hl, #0x0000
+   0266 39            [11]  475 	add	hl, sp
+   0267 4D            [ 4]  476 	ld	c, l
+   0268 44            [ 4]  477 	ld	b, h
+   0269 E5            [11]  478 	push	hl
+   026A D5            [11]  479 	push	de
+   026B 11r93r02      [10]  480 	ld	de, #___str_0
+   026E D5            [11]  481 	push	de
+   026F C5            [11]  482 	push	bc
+   0270 CDr00r00      [17]  483 	call	_sprintf
+   0273 21 06 00      [10]  484 	ld	hl, #6
+   0276 39            [11]  485 	add	hl, sp
+   0277 F9            [ 6]  486 	ld	sp, hl
+   0278 E1            [10]  487 	pop	hl
+                            488 ;src/util/tools.c:102: drawText(text, 58, 80, COLORTXT_YELLOW, DOUBLEHEIGHT, TRANSPARENT);
+   0279 01 02 01      [10]  489 	ld	bc, #0x0102
+   027C C5            [11]  490 	push	bc
+   027D 01 50 01      [10]  491 	ld	bc, #0x0150
+   0280 C5            [11]  492 	push	bc
+   0281 3E 3A         [ 7]  493 	ld	a, #0x3a
+   0283 F5            [11]  494 	push	af
+   0284 33            [ 6]  495 	inc	sp
+   0285 E5            [11]  496 	push	hl
+   0286 CDr00r00      [17]  497 	call	_drawText
+   0289 21 07 00      [10]  498 	ld	hl, #7
+   028C 39            [11]  499 	add	hl, sp
+   028D F9            [ 6]  500 	ld	sp, hl
+   028E DD F9         [10]  501 	ld	sp, ix
+   0290 DD E1         [14]  502 	pop	ix
+   0292 C9            [10]  503 	ret
+   0293                     504 ___str_0:
+   0293 25 30 32 64         505 	.ascii "%02d"
+   0297 00                  506 	.db 0x00
+                            507 ;src/util/tools.c:112: u8 resultNumber()
+                            508 ;	---------------------------------
+                            509 ; Function resultNumber
+                            510 ; ---------------------------------
+   0298                     511 _resultNumber::
+                            512 ;src/util/tools.c:116: selection = 1;
+   0298 0E 01         [ 7]  513 	ld	c, #0x01
+                            514 ;src/util/tools.c:117: drawText("UP/DOWN:CHANGE LEVEL", 16, 92, COLORTXT_MAUVE, NORMALHEIGHT, TRANSPARENT);
+   029A C5            [11]  515 	push	bc
+   029B 21 01 01      [10]  516 	ld	hl, #0x0101
+   029E E5            [11]  517 	push	hl
+   029F 21 5C 05      [10]  518 	ld	hl, #0x055c
+   02A2 E5            [11]  519 	push	hl
+   02A3 3E 10         [ 7]  520 	ld	a, #0x10
+   02A5 F5            [11]  521 	push	af
+   02A6 33            [ 6]  522 	inc	sp
+   02A7 21r56r03      [10]  523 	ld	hl, #___str_1
+   02AA E5            [11]  524 	push	hl
+   02AB CDr00r00      [17]  525 	call	_drawText
+   02AE 21 07 00      [10]  526 	ld	hl, #7
+   02B1 39            [11]  527 	add	hl, sp
+   02B2 F9            [ 6]  528 	ld	sp, hl
+   02B3 21 01 01      [10]  529 	ld	hl, #0x0101
+   02B6 E5            [11]  530 	push	hl
+   02B7 21 68 05      [10]  531 	ld	hl, #0x0568
+   02BA E5            [11]  532 	push	hl
+   02BB 3E 10         [ 7]  533 	ld	a, #0x10
+   02BD F5            [11]  534 	push	af
+   02BE 33            [ 6]  535 	inc	sp
+   02BF 21r6Br03      [10]  536 	ld	hl, #___str_2
+   02C2 E5            [11]  537 	push	hl
+   02C3 CDr00r00      [17]  538 	call	_drawText
+   02C6 21 07 00      [10]  539 	ld	hl, #7
+   02C9 39            [11]  540 	add	hl, sp
+   02CA F9            [ 6]  541 	ld	sp, hl
+   02CB 3E 01         [ 7]  542 	ld	a, #0x01
+   02CD F5            [11]  543 	push	af
+   02CE 33            [ 6]  544 	inc	sp
+   02CF CDr35r02      [17]  545 	call	_updateNumber
+   02D2 33            [ 6]  546 	inc	sp
+   02D3 C1            [10]  547 	pop	bc
+                            548 ;src/util/tools.c:120: while (1)
+   02D4                     549 00117$:
+                            550 ;src/util/tools.c:123: cpct_waitHalts(20);
+   02D4 C5            [11]  551 	push	bc
+   02D5 2E 14         [ 7]  552 	ld	l, #0x14
+   02D7 CDr00r00      [17]  553 	call	_cpct_waitHalts
+   02DA C1            [10]  554 	pop	bc
+                            555 ;src/util/tools.c:124: if ((cpct_isKeyPressed(keys1.up)) || (cpct_isKeyPressed(keys1.j_up)))
+   02DB 2Ar00r00      [16]  556 	ld	hl, (#_keys1 + 0)
+   02DE C5            [11]  557 	push	bc
+   02DF CDr00r00      [17]  558 	call	_cpct_isKeyPressed
+   02E2 C1            [10]  559 	pop	bc
+   02E3 7D            [ 4]  560 	ld	a, l
+   02E4 B7            [ 4]  561 	or	a, a
+   02E5 20 0C         [12]  562 	jr	NZ,00108$
+   02E7 2Ar0Cr00      [16]  563 	ld	hl, (#(_keys1 + 0x000c) + 0)
+   02EA C5            [11]  564 	push	bc
+   02EB CDr00r00      [17]  565 	call	_cpct_isKeyPressed
+   02EE C1            [10]  566 	pop	bc
+   02EF 7D            [ 4]  567 	ld	a, l
+   02F0 B7            [ 4]  568 	or	a, a
+   02F1 28 13         [12]  569 	jr	Z,00109$
+   02F3                     570 00108$:
+                            571 ;src/util/tools.c:126: selection++;
+   02F3 0C            [ 4]  572 	inc	c
+                            573 ;src/util/tools.c:127: if (selection > 17)
+   02F4 3E 11         [ 7]  574 	ld	a, #0x11
+   02F6 91            [ 4]  575 	sub	a, c
+   02F7 30 02         [12]  576 	jr	NC,00102$
+                            577 ;src/util/tools.c:128: selection = 1;
+   02F9 0E 01         [ 7]  578 	ld	c, #0x01
+   02FB                     579 00102$:
+                            580 ;src/util/tools.c:129: updateNumber(selection);
+   02FB C5            [11]  581 	push	bc
+   02FC 79            [ 4]  582 	ld	a, c
+   02FD F5            [11]  583 	push	af
+   02FE 33            [ 6]  584 	inc	sp
+   02FF CDr35r02      [17]  585 	call	_updateNumber
+   0302 33            [ 6]  586 	inc	sp
+   0303 C1            [10]  587 	pop	bc
+   0304 18 29         [12]  588 	jr	00110$
+   0306                     589 00109$:
+                            590 ;src/util/tools.c:131: else if ((cpct_isKeyPressed(keys1.down)) || (cpct_isKeyPressed(keys1.j_down)))
+   0306 2Ar02r00      [16]  591 	ld	hl, (#(_keys1 + 0x0002) + 0)
+   0309 C5            [11]  592 	push	bc
+   030A CDr00r00      [17]  593 	call	_cpct_isKeyPressed
+   030D C1            [10]  594 	pop	bc
+   030E 7D            [ 4]  595 	ld	a, l
+   030F B7            [ 4]  596 	or	a, a
+   0310 20 0C         [12]  597 	jr	NZ,00105$
+   0312 2Ar0Er00      [16]  598 	ld	hl, (#(_keys1 + 0x000e) + 0)
+   0315 C5            [11]  599 	push	bc
+   0316 CDr00r00      [17]  600 	call	_cpct_isKeyPressed
+   0319 C1            [10]  601 	pop	bc
+   031A 7D            [ 4]  602 	ld	a, l
+   031B B7            [ 4]  603 	or	a, a
+   031C 28 11         [12]  604 	jr	Z,00110$
+   031E                     605 00105$:
+                            606 ;src/util/tools.c:133: selection--;
+   031E 0D            [ 4]  607 	dec	c
+                            608 ;src/util/tools.c:134: if (selection < 1)
+   031F 79            [ 4]  609 	ld	a, c
+   0320 D6 01         [ 7]  610 	sub	a, #0x01
+   0322 30 02         [12]  611 	jr	NC,00104$
+                            612 ;src/util/tools.c:135: selection = 17;
+   0324 0E 11         [ 7]  613 	ld	c, #0x11
+   0326                     614 00104$:
+                            615 ;src/util/tools.c:136: updateNumber(selection);
+   0326 C5            [11]  616 	push	bc
+   0327 79            [ 4]  617 	ld	a, c
+   0328 F5            [11]  618 	push	af
+   0329 33            [ 6]  619 	inc	sp
+   032A CDr35r02      [17]  620 	call	_updateNumber
+   032D 33            [ 6]  621 	inc	sp
+   032E C1            [10]  622 	pop	bc
+   032F                     623 00110$:
+                            624 ;src/util/tools.c:138: if ((cpct_isKeyPressed(keys1.fire1)) || (cpct_isKeyPressed(keys1.j_fire1)) || (cpct_isKeyPressed(keys1.j_fire2)))
+   032F 2Ar08r00      [16]  625 	ld	hl, (#(_keys1 + 0x0008) + 0)
+   0332 C5            [11]  626 	push	bc
+   0333 CDr00r00      [17]  627 	call	_cpct_isKeyPressed
+   0336 C1            [10]  628 	pop	bc
+   0337 7D            [ 4]  629 	ld	a, l
+   0338 B7            [ 4]  630 	or	a, a
+   0339 20 19         [12]  631 	jr	NZ,00112$
+   033B 2Ar14r00      [16]  632 	ld	hl, (#(_keys1 + 0x0014) + 0)
+   033E C5            [11]  633 	push	bc
+   033F CDr00r00      [17]  634 	call	_cpct_isKeyPressed
+   0342 C1            [10]  635 	pop	bc
+   0343 7D            [ 4]  636 	ld	a, l
+   0344 B7            [ 4]  637 	or	a, a
+   0345 20 0D         [12]  638 	jr	NZ,00112$
+   0347 2Ar16r00      [16]  639 	ld	hl, (#(_keys1 + 0x0016) + 0)
+   034A C5            [11]  640 	push	bc
+   034B CDr00r00      [17]  641 	call	_cpct_isKeyPressed
+   034E C1            [10]  642 	pop	bc
+   034F 7D            [ 4]  643 	ld	a, l
+   0350 B7            [ 4]  644 	or	a, a
+   0351 CArD4r02      [10]  645 	jp	Z, 00117$
+   0354                     646 00112$:
+                            647 ;src/util/tools.c:140: return selection;
+   0354 69            [ 4]  648 	ld	l, c
+   0355 C9            [10]  649 	ret
+   0356                     650 ___str_1:
+   0356 55 50 2F 44 4F 57   651 	.ascii "UP/DOWN:CHANGE LEVEL"
         4E 3A 43 48 41 4E
         47 45 20 4C 45 56
         45 4C
-   0388 00                  682 	.db 0x00
-   0389                     683 ___str_2:
-   0389 46 49 52 45 3A 20   684 	.ascii "FIRE: CONFIRM"
+   036A 00                  652 	.db 0x00
+   036B                     653 ___str_2:
+   036B 46 49 52 45 3A 20   654 	.ascii "FIRE: CONFIRM"
         43 4F 4E 46 49 52
         4D
-   0396 00                  685 	.db 0x00
-                            686 ;src/util/tools.c:151: u8 resultYesNo()
-                            687 ;	---------------------------------
-                            688 ; Function resultYesNo
-                            689 ; ---------------------------------
-   0397                     690 _resultYesNo::
-                            691 ;src/util/tools.c:153: drawText("(YES/NO)", 32, 96, COLORTXT_YELLOW, NORMALHEIGHT, TRANSPARENT);
-   0397 21 01 01      [10]  692 	ld	hl, #0x0101
-   039A E5            [11]  693 	push	hl
-   039B 2E 60         [ 7]  694 	ld	l, #0x60
-   039D E5            [11]  695 	push	hl
-   039E 3E 20         [ 7]  696 	ld	a, #0x20
-   03A0 F5            [11]  697 	push	af
-   03A1 33            [ 6]  698 	inc	sp
-   03A2 21rC8r03      [10]  699 	ld	hl, #___str_3
-   03A5 E5            [11]  700 	push	hl
-   03A6 CDr00r00      [17]  701 	call	_drawText
-   03A9 21 07 00      [10]  702 	ld	hl, #7
-   03AC 39            [11]  703 	add	hl, sp
-   03AD F9            [ 6]  704 	ld	sp, hl
-                            705 ;src/util/tools.c:155: while (1)
-   03AE                     706 00105$:
-                            707 ;src/util/tools.c:157: if ((cpct_isKeyPressed(Key_Y)) || (cpct_isKeyPressed(Key_N)))
-   03AE 21 05 08      [10]  708 	ld	hl, #0x0805
-   03B1 CDr00r00      [17]  709 	call	_cpct_isKeyPressed
-   03B4 7D            [ 4]  710 	ld	a, l
-   03B5 B7            [ 4]  711 	or	a, a
-   03B6 20 0A         [12]  712 	jr	NZ,00101$
-   03B8 21 05 40      [10]  713 	ld	hl, #0x4005
-   03BB CDr00r00      [17]  714 	call	_cpct_isKeyPressed
-   03BE 7D            [ 4]  715 	ld	a, l
-   03BF B7            [ 4]  716 	or	a, a
-   03C0 28 EC         [12]  717 	jr	Z,00105$
-   03C2                     718 00101$:
-                            719 ;src/util/tools.c:159: return (cpct_isKeyPressed(Key_Y));
-   03C2 21 05 08      [10]  720 	ld	hl, #0x0805
-                            721 ;src/util/tools.c:160: break;
-   03C5 C3r00r00      [10]  722 	jp  _cpct_isKeyPressed
-   03C8                     723 ___str_3:
-   03C8 28 59 45 53 2F 4E   724 	.ascii "(YES/NO)"
+   0378 00                  655 	.db 0x00
+                            656 ;src/util/tools.c:151: u8 resultYesNo()
+                            657 ;	---------------------------------
+                            658 ; Function resultYesNo
+                            659 ; ---------------------------------
+   0379                     660 _resultYesNo::
+                            661 ;src/util/tools.c:153: drawText("(YES/NO)", 32, 96, COLORTXT_YELLOW, NORMALHEIGHT, TRANSPARENT);
+   0379 21 01 01      [10]  662 	ld	hl, #0x0101
+   037C E5            [11]  663 	push	hl
+   037D 2E 60         [ 7]  664 	ld	l, #0x60
+   037F E5            [11]  665 	push	hl
+   0380 3E 20         [ 7]  666 	ld	a, #0x20
+   0382 F5            [11]  667 	push	af
+   0383 33            [ 6]  668 	inc	sp
+   0384 21rAAr03      [10]  669 	ld	hl, #___str_3
+   0387 E5            [11]  670 	push	hl
+   0388 CDr00r00      [17]  671 	call	_drawText
+   038B 21 07 00      [10]  672 	ld	hl, #7
+   038E 39            [11]  673 	add	hl, sp
+   038F F9            [ 6]  674 	ld	sp, hl
+                            675 ;src/util/tools.c:155: while (1)
+   0390                     676 00105$:
+                            677 ;src/util/tools.c:157: if ((cpct_isKeyPressed(Key_Y)) || (cpct_isKeyPressed(Key_N)))
+   0390 21 05 08      [10]  678 	ld	hl, #0x0805
+   0393 CDr00r00      [17]  679 	call	_cpct_isKeyPressed
+   0396 7D            [ 4]  680 	ld	a, l
+   0397 B7            [ 4]  681 	or	a, a
+   0398 20 0A         [12]  682 	jr	NZ,00101$
+   039A 21 05 40      [10]  683 	ld	hl, #0x4005
+   039D CDr00r00      [17]  684 	call	_cpct_isKeyPressed
+   03A0 7D            [ 4]  685 	ld	a, l
+   03A1 B7            [ 4]  686 	or	a, a
+   03A2 28 EC         [12]  687 	jr	Z,00105$
+   03A4                     688 00101$:
+                            689 ;src/util/tools.c:159: return (cpct_isKeyPressed(Key_Y));
+   03A4 21 05 08      [10]  690 	ld	hl, #0x0805
+                            691 ;src/util/tools.c:160: break;
+   03A7 C3r00r00      [10]  692 	jp  _cpct_isKeyPressed
+   03AA                     693 ___str_3:
+   03AA 28 59 45 53 2F 4E   694 	.ascii "(YES/NO)"
         4F 29
-   03D0 00                  725 	.db 0x00
-                            726 ;src/util/tools.c:171: u8 showMessage(u8 *message, u8 type)
-                            727 ;	---------------------------------
-                            728 ; Function showMessage
-                            729 ; ---------------------------------
-   03D1                     730 _showMessage::
-   03D1 DD E5         [15]  731 	push	ix
-   03D3 DD 21 00 00   [14]  732 	ld	ix,#0
-   03D7 DD 39         [15]  733 	add	ix,sp
-   03D9 3B            [ 6]  734 	dec	sp
-                            735 ;src/util/tools.c:179: if (type == NUMBER)
-   03DA DD 7E 06      [19]  736 	ld	a, 6 (ix)
-   03DD D6 02         [ 7]  737 	sub	a, #0x02
-   03DF 20 04         [12]  738 	jr	NZ,00142$
-   03E1 3E 01         [ 7]  739 	ld	a,#0x01
-   03E3 18 01         [12]  740 	jr	00143$
-   03E5                     741 00142$:
-   03E5 AF            [ 4]  742 	xor	a,a
-   03E6                     743 00143$:
-   03E6 DD 77 FF      [19]  744 	ld	-1 (ix), a
-   03E9 B7            [ 4]  745 	or	a, a
-   03EA 28 04         [12]  746 	jr	Z,00102$
-                            747 ;src/util/tools.c:180: defaultMax = 56;
-   03EC 0E 38         [ 7]  748 	ld	c, #0x38
-   03EE 18 02         [12]  749 	jr	00103$
-   03F0                     750 00102$:
-                            751 ;src/util/tools.c:182: defaultMax = 26;
-   03F0 0E 1A         [ 7]  752 	ld	c, #0x1a
-   03F2                     753 00103$:
-                            754 ;src/util/tools.c:184: messageLength = strLength(message);
-   03F2 C5            [11]  755 	push	bc
-   03F3 DD 6E 04      [19]  756 	ld	l,4 (ix)
-   03F6 DD 66 05      [19]  757 	ld	h,5 (ix)
-   03F9 E5            [11]  758 	push	hl
-   03FA CDr00r00      [17]  759 	call	_strLength
-   03FD F1            [10]  760 	pop	af
-   03FE 5D            [ 4]  761 	ld	e, l
-   03FF C1            [10]  762 	pop	bc
-                            763 ;src/util/tools.c:185: w = max(((messageLength * 2) + 7), defaultMax);
-   0400 6B            [ 4]  764 	ld	l, e
-   0401 26 00         [ 7]  765 	ld	h, #0x00
-   0403 29            [11]  766 	add	hl, hl
-   0404 D5            [11]  767 	push	de
-   0405 11 07 00      [10]  768 	ld	de, #0x0007
-   0408 19            [11]  769 	add	hl, de
-   0409 D1            [10]  770 	pop	de
-   040A 79            [ 4]  771 	ld	a, c
-   040B 16 00         [ 7]  772 	ld	d, #0x00
-   040D 95            [ 4]  773 	sub	a, l
-   040E 7A            [ 4]  774 	ld	a, d
-   040F 9C            [ 4]  775 	sbc	a, h
-   0410 E2r15r04      [10]  776 	jp	PO, 00144$
-   0413 EE 80         [ 7]  777 	xor	a, #0x80
-   0415                     778 00144$:
-   0415 F2r1Dr04      [10]  779 	jp	P, 00115$
-   0418 7B            [ 4]  780 	ld	a, e
-   0419 87            [ 4]  781 	add	a, a
-   041A C6 07         [ 7]  782 	add	a, #0x07
-   041C 4F            [ 4]  783 	ld	c, a
-   041D                     784 00115$:
-                            785 ;src/util/tools.c:187: x = ((80 - w) / 2+1);
-   041D 59            [ 4]  786 	ld	e, c
-   041E 16 00         [ 7]  787 	ld	d, #0x00
-   0420 3E 50         [ 7]  788 	ld	a, #0x50
-   0422 93            [ 4]  789 	sub	a, e
-   0423 6F            [ 4]  790 	ld	l, a
-   0424 3E 00         [ 7]  791 	ld	a, #0x00
-   0426 9A            [ 4]  792 	sbc	a, d
-   0427 67            [ 4]  793 	ld	h, a
-   0428 5D            [ 4]  794 	ld	e, l
-   0429 54            [ 4]  795 	ld	d, h
-   042A CB 7C         [ 8]  796 	bit	7, h
-   042C 28 02         [12]  797 	jr	Z,00117$
-   042E EB            [ 4]  798 	ex	de,hl
-   042F 13            [ 6]  799 	inc	de
-   0430                     800 00117$:
-   0430 CB 2A         [ 8]  801 	sra	d
-   0432 CB 1B         [ 8]  802 	rr	e
-   0434 43            [ 4]  803 	ld	b, e
-   0435 04            [ 4]  804 	inc	b
-                            805 ;src/util/tools.c:191: pvmem = cpct_getScreenPtr(CPCT_VMEM_START, x, y);
-   0436 C5            [11]  806 	push	bc
-   0437 3E 3A         [ 7]  807 	ld	a, #0x3a
-   0439 F5            [11]  808 	push	af
-   043A 33            [ 6]  809 	inc	sp
-   043B C5            [11]  810 	push	bc
-   043C 33            [ 6]  811 	inc	sp
-   043D 21 00 C0      [10]  812 	ld	hl, #0xc000
-   0440 E5            [11]  813 	push	hl
-   0441 CDr00r00      [17]  814 	call	_cpct_getScreenPtr
-   0444 EB            [ 4]  815 	ex	de,hl
-   0445 C1            [10]  816 	pop	bc
-                            817 ;src/util/tools.c:196: cpct_getScreenToSprite(pvmem, (u8*) &screenBuffer0, w, h);
-   0446 21r00r00      [10]  818 	ld	hl, #_screenBuffer0+0
-   0449 C5            [11]  819 	push	bc
-   044A D5            [11]  820 	push	de
-   044B 06 3C         [ 7]  821 	ld	b, #0x3c
-   044D C5            [11]  822 	push	bc
-   044E E5            [11]  823 	push	hl
-   044F D5            [11]  824 	push	de
-   0450 CDr00r00      [17]  825 	call	_cpct_getScreenToSprite
-   0453 D1            [10]  826 	pop	de
-   0454 C1            [10]  827 	pop	bc
-                            828 ;src/util/tools.c:199: drawWindow(x, y, w, h - 2, 15, 14);
-   0455 C5            [11]  829 	push	bc
-   0456 D5            [11]  830 	push	de
-   0457 21 0F 0E      [10]  831 	ld	hl, #0x0e0f
-   045A E5            [11]  832 	push	hl
-   045B 3E 3A         [ 7]  833 	ld	a, #0x3a
-   045D F5            [11]  834 	push	af
-   045E 33            [ 6]  835 	inc	sp
-   045F 51            [ 4]  836 	ld	d, c
-   0460 1E 3A         [ 7]  837 	ld	e,#0x3a
-   0462 D5            [11]  838 	push	de
-   0463 C5            [11]  839 	push	bc
-   0464 33            [ 6]  840 	inc	sp
-   0465 CDr1Er00      [17]  841 	call	_drawWindow
-   0468 21 06 00      [10]  842 	ld	hl, #6
-   046B 39            [11]  843 	add	hl, sp
-   046C F9            [ 6]  844 	ld	sp, hl
-   046D D1            [10]  845 	pop	de
-   046E C1            [10]  846 	pop	bc
-                            847 ;src/util/tools.c:200: drawText(message, x + 3, y + 12, COLORTXT_WHITE, DOUBLEHEIGHT, TRANSPARENT);
-   046F 04            [ 4]  848 	inc	b
-   0470 04            [ 4]  849 	inc	b
-   0471 04            [ 4]  850 	inc	b
-   0472 C5            [11]  851 	push	bc
-   0473 D5            [11]  852 	push	de
-   0474 21 02 01      [10]  853 	ld	hl, #0x0102
-   0477 E5            [11]  854 	push	hl
-   0478 21 46 00      [10]  855 	ld	hl, #0x0046
-   047B E5            [11]  856 	push	hl
-   047C C5            [11]  857 	push	bc
-   047D 33            [ 6]  858 	inc	sp
-   047E DD 6E 04      [19]  859 	ld	l,4 (ix)
-   0481 DD 66 05      [19]  860 	ld	h,5 (ix)
-   0484 E5            [11]  861 	push	hl
-   0485 CDr00r00      [17]  862 	call	_drawText
-   0488 21 07 00      [10]  863 	ld	hl, #7
-   048B 39            [11]  864 	add	hl, sp
-   048C F9            [ 6]  865 	ld	sp, hl
-   048D D1            [10]  866 	pop	de
-   048E C1            [10]  867 	pop	bc
-                            868 ;src/util/tools.c:203: if (type == YESNO)
-   048F DD 7E 06      [19]  869 	ld	a, 6 (ix)
-   0492 3D            [ 4]  870 	dec	a
-   0493 20 09         [12]  871 	jr	NZ,00111$
-                            872 ;src/util/tools.c:205: result = resultYesNo();
-   0495 C5            [11]  873 	push	bc
-   0496 D5            [11]  874 	push	de
-   0497 CDr97r03      [17]  875 	call	_resultYesNo
-   049A D1            [10]  876 	pop	de
-   049B C1            [10]  877 	pop	bc
-   049C 18 49         [12]  878 	jr	00112$
-   049E                     879 00111$:
-                            880 ;src/util/tools.c:207: else if (type == NUMBER)
-   049E DD 7E FF      [19]  881 	ld	a, -1 (ix)
-   04A1 B7            [ 4]  882 	or	a, a
-   04A2 28 09         [12]  883 	jr	Z,00108$
-                            884 ;src/util/tools.c:209: result = resultNumber();
-   04A4 C5            [11]  885 	push	bc
-   04A5 D5            [11]  886 	push	de
-   04A6 CDrB6r02      [17]  887 	call	_resultNumber
-   04A9 D1            [10]  888 	pop	de
-   04AA C1            [10]  889 	pop	bc
-   04AB 18 3A         [12]  890 	jr	00112$
-   04AD                     891 00108$:
-                            892 ;src/util/tools.c:210: } else if (type == TEMPORAL){
-   04AD DD 7E 06      [19]  893 	ld	a, 6 (ix)
-   04B0 D6 03         [ 7]  894 	sub	a, #0x03
-   04B2 20 0D         [12]  895 	jr	NZ,00105$
-                            896 ;src/util/tools.c:211: cpct_waitHalts(100);
-   04B4 C5            [11]  897 	push	bc
-   04B5 D5            [11]  898 	push	de
-   04B6 2E 64         [ 7]  899 	ld	l, #0x64
-   04B8 CDr00r00      [17]  900 	call	_cpct_waitHalts
-   04BB D1            [10]  901 	pop	de
-   04BC C1            [10]  902 	pop	bc
-                            903 ;src/util/tools.c:212: result = YES;
-   04BD 2E 01         [ 7]  904 	ld	l, #0x01
-   04BF 18 26         [12]  905 	jr	00112$
-   04C1                     906 00105$:
-                            907 ;src/util/tools.c:216: drawText("PRESS A KEY", 29, 96, COLORTXT_YELLOW, NORMALHEIGHT, TRANSPARENT);
-   04C1 C5            [11]  908 	push	bc
-   04C2 D5            [11]  909 	push	de
-   04C3 21 01 01      [10]  910 	ld	hl, #0x0101
-   04C6 E5            [11]  911 	push	hl
-   04C7 2E 60         [ 7]  912 	ld	l, #0x60
-   04C9 E5            [11]  913 	push	hl
-   04CA 3E 1D         [ 7]  914 	ld	a, #0x1d
-   04CC F5            [11]  915 	push	af
-   04CD 33            [ 6]  916 	inc	sp
-   04CE 21rF8r04      [10]  917 	ld	hl, #___str_4
-   04D1 E5            [11]  918 	push	hl
-   04D2 CDr00r00      [17]  919 	call	_drawText
-   04D5 21 07 00      [10]  920 	ld	hl, #7
-   04D8 39            [11]  921 	add	hl, sp
-   04D9 F9            [ 6]  922 	ld	sp, hl
-   04DA D1            [10]  923 	pop	de
-   04DB C1            [10]  924 	pop	bc
-                            925 ;src/util/tools.c:217: result = YES;
-   04DC 2E 01         [ 7]  926 	ld	l, #0x01
-                            927 ;src/util/tools.c:218: wait4OneKey();
-   04DE E5            [11]  928 	push	hl
-   04DF C5            [11]  929 	push	bc
-   04E0 D5            [11]  930 	push	de
-   04E1 CDr00r00      [17]  931 	call	_wait4OneKey
-   04E4 D1            [10]  932 	pop	de
-   04E5 C1            [10]  933 	pop	bc
-   04E6 E1            [10]  934 	pop	hl
-   04E7                     935 00112$:
-                            936 ;src/util/tools.c:222: cpct_drawSprite((u8 *)0xb000, pvmem, w, h);
-   04E7 E5            [11]  937 	push	hl
-   04E8 06 3C         [ 7]  938 	ld	b, #0x3c
-   04EA C5            [11]  939 	push	bc
-   04EB D5            [11]  940 	push	de
-   04EC 01 00 B0      [10]  941 	ld	bc, #0xb000
-   04EF C5            [11]  942 	push	bc
-   04F0 CDr00r00      [17]  943 	call	_cpct_drawSprite
-   04F3 E1            [10]  944 	pop	hl
-                            945 ;src/util/tools.c:224: return result;
-   04F4 33            [ 6]  946 	inc	sp
-   04F5 DD E1         [14]  947 	pop	ix
-   04F7 C9            [10]  948 	ret
-   04F8                     949 ___str_4:
-   04F8 50 52 45 53 53 20   950 	.ascii "PRESS A KEY"
+   03B2 00                  695 	.db 0x00
+                            696 ;src/util/tools.c:171: u8 showMessage(u8 *message, u8 type)
+                            697 ;	---------------------------------
+                            698 ; Function showMessage
+                            699 ; ---------------------------------
+   03B3                     700 _showMessage::
+   03B3 DD E5         [15]  701 	push	ix
+   03B5 DD 21 00 00   [14]  702 	ld	ix,#0
+   03B9 DD 39         [15]  703 	add	ix,sp
+   03BB 3B            [ 6]  704 	dec	sp
+                            705 ;src/util/tools.c:179: if (type == NUMBER)
+   03BC DD 7E 06      [19]  706 	ld	a, 6 (ix)
+   03BF D6 02         [ 7]  707 	sub	a, #0x02
+   03C1 20 04         [12]  708 	jr	NZ,00142$
+   03C3 3E 01         [ 7]  709 	ld	a,#0x01
+   03C5 18 01         [12]  710 	jr	00143$
+   03C7                     711 00142$:
+   03C7 AF            [ 4]  712 	xor	a,a
+   03C8                     713 00143$:
+   03C8 DD 77 FF      [19]  714 	ld	-1 (ix), a
+   03CB B7            [ 4]  715 	or	a, a
+   03CC 28 04         [12]  716 	jr	Z,00102$
+                            717 ;src/util/tools.c:180: defaultMax = 56;
+   03CE 0E 38         [ 7]  718 	ld	c, #0x38
+   03D0 18 02         [12]  719 	jr	00103$
+   03D2                     720 00102$:
+                            721 ;src/util/tools.c:182: defaultMax = 26;
+   03D2 0E 1A         [ 7]  722 	ld	c, #0x1a
+   03D4                     723 00103$:
+                            724 ;src/util/tools.c:184: messageLength = strLength(message);
+   03D4 C5            [11]  725 	push	bc
+   03D5 DD 6E 04      [19]  726 	ld	l,4 (ix)
+   03D8 DD 66 05      [19]  727 	ld	h,5 (ix)
+   03DB E5            [11]  728 	push	hl
+   03DC CDr00r00      [17]  729 	call	_strLength
+   03DF F1            [10]  730 	pop	af
+   03E0 5D            [ 4]  731 	ld	e, l
+   03E1 C1            [10]  732 	pop	bc
+                            733 ;src/util/tools.c:185: w = max(((messageLength * 2) + 7), defaultMax);
+   03E2 6B            [ 4]  734 	ld	l, e
+   03E3 26 00         [ 7]  735 	ld	h, #0x00
+   03E5 29            [11]  736 	add	hl, hl
+   03E6 D5            [11]  737 	push	de
+   03E7 11 07 00      [10]  738 	ld	de, #0x0007
+   03EA 19            [11]  739 	add	hl, de
+   03EB D1            [10]  740 	pop	de
+   03EC 79            [ 4]  741 	ld	a, c
+   03ED 16 00         [ 7]  742 	ld	d, #0x00
+   03EF 95            [ 4]  743 	sub	a, l
+   03F0 7A            [ 4]  744 	ld	a, d
+   03F1 9C            [ 4]  745 	sbc	a, h
+   03F2 E2rF7r03      [10]  746 	jp	PO, 00144$
+   03F5 EE 80         [ 7]  747 	xor	a, #0x80
+   03F7                     748 00144$:
+   03F7 F2rFFr03      [10]  749 	jp	P, 00115$
+   03FA 7B            [ 4]  750 	ld	a, e
+   03FB 87            [ 4]  751 	add	a, a
+   03FC C6 07         [ 7]  752 	add	a, #0x07
+   03FE 4F            [ 4]  753 	ld	c, a
+   03FF                     754 00115$:
+                            755 ;src/util/tools.c:187: x = ((80 - w) / 2+1);
+   03FF 59            [ 4]  756 	ld	e, c
+   0400 16 00         [ 7]  757 	ld	d, #0x00
+   0402 3E 50         [ 7]  758 	ld	a, #0x50
+   0404 93            [ 4]  759 	sub	a, e
+   0405 6F            [ 4]  760 	ld	l, a
+   0406 3E 00         [ 7]  761 	ld	a, #0x00
+   0408 9A            [ 4]  762 	sbc	a, d
+   0409 67            [ 4]  763 	ld	h, a
+   040A 5D            [ 4]  764 	ld	e, l
+   040B 54            [ 4]  765 	ld	d, h
+   040C CB 7C         [ 8]  766 	bit	7, h
+   040E 28 02         [12]  767 	jr	Z,00117$
+   0410 EB            [ 4]  768 	ex	de,hl
+   0411 13            [ 6]  769 	inc	de
+   0412                     770 00117$:
+   0412 CB 2A         [ 8]  771 	sra	d
+   0414 CB 1B         [ 8]  772 	rr	e
+   0416 43            [ 4]  773 	ld	b, e
+   0417 04            [ 4]  774 	inc	b
+                            775 ;src/util/tools.c:191: pvmem = cpct_getScreenPtr(CPCT_VMEM_START, x, y);
+   0418 C5            [11]  776 	push	bc
+   0419 3E 3A         [ 7]  777 	ld	a, #0x3a
+   041B F5            [11]  778 	push	af
+   041C 33            [ 6]  779 	inc	sp
+   041D C5            [11]  780 	push	bc
+   041E 33            [ 6]  781 	inc	sp
+   041F 21 00 C0      [10]  782 	ld	hl, #0xc000
+   0422 E5            [11]  783 	push	hl
+   0423 CDr00r00      [17]  784 	call	_cpct_getScreenPtr
+   0426 EB            [ 4]  785 	ex	de,hl
+   0427 C1            [10]  786 	pop	bc
+                            787 ;src/util/tools.c:196: cpct_getScreenToSprite(pvmem, (u8*) &screenBuffer0, w, h);
+   0428 21r00r00      [10]  788 	ld	hl, #_screenBuffer0+0
+   042B C5            [11]  789 	push	bc
+   042C D5            [11]  790 	push	de
+   042D 06 3C         [ 7]  791 	ld	b, #0x3c
+   042F C5            [11]  792 	push	bc
+   0430 E5            [11]  793 	push	hl
+   0431 D5            [11]  794 	push	de
+   0432 CDr00r00      [17]  795 	call	_cpct_getScreenToSprite
+   0435 D1            [10]  796 	pop	de
+   0436 C1            [10]  797 	pop	bc
+                            798 ;src/util/tools.c:199: drawWindow(x, y, w, h - 2, 15, 14);
+   0437 C5            [11]  799 	push	bc
+   0438 D5            [11]  800 	push	de
+   0439 21 0F 0E      [10]  801 	ld	hl, #0x0e0f
+   043C E5            [11]  802 	push	hl
+   043D 3E 3A         [ 7]  803 	ld	a, #0x3a
+   043F F5            [11]  804 	push	af
+   0440 33            [ 6]  805 	inc	sp
+   0441 51            [ 4]  806 	ld	d, c
+   0442 1E 3A         [ 7]  807 	ld	e,#0x3a
+   0444 D5            [11]  808 	push	de
+   0445 C5            [11]  809 	push	bc
+   0446 33            [ 6]  810 	inc	sp
+   0447 CDr1Er00      [17]  811 	call	_drawWindow
+   044A 21 06 00      [10]  812 	ld	hl, #6
+   044D 39            [11]  813 	add	hl, sp
+   044E F9            [ 6]  814 	ld	sp, hl
+   044F D1            [10]  815 	pop	de
+   0450 C1            [10]  816 	pop	bc
+                            817 ;src/util/tools.c:200: drawText(message, x + 3, y + 12, COLORTXT_WHITE, DOUBLEHEIGHT, TRANSPARENT);
+   0451 04            [ 4]  818 	inc	b
+   0452 04            [ 4]  819 	inc	b
+   0453 04            [ 4]  820 	inc	b
+   0454 C5            [11]  821 	push	bc
+   0455 D5            [11]  822 	push	de
+   0456 21 02 01      [10]  823 	ld	hl, #0x0102
+   0459 E5            [11]  824 	push	hl
+   045A 21 46 00      [10]  825 	ld	hl, #0x0046
+   045D E5            [11]  826 	push	hl
+   045E C5            [11]  827 	push	bc
+   045F 33            [ 6]  828 	inc	sp
+   0460 DD 6E 04      [19]  829 	ld	l,4 (ix)
+   0463 DD 66 05      [19]  830 	ld	h,5 (ix)
+   0466 E5            [11]  831 	push	hl
+   0467 CDr00r00      [17]  832 	call	_drawText
+   046A 21 07 00      [10]  833 	ld	hl, #7
+   046D 39            [11]  834 	add	hl, sp
+   046E F9            [ 6]  835 	ld	sp, hl
+   046F D1            [10]  836 	pop	de
+   0470 C1            [10]  837 	pop	bc
+                            838 ;src/util/tools.c:203: if (type == YESNO)
+   0471 DD 7E 06      [19]  839 	ld	a, 6 (ix)
+   0474 3D            [ 4]  840 	dec	a
+   0475 20 09         [12]  841 	jr	NZ,00111$
+                            842 ;src/util/tools.c:205: result = resultYesNo();
+   0477 C5            [11]  843 	push	bc
+   0478 D5            [11]  844 	push	de
+   0479 CDr79r03      [17]  845 	call	_resultYesNo
+   047C D1            [10]  846 	pop	de
+   047D C1            [10]  847 	pop	bc
+   047E 18 49         [12]  848 	jr	00112$
+   0480                     849 00111$:
+                            850 ;src/util/tools.c:207: else if (type == NUMBER)
+   0480 DD 7E FF      [19]  851 	ld	a, -1 (ix)
+   0483 B7            [ 4]  852 	or	a, a
+   0484 28 09         [12]  853 	jr	Z,00108$
+                            854 ;src/util/tools.c:209: result = resultNumber();
+   0486 C5            [11]  855 	push	bc
+   0487 D5            [11]  856 	push	de
+   0488 CDr98r02      [17]  857 	call	_resultNumber
+   048B D1            [10]  858 	pop	de
+   048C C1            [10]  859 	pop	bc
+   048D 18 3A         [12]  860 	jr	00112$
+   048F                     861 00108$:
+                            862 ;src/util/tools.c:210: } else if (type == TEMPORAL){
+   048F DD 7E 06      [19]  863 	ld	a, 6 (ix)
+   0492 D6 03         [ 7]  864 	sub	a, #0x03
+   0494 20 0D         [12]  865 	jr	NZ,00105$
+                            866 ;src/util/tools.c:211: cpct_waitHalts(100);
+   0496 C5            [11]  867 	push	bc
+   0497 D5            [11]  868 	push	de
+   0498 2E 64         [ 7]  869 	ld	l, #0x64
+   049A CDr00r00      [17]  870 	call	_cpct_waitHalts
+   049D D1            [10]  871 	pop	de
+   049E C1            [10]  872 	pop	bc
+                            873 ;src/util/tools.c:212: result = YES;
+   049F 2E 01         [ 7]  874 	ld	l, #0x01
+   04A1 18 26         [12]  875 	jr	00112$
+   04A3                     876 00105$:
+                            877 ;src/util/tools.c:216: drawText("PRESS A KEY", 29, 96, COLORTXT_YELLOW, NORMALHEIGHT, TRANSPARENT);
+   04A3 C5            [11]  878 	push	bc
+   04A4 D5            [11]  879 	push	de
+   04A5 21 01 01      [10]  880 	ld	hl, #0x0101
+   04A8 E5            [11]  881 	push	hl
+   04A9 2E 60         [ 7]  882 	ld	l, #0x60
+   04AB E5            [11]  883 	push	hl
+   04AC 3E 1D         [ 7]  884 	ld	a, #0x1d
+   04AE F5            [11]  885 	push	af
+   04AF 33            [ 6]  886 	inc	sp
+   04B0 21rDAr04      [10]  887 	ld	hl, #___str_4
+   04B3 E5            [11]  888 	push	hl
+   04B4 CDr00r00      [17]  889 	call	_drawText
+   04B7 21 07 00      [10]  890 	ld	hl, #7
+   04BA 39            [11]  891 	add	hl, sp
+   04BB F9            [ 6]  892 	ld	sp, hl
+   04BC D1            [10]  893 	pop	de
+   04BD C1            [10]  894 	pop	bc
+                            895 ;src/util/tools.c:217: result = YES;
+   04BE 2E 01         [ 7]  896 	ld	l, #0x01
+                            897 ;src/util/tools.c:218: wait4OneKey();
+   04C0 E5            [11]  898 	push	hl
+   04C1 C5            [11]  899 	push	bc
+   04C2 D5            [11]  900 	push	de
+   04C3 CDr00r00      [17]  901 	call	_wait4OneKey
+   04C6 D1            [10]  902 	pop	de
+   04C7 C1            [10]  903 	pop	bc
+   04C8 E1            [10]  904 	pop	hl
+   04C9                     905 00112$:
+                            906 ;src/util/tools.c:222: cpct_drawSprite((u8 *)0xb000, pvmem, w, h);
+   04C9 E5            [11]  907 	push	hl
+   04CA 06 3C         [ 7]  908 	ld	b, #0x3c
+   04CC C5            [11]  909 	push	bc
+   04CD D5            [11]  910 	push	de
+   04CE 01 00 B0      [10]  911 	ld	bc, #0xb000
+   04D1 C5            [11]  912 	push	bc
+   04D2 CDr00r00      [17]  913 	call	_cpct_drawSprite
+   04D5 E1            [10]  914 	pop	hl
+                            915 ;src/util/tools.c:224: return result;
+   04D6 33            [ 6]  916 	inc	sp
+   04D7 DD E1         [14]  917 	pop	ix
+   04D9 C9            [10]  918 	ret
+   04DA                     919 ___str_4:
+   04DA 50 52 45 53 53 20   920 	.ascii "PRESS A KEY"
         41 20 4B 45 59
-   0503 00                  951 	.db 0x00
-                            952 ;src/util/tools.c:226: void drawCompressToScreen(u8 x, u8 y, u8 w, u8 h, u16 size, u8* comp_end, u8 trans){
-                            953 ;	---------------------------------
-                            954 ; Function drawCompressToScreen
-                            955 ; ---------------------------------
-   0504                     956 _drawCompressToScreen::
-   0504 DD E5         [15]  957 	push	ix
-   0506 DD 21 00 00   [14]  958 	ld	ix,#0
-   050A DD 39         [15]  959 	add	ix,sp
-   050C F5            [11]  960 	push	af
-                            961 ;src/util/tools.c:229: pvmem = cpct_getScreenPtr(SCR_VMEM, x, y);
-   050D DD 66 05      [19]  962 	ld	h, 5 (ix)
-   0510 DD 6E 04      [19]  963 	ld	l, 4 (ix)
-   0513 E5            [11]  964 	push	hl
-   0514 21 00 C0      [10]  965 	ld	hl, #0xc000
-   0517 E5            [11]  966 	push	hl
-   0518 CDr00r00      [17]  967 	call	_cpct_getScreenPtr
-   051B 33            [ 6]  968 	inc	sp
-   051C 33            [ 6]  969 	inc	sp
-   051D E5            [11]  970 	push	hl
-                            971 ;src/util/tools.c:230: cpct_zx7b_decrunch_s((u8*) &screenBuffer0 + size - 1, comp_end);
-   051E DD 4E 0A      [19]  972 	ld	c,10 (ix)
-   0521 DD 46 0B      [19]  973 	ld	b,11 (ix)
-   0524 11r00r00      [10]  974 	ld	de, #_screenBuffer0
-   0527 DD 6E 08      [19]  975 	ld	l,8 (ix)
-   052A DD 66 09      [19]  976 	ld	h,9 (ix)
-   052D 19            [11]  977 	add	hl, de
-   052E 2B            [ 6]  978 	dec	hl
-   052F C5            [11]  979 	push	bc
-   0530 E5            [11]  980 	push	hl
-   0531 CDr00r00      [17]  981 	call	_cpct_zx7b_decrunch_s
-                            982 ;src/util/tools.c:232: cpct_drawSpriteMaskedAlignedTable(&screenBuffer0, pvmem, w, h, g_tablatrans);
-   0534 C1            [10]  983 	pop	bc
-   0535 C5            [11]  984 	push	bc
-                            985 ;src/util/tools.c:231: if (trans)
-   0536 DD 7E 0C      [19]  986 	ld	a, 12 (ix)
-   0539 B7            [ 4]  987 	or	a, a
-   053A 28 15         [12]  988 	jr	Z,00102$
-                            989 ;src/util/tools.c:232: cpct_drawSpriteMaskedAlignedTable(&screenBuffer0, pvmem, w, h, g_tablatrans);
-   053C 21r00r00      [10]  990 	ld	hl, #_g_tablatrans
-   053F E5            [11]  991 	push	hl
-   0540 DD 66 07      [19]  992 	ld	h, 7 (ix)
-   0543 DD 6E 06      [19]  993 	ld	l, 6 (ix)
-   0546 E5            [11]  994 	push	hl
-   0547 C5            [11]  995 	push	bc
-   0548 21r00r00      [10]  996 	ld	hl, #_screenBuffer0
-   054B E5            [11]  997 	push	hl
-   054C CDr00r00      [17]  998 	call	_cpct_drawSpriteMaskedAlignedTable
-   054F 18 0F         [12]  999 	jr	00104$
-   0551                    1000 00102$:
-                           1001 ;src/util/tools.c:234: cpct_drawSprite(&screenBuffer0, pvmem, w, h);
-   0551 DD 66 07      [19] 1002 	ld	h, 7 (ix)
-   0554 DD 6E 06      [19] 1003 	ld	l, 6 (ix)
-   0557 E5            [11] 1004 	push	hl
-   0558 C5            [11] 1005 	push	bc
-   0559 21r00r00      [10] 1006 	ld	hl, #_screenBuffer0
-   055C E5            [11] 1007 	push	hl
-   055D CDr00r00      [17] 1008 	call	_cpct_drawSprite
-   0560                    1009 00104$:
-   0560 DD F9         [10] 1010 	ld	sp, ix
-   0562 DD E1         [14] 1011 	pop	ix
-   0564 C9            [10] 1012 	ret
-                           1013 ;src/util/tools.c:238: void winape_breakpoint(u16 error_code) __z88dk_callee __naked {
-                           1014 ;	---------------------------------
-                           1015 ; Function winape_breakpoint
-                           1016 ; ---------------------------------
-   0565                    1017 _winape_breakpoint::
-                           1018 ;src/util/tools.c:241: __asm__("pop iy");  // ret address first because __z88dk_callee convention
-   0565 FD E1         [14] 1019 	pop	iy
-                           1020 ;src/util/tools.c:242: __asm__("pop hl");
-   0567 E1            [10] 1021 	pop	hl
-                           1022 ;src/util/tools.c:243: __asm__("push iy"); // ret address last  because __z88dk_callee convention
-   0568 FD E5         [15] 1023 	push	iy
-                           1024 ;src/util/tools.c:244: __asm__(".db 0xed, 0xff");
-   056A ED FF              1025 	.db	0xed, 0xff
-                           1026 ;src/util/tools.c:246: __asm__("ret");
-   056C C9            [10] 1027 	ret
-                           1028 	.area _CODE
-                           1029 	.area _INITIALIZER
-                           1030 	.area _CABS (ABS)
+   04E5 00                  921 	.db 0x00
+                            922 ;src/util/tools.c:226: void drawCompressToScreen(u8 x, u8 y, u8 w, u8 h, u16 size, u8* comp_end, u8 trans){
+                            923 ;	---------------------------------
+                            924 ; Function drawCompressToScreen
+                            925 ; ---------------------------------
+   04E6                     926 _drawCompressToScreen::
+   04E6 DD E5         [15]  927 	push	ix
+   04E8 DD 21 00 00   [14]  928 	ld	ix,#0
+   04EC DD 39         [15]  929 	add	ix,sp
+   04EE F5            [11]  930 	push	af
+                            931 ;src/util/tools.c:229: pvmem = cpct_getScreenPtr(SCR_VMEM, x, y);
+   04EF DD 66 05      [19]  932 	ld	h, 5 (ix)
+   04F2 DD 6E 04      [19]  933 	ld	l, 4 (ix)
+   04F5 E5            [11]  934 	push	hl
+   04F6 21 00 C0      [10]  935 	ld	hl, #0xc000
+   04F9 E5            [11]  936 	push	hl
+   04FA CDr00r00      [17]  937 	call	_cpct_getScreenPtr
+   04FD 33            [ 6]  938 	inc	sp
+   04FE 33            [ 6]  939 	inc	sp
+   04FF E5            [11]  940 	push	hl
+                            941 ;src/util/tools.c:230: cpct_zx7b_decrunch_s((u8*) &screenBuffer0 + size - 1, comp_end);
+   0500 DD 4E 0A      [19]  942 	ld	c,10 (ix)
+   0503 DD 46 0B      [19]  943 	ld	b,11 (ix)
+   0506 11r00r00      [10]  944 	ld	de, #_screenBuffer0
+   0509 DD 6E 08      [19]  945 	ld	l,8 (ix)
+   050C DD 66 09      [19]  946 	ld	h,9 (ix)
+   050F 19            [11]  947 	add	hl, de
+   0510 2B            [ 6]  948 	dec	hl
+   0511 C5            [11]  949 	push	bc
+   0512 E5            [11]  950 	push	hl
+   0513 CDr00r00      [17]  951 	call	_cpct_zx7b_decrunch_s
+                            952 ;src/util/tools.c:232: cpct_drawSpriteMaskedAlignedTable(&screenBuffer0, pvmem, w, h, g_tablatrans);
+   0516 C1            [10]  953 	pop	bc
+   0517 C5            [11]  954 	push	bc
+                            955 ;src/util/tools.c:231: if (trans)
+   0518 DD 7E 0C      [19]  956 	ld	a, 12 (ix)
+   051B B7            [ 4]  957 	or	a, a
+   051C 28 15         [12]  958 	jr	Z,00102$
+                            959 ;src/util/tools.c:232: cpct_drawSpriteMaskedAlignedTable(&screenBuffer0, pvmem, w, h, g_tablatrans);
+   051E 21r00r00      [10]  960 	ld	hl, #_g_tablatrans
+   0521 E5            [11]  961 	push	hl
+   0522 DD 66 07      [19]  962 	ld	h, 7 (ix)
+   0525 DD 6E 06      [19]  963 	ld	l, 6 (ix)
+   0528 E5            [11]  964 	push	hl
+   0529 C5            [11]  965 	push	bc
+   052A 21r00r00      [10]  966 	ld	hl, #_screenBuffer0
+   052D E5            [11]  967 	push	hl
+   052E CDr00r00      [17]  968 	call	_cpct_drawSpriteMaskedAlignedTable
+   0531 18 0F         [12]  969 	jr	00104$
+   0533                     970 00102$:
+                            971 ;src/util/tools.c:234: cpct_drawSprite(&screenBuffer0, pvmem, w, h);
+   0533 DD 66 07      [19]  972 	ld	h, 7 (ix)
+   0536 DD 6E 06      [19]  973 	ld	l, 6 (ix)
+   0539 E5            [11]  974 	push	hl
+   053A C5            [11]  975 	push	bc
+   053B 21r00r00      [10]  976 	ld	hl, #_screenBuffer0
+   053E E5            [11]  977 	push	hl
+   053F CDr00r00      [17]  978 	call	_cpct_drawSprite
+   0542                     979 00104$:
+   0542 DD F9         [10]  980 	ld	sp, ix
+   0544 DD E1         [14]  981 	pop	ix
+   0546 C9            [10]  982 	ret
+                            983 ;src/util/tools.c:238: void winape_breakpoint(u16 error_code) __z88dk_callee __naked {
+                            984 ;	---------------------------------
+                            985 ; Function winape_breakpoint
+                            986 ; ---------------------------------
+   0547                     987 _winape_breakpoint::
+                            988 ;src/util/tools.c:241: __asm__("pop iy");  // ret address first because __z88dk_callee convention
+   0547 FD E1         [14]  989 	pop	iy
+                            990 ;src/util/tools.c:242: __asm__("pop hl");
+   0549 E1            [10]  991 	pop	hl
+                            992 ;src/util/tools.c:243: __asm__("push iy"); // ret address last  because __z88dk_callee convention
+   054A FD E5         [15]  993 	push	iy
+                            994 ;src/util/tools.c:244: __asm__(".db 0xed, 0xff");
+   054C ED FF               995 	.db	0xed, 0xff
+                            996 ;src/util/tools.c:246: __asm__("ret");
+   054E C9            [10]  997 	ret
+                            998 	.area _CODE
+                            999 	.area _INITIALIZER
+                           1000 	.area _CABS (ABS)

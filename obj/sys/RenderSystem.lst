@@ -1,0 +1,171 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.6.8 #9946 (Mac OS X x86_64)
+                              4 ;--------------------------------------------------------
+                              5 	.module RenderSystem
+                              6 	.optsdcc -mz80
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _draw_player
+                             12 	.globl _cpct_getScreenPtr
+                             13 	.globl _cpct_drawSpriteBlended
+                             14 	.globl _render
+                             15 	.globl _sys_render_init
+                             16 	.globl _sys_render_update
+                             17 ;--------------------------------------------------------
+                             18 ; special function registers
+                             19 ;--------------------------------------------------------
+                             20 ;--------------------------------------------------------
+                             21 ; ram data
+                             22 ;--------------------------------------------------------
+                             23 	.area _DATA
+   0000                      24 _render::
+   0000                      25 	.ds 4
+                             26 ;--------------------------------------------------------
+                             27 ; ram data
+                             28 ;--------------------------------------------------------
+                             29 	.area _INITIALIZED
+                             30 ;--------------------------------------------------------
+                             31 ; absolute external ram data
+                             32 ;--------------------------------------------------------
+                             33 	.area _DABS (ABS)
+                             34 ;--------------------------------------------------------
+                             35 ; global & static initialisations
+                             36 ;--------------------------------------------------------
+                             37 	.area _HOME
+                             38 	.area _GSINIT
+                             39 	.area _GSFINAL
+                             40 	.area _GSINIT
+                             41 ;--------------------------------------------------------
+                             42 ; Home
+                             43 ;--------------------------------------------------------
+                             44 	.area _HOME
+                             45 	.area _HOME
+                             46 ;--------------------------------------------------------
+                             47 ; code
+                             48 ;--------------------------------------------------------
+                             49 	.area _CODE
+                             50 ;src/sys/RenderSystem.c:26: void sys_render_init(u8 x, u8 y, TPlayers_List *pl) {
+                             51 ;	---------------------------------
+                             52 ; Function sys_render_init
+                             53 ; ---------------------------------
+   0000                      54 _sys_render_init::
+                             55 ;src/sys/RenderSystem.c:27: render.o_x = x;
+   0000 21r00r00      [10]   56 	ld	hl, #_render
+   0003 FD 21 02 00   [14]   57 	ld	iy, #2
+   0007 FD 39         [15]   58 	add	iy, sp
+   0009 FD 7E 00      [19]   59 	ld	a, 0 (iy)
+   000C 77            [ 7]   60 	ld	(hl), a
+                             61 ;src/sys/RenderSystem.c:28: render.o_y = y;
+   000D 21r01r00      [10]   62 	ld	hl, #(_render + 0x0001)
+   0010 FD 21 03 00   [14]   63 	ld	iy, #3
+   0014 FD 39         [15]   64 	add	iy, sp
+   0016 FD 7E 00      [19]   65 	ld	a, 0 (iy)
+   0019 77            [ 7]   66 	ld	(hl), a
+                             67 ;src/sys/RenderSystem.c:29: render.players = pl;
+   001A 21r02r00      [10]   68 	ld	hl, #(_render + 0x0002)
+   001D FD 21 04 00   [14]   69 	ld	iy, #4
+   0021 FD 39         [15]   70 	add	iy, sp
+   0023 FD 7E 00      [19]   71 	ld	a, 0 (iy)
+   0026 77            [ 7]   72 	ld	(hl), a
+   0027 23            [ 6]   73 	inc	hl
+   0028 FD 7E 01      [19]   74 	ld	a, 1 (iy)
+   002B 77            [ 7]   75 	ld	(hl), a
+   002C C9            [10]   76 	ret
+                             77 ;src/sys/RenderSystem.c:40: void draw_player(TPlayer *player){
+                             78 ;	---------------------------------
+                             79 ; Function draw_player
+                             80 ; ---------------------------------
+   002D                      81 _draw_player::
+   002D DD E5         [15]   82 	push	ix
+   002F DD 21 00 00   [14]   83 	ld	ix,#0
+   0033 DD 39         [15]   84 	add	ix,sp
+                             85 ;src/sys/RenderSystem.c:43: pvmem = cpct_getScreenPtr (CPCT_VMEM_START,  render.o_x - 1 + (player->x * 5), render.o_y - 2 + (player->y*13));
+   0035 3Ar01r00      [13]   86 	ld	a, (#_render + 1)
+   0038 57            [ 4]   87 	ld	d, a
+   0039 15            [ 4]   88 	dec	d
+   003A 15            [ 4]   89 	dec	d
+   003B DD 4E 04      [19]   90 	ld	c,4 (ix)
+   003E DD 46 05      [19]   91 	ld	b,5 (ix)
+   0041 C5            [11]   92 	push	bc
+   0042 FD E1         [14]   93 	pop	iy
+   0044 FD 5E 18      [19]   94 	ld	e, 24 (iy)
+   0047 6B            [ 4]   95 	ld	l, e
+   0048 29            [11]   96 	add	hl, hl
+   0049 19            [11]   97 	add	hl, de
+   004A 29            [11]   98 	add	hl, hl
+   004B 29            [11]   99 	add	hl, hl
+   004C 19            [11]  100 	add	hl, de
+   004D 7A            [ 4]  101 	ld	a, d
+   004E 85            [ 4]  102 	add	a, l
+   004F 57            [ 4]  103 	ld	d, a
+   0050 21r00r00      [10]  104 	ld	hl, #_render + 0
+   0053 5E            [ 7]  105 	ld	e, (hl)
+   0054 1D            [ 4]  106 	dec	e
+   0055 69            [ 4]  107 	ld	l, c
+   0056 60            [ 4]  108 	ld	h, b
+   0057 01 17 00      [10]  109 	ld	bc, #0x0017
+   005A 09            [11]  110 	add	hl, bc
+   005B 4E            [ 7]  111 	ld	c, (hl)
+   005C 69            [ 4]  112 	ld	l, c
+   005D 29            [11]  113 	add	hl, hl
+   005E 29            [11]  114 	add	hl, hl
+   005F 09            [11]  115 	add	hl, bc
+   0060 7B            [ 4]  116 	ld	a, e
+   0061 85            [ 4]  117 	add	a, l
+   0062 5F            [ 4]  118 	ld	e,a
+   0063 D5            [11]  119 	push	de
+   0064 21 00 C0      [10]  120 	ld	hl, #0xc000
+   0067 E5            [11]  121 	push	hl
+   0068 CDr00r00      [17]  122 	call	_cpct_getScreenPtr
+                            123 ;src/sys/RenderSystem.c:44: cpct_drawSpriteBlended(pvmem, G_MARKERS_0_H, G_MARKERS_0_W, g_markers_0); // Faster Sprites with XOR
+   006B 01r00r00      [10]  124 	ld	bc, #_g_markers_0+0
+   006E C5            [11]  125 	push	bc
+   006F 01 10 06      [10]  126 	ld	bc, #0x0610
+   0072 C5            [11]  127 	push	bc
+   0073 E5            [11]  128 	push	hl
+   0074 CDr00r00      [17]  129 	call	_cpct_drawSpriteBlended
+   0077 DD E1         [14]  130 	pop	ix
+   0079 C9            [10]  131 	ret
+                            132 ;src/sys/RenderSystem.c:54: void sys_render_update() {
+                            133 ;	---------------------------------
+                            134 ; Function sys_render_update
+                            135 ; ---------------------------------
+   007A                     136 _sys_render_update::
+                            137 ;src/sys/RenderSystem.c:57: for (i=0; i<render.players->num_players; i++){
+   007A 0E 00         [ 7]  138 	ld	c, #0x00
+   007C                     139 00105$:
+   007C ED 5Br02r00   [20]  140 	ld	de, (#(_render + 0x0002) + 0)
+   0080 D5            [11]  141 	push	de
+   0081 FD E1         [14]  142 	pop	iy
+   0083 FD 46 40      [19]  143 	ld	b, 64 (iy)
+                            144 ;src/sys/RenderSystem.c:58: if (render.players->list[i].active){
+   0086 79            [ 4]  145 	ld	a,c
+   0087 B8            [ 4]  146 	cp	a,b
+   0088 D0            [11]  147 	ret	NC
+   0089 0F            [ 4]  148 	rrca
+   008A 0F            [ 4]  149 	rrca
+   008B 0F            [ 4]  150 	rrca
+   008C E6 E0         [ 7]  151 	and	a, #0xe0
+   008E 47            [ 4]  152 	ld	b, a
+   008F 68            [ 4]  153 	ld	l,b
+   0090 26 00         [ 7]  154 	ld	h,#0x00
+   0092 19            [11]  155 	add	hl, de
+   0093 7E            [ 7]  156 	ld	a, (hl)
+   0094 B7            [ 4]  157 	or	a, a
+   0095 28 07         [12]  158 	jr	Z,00106$
+                            159 ;src/sys/RenderSystem.c:59: draw_player(&render.players->list[i]);
+   0097 C5            [11]  160 	push	bc
+   0098 E5            [11]  161 	push	hl
+   0099 CDr2Dr00      [17]  162 	call	_draw_player
+   009C F1            [10]  163 	pop	af
+   009D C1            [10]  164 	pop	bc
+   009E                     165 00106$:
+                            166 ;src/sys/RenderSystem.c:57: for (i=0; i<render.players->num_players; i++){
+   009E 0C            [ 4]  167 	inc	c
+   009F 18 DB         [12]  168 	jr	00105$
+                            169 	.area _CODE
+                            170 	.area _INITIALIZER
+                            171 	.area _CABS (ABS)

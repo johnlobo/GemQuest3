@@ -1,6 +1,6 @@
                               1 ;--------------------------------------------------------
                               2 ; File Created by SDCC : free open source ANSI-C Compiler
-                              3 ; Version 3.6.8 #9946 (Linux)
+                              3 ; Version 3.6.8 #9946 (Mac OS X x86_64)
                               4 ;--------------------------------------------------------
                               5 	.module keyboard
                               6 	.optsdcc -mz80
@@ -55,162 +55,162 @@
                              55 ;	---------------------------------
                              56 ; Function initKeys
                              57 ; ---------------------------------
-   190A                      58 _initKeys::
-   190A DD E5         [15]   59 	push	ix
-   190C DD 21 00 00   [14]   60 	ld	ix,#0
-   1910 DD 39         [15]   61 	add	ix,sp
+   22BD                      58 _initKeys::
+   22BD DD E5         [15]   59 	push	ix
+   22BF DD 21 00 00   [14]   60 	ld	ix,#0
+   22C3 DD 39         [15]   61 	add	ix,sp
                              62 ;src/keyboard/keyboard.c:50: if (type == SINGLE){
-   1912 DD 7E 04      [19]   63 	ld	a, 4 (ix)
-   1915 B7            [ 4]   64 	or	a, a
-   1916 20 11         [12]   65 	jr	NZ,00102$
+   22C5 DD 7E 04      [19]   63 	ld	a, 4 (ix)
+   22C8 B7            [ 4]   64 	or	a, a
+   22C9 20 11         [12]   65 	jr	NZ,00102$
                              66 ;src/keyboard/keyboard.c:51: cpct_memcpy(&keys1, &keysSINGLE, sizeof(TKeys));
-   1918 21 1F 00      [10]   67 	ld	hl, #0x001f
-   191B E5            [11]   68 	push	hl
-   191C 21 4A 19      [10]   69 	ld	hl, #_keysSINGLE
-   191F E5            [11]   70 	push	hl
-   1920 21 DC A8      [10]   71 	ld	hl, #_keys1
-   1923 E5            [11]   72 	push	hl
-   1924 CD B3 25      [17]   73 	call	_cpct_memcpy
-   1927 18 1E         [12]   74 	jr	00104$
-   1929                      75 00102$:
+   22CB 21 1F 00      [10]   67 	ld	hl, #0x001f
+   22CE E5            [11]   68 	push	hl
+   22CF 21 FD 22      [10]   69 	ld	hl, #_keysSINGLE
+   22D2 E5            [11]   70 	push	hl
+   22D3 21 DC A8      [10]   71 	ld	hl, #_keys1
+   22D6 E5            [11]   72 	push	hl
+   22D7 CD C5 26      [17]   73 	call	_cpct_memcpy
+   22DA 18 1E         [12]   74 	jr	00104$
+   22DC                      75 00102$:
                              76 ;src/keyboard/keyboard.c:53: cpct_memcpy(&keys1, &keys1VS, sizeof(TKeys));
-   1929 21 1F 00      [10]   77 	ld	hl, #0x001f
-   192C E5            [11]   78 	push	hl
-   192D 21 69 19      [10]   79 	ld	hl, #_keys1VS
-   1930 E5            [11]   80 	push	hl
-   1931 21 DC A8      [10]   81 	ld	hl, #_keys1
-   1934 E5            [11]   82 	push	hl
-   1935 CD B3 25      [17]   83 	call	_cpct_memcpy
+   22DC 21 1F 00      [10]   77 	ld	hl, #0x001f
+   22DF E5            [11]   78 	push	hl
+   22E0 21 1C 23      [10]   79 	ld	hl, #_keys1VS
+   22E3 E5            [11]   80 	push	hl
+   22E4 21 DC A8      [10]   81 	ld	hl, #_keys1
+   22E7 E5            [11]   82 	push	hl
+   22E8 CD C5 26      [17]   83 	call	_cpct_memcpy
                              84 ;src/keyboard/keyboard.c:54: cpct_memcpy(&keys2, &keys2VS, sizeof(TKeys));
-   1938 21 1F 00      [10]   85 	ld	hl, #0x001f
-   193B E5            [11]   86 	push	hl
-   193C 21 88 19      [10]   87 	ld	hl, #_keys2VS
-   193F E5            [11]   88 	push	hl
-   1940 21 2B A9      [10]   89 	ld	hl, #_keys2
-   1943 E5            [11]   90 	push	hl
-   1944 CD B3 25      [17]   91 	call	_cpct_memcpy
-   1947                      92 00104$:
-   1947 DD E1         [14]   93 	pop	ix
-   1949 C9            [10]   94 	ret
-   194A                      95 _keysSINGLE:
-   194A 08 08                96 	.dw #0x0808
-   194C 08 20                97 	.dw #0x2008
-   194E 04 04                98 	.dw #0x0404
-   1950 03 08                99 	.dw #0x0803
-   1952 05 80               100 	.dw #0x8005
-   1954 00 40               101 	.dw #0x4000
-   1956 09 01               102 	.dw #0x0109
-   1958 09 02               103 	.dw #0x0209
-   195A 09 04               104 	.dw #0x0409
-   195C 09 08               105 	.dw #0x0809
-   195E 09 10               106 	.dw #0x1009
-   1960 09 20               107 	.dw #0x2009
-   1962 05 10               108 	.dw #0x1005
-   1964 08 04               109 	.dw #0x0408
-   1966 04 40               110 	.dw #0x4004
-   1968 00                  111 	.db #0x00	; 0
-   1969                     112 _keys1VS:
-   1969 04 08               113 	.dw #0x0804
-   196B 04 20               114 	.dw #0x2004
-   196D 05 20               115 	.dw #0x2005
-   196F 04 10               116 	.dw #0x1004
-   1971 05 04               117 	.dw #0x0405
-   1973 04 04               118 	.dw #0x0404
-   1975 09 01               119 	.dw #0x0109
-   1977 09 02               120 	.dw #0x0209
-   1979 09 04               121 	.dw #0x0409
-   197B 09 08               122 	.dw #0x0809
-   197D 09 10               123 	.dw #0x1009
-   197F 09 20               124 	.dw #0x2009
-   1981 05 10               125 	.dw #0x1005
-   1983 08 04               126 	.dw #0x0408
-   1985 04 40               127 	.dw #0x4004
-   1987 00                  128 	.db #0x00	; 0
-   1988                     129 _keys2VS:
-   1988 07 08               130 	.dw #0x0807
-   198A 07 10               131 	.dw #0x1007
-   198C 08 20               132 	.dw #0x2008
-   198E 07 20               133 	.dw #0x2007
-   1990 08 08               134 	.dw #0x0808
-   1992 07 04               135 	.dw #0x0407
-   1994 06 01               136 	.dw #0x0106
-   1996 06 02               137 	.dw #0x0206
-   1998 06 04               138 	.dw #0x0406
-   199A 06 08               139 	.dw #0x0806
-   199C 06 10               140 	.dw #0x1006
-   199E 06 20               141 	.dw #0x2006
-   19A0 05 10               142 	.dw #0x1005
-   19A2 08 04               143 	.dw #0x0408
-   19A4 04 40               144 	.dw #0x4004
-   19A6 00                  145 	.db #0x00	; 0
+   22EB 21 1F 00      [10]   85 	ld	hl, #0x001f
+   22EE E5            [11]   86 	push	hl
+   22EF 21 3B 23      [10]   87 	ld	hl, #_keys2VS
+   22F2 E5            [11]   88 	push	hl
+   22F3 21 2B A9      [10]   89 	ld	hl, #_keys2
+   22F6 E5            [11]   90 	push	hl
+   22F7 CD C5 26      [17]   91 	call	_cpct_memcpy
+   22FA                      92 00104$:
+   22FA DD E1         [14]   93 	pop	ix
+   22FC C9            [10]   94 	ret
+   22FD                      95 _keysSINGLE:
+   22FD 08 08                96 	.dw #0x0808
+   22FF 08 20                97 	.dw #0x2008
+   2301 04 04                98 	.dw #0x0404
+   2303 03 08                99 	.dw #0x0803
+   2305 05 80               100 	.dw #0x8005
+   2307 00 40               101 	.dw #0x4000
+   2309 09 01               102 	.dw #0x0109
+   230B 09 02               103 	.dw #0x0209
+   230D 09 04               104 	.dw #0x0409
+   230F 09 08               105 	.dw #0x0809
+   2311 09 10               106 	.dw #0x1009
+   2313 09 20               107 	.dw #0x2009
+   2315 05 10               108 	.dw #0x1005
+   2317 08 04               109 	.dw #0x0408
+   2319 04 40               110 	.dw #0x4004
+   231B 00                  111 	.db #0x00	; 0
+   231C                     112 _keys1VS:
+   231C 04 08               113 	.dw #0x0804
+   231E 04 20               114 	.dw #0x2004
+   2320 05 20               115 	.dw #0x2005
+   2322 04 10               116 	.dw #0x1004
+   2324 05 04               117 	.dw #0x0405
+   2326 04 04               118 	.dw #0x0404
+   2328 09 01               119 	.dw #0x0109
+   232A 09 02               120 	.dw #0x0209
+   232C 09 04               121 	.dw #0x0409
+   232E 09 08               122 	.dw #0x0809
+   2330 09 10               123 	.dw #0x1009
+   2332 09 20               124 	.dw #0x2009
+   2334 05 10               125 	.dw #0x1005
+   2336 08 04               126 	.dw #0x0408
+   2338 04 40               127 	.dw #0x4004
+   233A 00                  128 	.db #0x00	; 0
+   233B                     129 _keys2VS:
+   233B 07 08               130 	.dw #0x0807
+   233D 07 10               131 	.dw #0x1007
+   233F 08 20               132 	.dw #0x2008
+   2341 07 20               133 	.dw #0x2007
+   2343 08 08               134 	.dw #0x0808
+   2345 07 04               135 	.dw #0x0407
+   2347 06 01               136 	.dw #0x0106
+   2349 06 02               137 	.dw #0x0206
+   234B 06 04               138 	.dw #0x0406
+   234D 06 08               139 	.dw #0x0806
+   234F 06 10               140 	.dw #0x1006
+   2351 06 20               141 	.dw #0x2006
+   2353 05 10               142 	.dw #0x1005
+   2355 08 04               143 	.dw #0x0408
+   2357 04 40               144 	.dw #0x4004
+   2359 00                  145 	.db #0x00	; 0
                             146 ;src/keyboard/keyboard.c:67: void wait4OneKey()
                             147 ;	---------------------------------
                             148 ; Function wait4OneKey
                             149 ; ---------------------------------
-   19A7                     150 _wait4OneKey::
+   235A                     150 _wait4OneKey::
                             151 ;src/keyboard/keyboard.c:70: while (cpct_isAnyKeyPressed());
-   19A7                     152 00101$:
-   19A7 CD 10 25      [17]  153 	call	_cpct_isAnyKeyPressed
-   19AA 7D            [ 4]  154 	ld	a, l
-   19AB B7            [ 4]  155 	or	a, a
-   19AC 20 F9         [12]  156 	jr	NZ,00101$
+   235A                     152 00101$:
+   235A CD 4C 26      [17]  153 	call	_cpct_isAnyKeyPressed
+   235D 7D            [ 4]  154 	ld	a, l
+   235E B7            [ 4]  155 	or	a, a
+   235F 20 F9         [12]  156 	jr	NZ,00101$
                             157 ;src/keyboard/keyboard.c:73: while (!cpct_isAnyKeyPressed());
-   19AE                     158 00104$:
-   19AE CD 10 25      [17]  159 	call	_cpct_isAnyKeyPressed
-   19B1 7D            [ 4]  160 	ld	a, l
-   19B2 B7            [ 4]  161 	or	a, a
-   19B3 28 F9         [12]  162 	jr	Z,00104$
+   2361                     158 00104$:
+   2361 CD 4C 26      [17]  159 	call	_cpct_isAnyKeyPressed
+   2364 7D            [ 4]  160 	ld	a, l
+   2365 B7            [ 4]  161 	or	a, a
+   2366 28 F9         [12]  162 	jr	Z,00104$
                             163 ;src/keyboard/keyboard.c:75: return;
-   19B5 C9            [10]  164 	ret
+   2368 C9            [10]  164 	ret
                             165 ;src/keyboard/keyboard.c:86: u32 wait4UserKeypress()
                             166 ;	---------------------------------
                             167 ; Function wait4UserKeypress
                             168 ; ---------------------------------
-   19B6                     169 _wait4UserKeypress::
+   2369                     169 _wait4UserKeypress::
                             170 ;src/keyboard/keyboard.c:91: do
-   19B6 21 00 00      [10]  171 	ld	hl,#0x0000
-   19B9 5D            [ 4]  172 	ld	e,l
-   19BA 54            [ 4]  173 	ld	d,h
-   19BB                     174 00101$:
+   2369 21 00 00      [10]  171 	ld	hl,#0x0000
+   236C 5D            [ 4]  172 	ld	e,l
+   236D 54            [ 4]  173 	ld	d,h
+   236E                     174 00101$:
                             175 ;src/keyboard/keyboard.c:93: c++;                   // One more cycle
-   19BB 2C            [ 4]  176 	inc	l
-   19BC 20 07         [12]  177 	jr	NZ,00115$
-   19BE 24            [ 4]  178 	inc	h
-   19BF 20 04         [12]  179 	jr	NZ,00115$
-   19C1 1C            [ 4]  180 	inc	e
-   19C2 20 01         [12]  181 	jr	NZ,00115$
-   19C4 14            [ 4]  182 	inc	d
-   19C5                     183 00115$:
+   236E 2C            [ 4]  176 	inc	l
+   236F 20 07         [12]  177 	jr	NZ,00115$
+   2371 24            [ 4]  178 	inc	h
+   2372 20 04         [12]  179 	jr	NZ,00115$
+   2374 1C            [ 4]  180 	inc	e
+   2375 20 01         [12]  181 	jr	NZ,00115$
+   2377 14            [ 4]  182 	inc	d
+   2378                     183 00115$:
                             184 ;src/keyboard/keyboard.c:94: cpct_scanKeyboard_f(); // Scan the scan the keyboard
-   19C5 E5            [11]  185 	push	hl
-   19C6 D5            [11]  186 	push	de
-   19C7 CD 8D 22      [17]  187 	call	_cpct_scanKeyboard_f
-   19CA CD 60 25      [17]  188 	call	_cpct_isAnyKeyPressed_f
-   19CD 7D            [ 4]  189 	ld	a, l
-   19CE D1            [10]  190 	pop	de
-   19CF E1            [10]  191 	pop	hl
-   19D0 B7            [ 4]  192 	or	a, a
-   19D1 28 E8         [12]  193 	jr	Z,00101$
+   2378 E5            [11]  185 	push	hl
+   2379 D5            [11]  186 	push	de
+   237A CD BD 23      [17]  187 	call	_cpct_scanKeyboard_f
+   237D CD 59 26      [17]  188 	call	_cpct_isAnyKeyPressed_f
+   2380 7D            [ 4]  189 	ld	a, l
+   2381 D1            [10]  190 	pop	de
+   2382 E1            [10]  191 	pop	hl
+   2383 B7            [ 4]  192 	or	a, a
+   2384 28 E8         [12]  193 	jr	Z,00101$
                             194 ;src/keyboard/keyboard.c:97: return c;
-   19D3 C9            [10]  195 	ret
+   2386 C9            [10]  195 	ret
                             196 ;src/keyboard/keyboard.c:108: void waitKeyUp(cpct_keyID key) 
                             197 ;	---------------------------------
                             198 ; Function waitKeyUp
                             199 ; ---------------------------------
-   19D4                     200 _waitKeyUp::
+   2387                     200 _waitKeyUp::
                             201 ;src/keyboard/keyboard.c:111: while (cpct_isKeyPressed(key))
-   19D4                     202 00101$:
-   19D4 C1            [10]  203 	pop	bc
-   19D5 E1            [10]  204 	pop	hl
-   19D6 E5            [11]  205 	push	hl
-   19D7 C5            [11]  206 	push	bc
-   19D8 CD 81 22      [17]  207 	call	_cpct_isKeyPressed
-   19DB 7D            [ 4]  208 	ld	a, l
-   19DC B7            [ 4]  209 	or	a, a
-   19DD C8            [11]  210 	ret	Z
+   2387                     202 00101$:
+   2387 C1            [10]  203 	pop	bc
+   2388 E1            [10]  204 	pop	hl
+   2389 E5            [11]  205 	push	hl
+   238A C5            [11]  206 	push	bc
+   238B CD 27 24      [17]  207 	call	_cpct_isKeyPressed
+   238E 7D            [ 4]  208 	ld	a, l
+   238F B7            [ 4]  209 	or	a, a
+   2390 C8            [11]  210 	ret	Z
                             211 ;src/keyboard/keyboard.c:113: cpct_scanKeyboard_f();
-   19DE CD 8D 22      [17]  212 	call	_cpct_scanKeyboard_f
-   19E1 18 F1         [12]  213 	jr	00101$
+   2391 CD BD 23      [17]  212 	call	_cpct_scanKeyboard_f
+   2394 18 F1         [12]  213 	jr	00101$
                             214 	.area _CODE
                             215 	.area _INITIALIZER
                             216 	.area _CABS (ABS)

@@ -21,8 +21,7 @@
 #include "../text/text.h"
 
 //Global variables
-TPlayer players_list[2];
-u8 players_num;
+TPlayers_List players_list;
 
 //////////////////////////////////////////////////////////////////
 // man_player_init
@@ -31,7 +30,7 @@ u8 players_num;
 // Returns: void.
 //
 void man_player_init(){
-    players_num = 0;
+    players_list.num_players = 0;
 }
 
 //////////////////////////////////////////////////////////////////
@@ -41,14 +40,14 @@ void man_player_init(){
 // Returns: void.
 //
 void man_player_createPlayer(u8 x, u8 y, u8 *name, u8 life){
-    players_list[players_num].active = NO;
-    strCopy(name, &players_list[players_num].name[0]);
-    players_list[players_num].x = x;
-    players_list[players_num].y = y;
-    players_list[players_num].px = x;
-    players_list[players_num].py = y;
-    players_list[players_num].life = life;
-    players_list[players_num].score = 0;
+    players_list.list[players_list.num_players].active = NO;
+    strCopy(name, &players_list.list[players_list.num_players].name[0]);
+    players_list.list[players_list.num_players].x = x;
+    players_list.list[players_list.num_players].y = y;
+    players_list.list[players_list.num_players].px = x;
+    players_list.list[players_list.num_players].py = y;
+    players_list.list[players_list.num_players].life = life;
+    players_list.list[players_list.num_players].score = 0;
 }
 
 //////////////////////////////////////////////////////////////////
@@ -58,7 +57,7 @@ void man_player_createPlayer(u8 x, u8 y, u8 *name, u8 life){
 // Returns: void.
 //
 TPlayer* man_player_get_player(u8 player){
-   return &players_list[player]; 
+   return &players_list.list[player]; 
 }
 
 //////////////////////////////////////////////////////////////////
@@ -70,6 +69,8 @@ TPlayer* man_player_get_player(u8 player){
 void man_player_update(){
 
 }
+
+
 
 //////////////////////////////////////////////////////////////////
 // man_game_render

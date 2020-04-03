@@ -3,19 +3,21 @@
 -b _CODE = 0x1000
 -b _DATA = 0x0000
 -u
--k /home/cabox/workspace/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/bin/../share/sdcc/lib/z80
--k /home/cabox/workspace/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/share/sdcc/lib/z80
--l /home/cabox/workspace/cpctelera/cpctelera/cpctelera.lib
+-k /Users/david/Documents/retro/proyectos/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/bin/../share/sdcc/lib/z80
+-k /Users/david/Documents/retro/proyectos/cpctelera/cpctelera/tools/sdcc-3.6.8-r9946/share/sdcc/lib/z80
+-l /Users/david/Documents/retro/proyectos/cpctelera/cpctelera/cpctelera.lib
 -l z80
 obj/sprites/font_chars.rel
+obj/sprites/markers.rel
 obj/sprites/tiles.rel
 obj/main.rel
-obj/text/text.rel
-obj/keyboard/keyboard.rel
-obj/sys/InputSystem.rel
 obj/man/BoardManager.rel
 obj/man/GameManager.rel
 obj/man/PlayerManager.rel
 obj/util/tools.rel
+obj/sys/InputSystem.rel
+obj/sys/RenderSystem.rel
+obj/text/text.rel
+obj/keyboard/keyboard.rel
 
 -e

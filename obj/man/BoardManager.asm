@@ -1,6 +1,6 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
-; Version 3.6.8 #9946 (Linux)
+; Version 3.6.8 #9946 (Mac OS X x86_64)
 ;--------------------------------------------------------
 	.module BoardManager
 	.optsdcc -mz80
@@ -233,7 +233,7 @@ _man_board_render::
 	add	a, a
 	add	a, e
 	pop	de
-	ld	-4 (ix), a
+	ld	-3 (ix), a
 	push	de
 	ld	l, e
 	add	hl, hl
@@ -256,11 +256,11 @@ _man_board_render::
 	jr	NC,00113$
 ;src/man/BoardManager.c:76: vmem = cpct_getScreenPtr (CPCT_VMEM_START, board.x + (i*5), board.y + (j*13));
 	ld	a,(#_board + 147)
-	add	a, -4 (ix)
-	ld	-5 (ix), a
+	add	a, -3 (ix)
+	ld	-4 (ix), a
 	ld	hl, #_board + 146
 	ld	a, (hl)
-	ld	-3 (ix), a
+	ld	-5 (ix), a
 	push	de
 	ld	l, d
 	ld	e, l
@@ -268,13 +268,13 @@ _man_board_render::
 	add	hl, hl
 	add	hl, de
 	pop	de
-	ld	a, -3 (ix)
+	ld	a, -5 (ix)
 	add	a, l
-	ld	-3 (ix), a
+	ld	-5 (ix), a
 	push	bc
 	push	de
-	ld	h, -5 (ix)
-	ld	l, -3 (ix)
+	ld	h, -4 (ix)
+	ld	l, -5 (ix)
 	push	hl
 	ld	hl, #0xc000
 	push	hl
@@ -330,9 +330,6 @@ _man_board_render::
 	inc	sp
 	push	iy
 	call	_cpct_drawSolidBox
-	pop	af
-	pop	af
-	inc	sp
 	pop	de
 	pop	bc
 00110$:

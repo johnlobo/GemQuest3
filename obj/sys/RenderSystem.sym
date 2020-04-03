@@ -7,13 +7,13 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
-  0 _man_player_createPlayer                                       0006 GR
-  0 _man_player_get_player                                         00BE GR
-  0 _man_player_init                                               0000 GR
-  0 _man_player_render                                             00D1 GR
-  0 _man_player_update                                             00D0 GR
-  1 _players_list                                                  0000 GR
-    _strCopy                                                       **** GX
+    _cpct_drawSpriteBlended                                        **** GX
+    _cpct_getScreenPtr                                             **** GX
+  0 _draw_player                                                   002D GR
+    _g_markers_0                                                   **** GX
+  1 _render                                                        0000 GR
+  0 _sys_render_init                                               0000 GR
+  0 _sys_render_update                                             007A GR
 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
@@ -21,8 +21,8 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size   D2   flags    0
-   1 _DATA                                      size   41   flags    0
+   0 _CODE                                      size   A1   flags    0
+   1 _DATA                                      size    4   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8
    4 _HOME                                      size    0   flags    0

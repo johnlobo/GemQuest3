@@ -13,24 +13,19 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //------------------------------------------------------------------------------
-#ifndef _TPLAYER_H_
-#define _TPLAYER_H_
 
-#include <cpctelera.h>
+#ifndef _RENDER_SYSTEM_H_
+#define _RENDER_SYSTEM_H_
 
-typedef struct {
-    u8 active;
-    u8 name[20];
-    u8 *portrait;
-    u8 x,y;
-    u8 px,py;
-    u8 life;
-    u32 score;
-} TPlayer;
+#include "../cmp/TPlayer.h"
 
-typedef struct {
-    TPlayer list[2];
-    u8 num_players;  
-} TPlayers_List;
+typedef struct{
+    u8 o_x;
+    u8 o_y;
+    TPlayers_List *players;
+} TRenderSystem;
+
+void sys_render_init(u8 x, u8 y, TPlayers_List *pl);
+void sys_render_update();
 
 #endif

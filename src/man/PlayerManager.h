@@ -22,6 +22,8 @@
 void man_player_init();
 void man_player_createPlayer(u8 x, u8 y, u8 *name, u8 life);
 TPlayer* man_player_get_player(u8 player);
+TPlayers_List* man_player_get_player_list();
+void man_player_activatePlayer(u8 player, u8 activation);
 void man_player_update();
 void man_player_render();
 

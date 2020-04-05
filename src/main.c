@@ -118,7 +118,6 @@ void main(void) {
     // Loop forever
     while (1){
     // Update input
-    man_game_update();
-    man_game_render();
+        man_game_render();
     }
 }

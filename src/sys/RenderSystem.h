@@ -18,14 +18,14 @@
 #define _RENDER_SYSTEM_H_
 
 #include "../cmp/TPlayer.h"
+#include "../cmp/TBoard.h"
 
 typedef struct{
-    u8 o_x;
-    u8 o_y;
     TPlayers_List *players;
+    TBoard *board;
 } TRenderSystem;
 
-void sys_render_init(u8 x, u8 y, TPlayers_List *pl);
-void sys_render_update();
+void sys_render_init(TPlayers_List *pl, TBoard *b);
+void sys_render_update(u8 initial_render);
 
 #endif

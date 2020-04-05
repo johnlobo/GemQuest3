@@ -52,6 +52,9 @@
 #define SINGLE 0
 #define VS 1
 
+#define PREVIOUS 0
+#define CURRENT 1
+
 //Math
 #define min(X, Y) ((X) < (Y) ? (X) : (Y))
 #define max(X, Y) (X > Y ? X : Y)

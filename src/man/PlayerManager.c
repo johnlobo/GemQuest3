@@ -61,6 +61,27 @@ TPlayer* man_player_get_player(u8 player){
 }
 
 //////////////////////////////////////////////////////////////////
+// man_game_getPlayer_list
+//
+//
+// Returns: void.
+//
+TPlayers_List* man_player_get_player_list(){
+   return &players_list; 
+}
+
+//////////////////////////////////////////////////////////////////
+// man_player_activatePlayer
+//
+//
+// Returns: void.
+//
+void man_player_activatePlayer(u8 player, u8 activation){
+    players_list.list[player].active = activation; 
+}
+
+
+//////////////////////////////////////////////////////////////////
 // man_game_update
 //
 //

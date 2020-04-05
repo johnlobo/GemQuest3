@@ -1,10 +1,7 @@
 #include <cpctelera.h>
 #include "../defines.h"
-#include "../sprites/tiles.h"
 #include "../cmp/TBoard.h"
 
-//Manager Variables
-u8* const tiles[9] = { sp_tiles_0, sp_tiles_1, sp_tiles_2, sp_tiles_3, sp_tiles_4, sp_tiles_5, sp_tiles_6, sp_tiles_7, sp_tiles_8 };
 TBoard board;
 
 //////////////////////////////////////////////////////////////////
@@ -52,6 +49,16 @@ void man_board_init(u8 x, u8 y, u8 width, u8 height){
 }
 
 //////////////////////////////////////////////////////////////////
+// man_board_get_board
+//
+//
+// Returns: void.
+//
+TBoard* man_board_get_board(){
+	return &board;
+}
+
+//////////////////////////////////////////////////////////////////
 // man_board_update
 //
 //
@@ -59,29 +66,4 @@ void man_board_init(u8 x, u8 y, u8 width, u8 height){
 //
 void man_board_update(){
 
-}
-
-//////////////////////////////////////////////////////////////////
-// man_board_render
-//
-//
-// Returns: void.
-//
-void man_board_render(){
-    u8 i,j;
-    u8* vmem;
-    if (board.updated = YES){
-    	for (j=0; j<board.height; j++){
-    	    for (i=0; i<board.width; i++){
-    	        vmem = cpct_getScreenPtr (CPCT_VMEM_START, board.x + (i*5), board.y + (j*13));
-    	        //cpct_drawSpriteMaskedAlignedTable(tiles[board.cells[i][j]], vmem, SP_TILES_0_W, SP_TILES_0_H, g_tablatrans);
-    	        if (board.cells[j][i]!=255){
-					cpct_drawSpriteBlended(vmem, SP_TILES_0_H, SP_TILES_0_W, tiles[board.cells[j][i]]); // Faster Sprites with XOR
-				} else {
-					cpct_drawSolidBox (vmem, 0, SP_TILES_0_W, SP_TILES_0_H);	
-				}
-    	    }
-    	}
-		board.updated = NO;
-	}
 }

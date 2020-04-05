@@ -19,10 +19,22 @@
 #include "../man/PlayerManager.h"
 #include "../defines.h"
 
+//////////////////////////////////////////////////////////////////
+// sys_input_init
+//
+//
+// Returns: void.
+//
 void sys_input_init() {
    
 }
 
+//////////////////////////////////////////////////////////////////
+// sys_input_update
+//
+//
+// Returns: void.
+//
 void sys_input_update() {
    TPlayer *player = man_player_get_player(0);
    

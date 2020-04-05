@@ -17,18 +17,51 @@
 #include <cpctelera.h>
 #include "RenderSystem.h"
 #include "../cmp/TPlayer.h"
+#include "../cmp/TBoard.h"
 #include "../man/PlayerManager.h"
 #include "../defines.h"
 #include "../sprites/markers.h"
+#include "../sprites/tiles.h"
 
 TRenderSystem render;
+//Manager Variables
+u8* const tiles[9] = { sp_tiles_0, sp_tiles_1, sp_tiles_2, sp_tiles_3, sp_tiles_4, sp_tiles_5, sp_tiles_6, sp_tiles_7, sp_tiles_8 };
 
-void sys_render_init(u8 x, u8 y, TPlayers_List *pl) {
-   render.o_x = x;
-   render.o_y = y;
+//////////////////////////////////////////////////////////////////
+// sys_render_init
+//
+//
+// Returns: void.
+//
+void sys_render_init(TPlayers_List *pl, TBoard *b) {
    render.players = pl;
+   render.board = b;
 }
 
+
+//////////////////////////////////////////////////////////////////
+// man_board_render
+//
+//
+// Returns: void.
+//
+void board_render(TBoard *board){
+    u8 i,j;
+    u8* vmem;
+    if (board->updated = YES){
+    	for (j=0; j<board->height; j++){
+    	    for (i=0; i<board->width; i++){
+    	        vmem = cpct_getScreenPtr (CPCT_VMEM_START, board->x + (i*5), board->y + (j*13));
+    	        if (board->cells[j][i]!=255){
+					cpct_drawSpriteBlended(vmem, SP_TILES_0_H, SP_TILES_0_W, tiles[board->cells[j][i]]); // Faster Sprites with XOR
+				} else {
+					cpct_drawSolidBox (vmem, 0, SP_TILES_0_W, SP_TILES_0_H);	
+				}
+    	    }
+    	}
+		board->updated = NO;
+	}
+}
 
 //////////////////////////////////////////////////////////////////
 // draw_player
@@ -37,12 +70,40 @@ void sys_render_init(u8 x, u8 y, TPlayers_List *pl) {
 // Returns: void.
 //
 //
-void draw_player(TPlayer *player){
+void draw_player(TBoard *board, TPlayer *player, u8 coords){
     u8 *pvmem;
+    u8 x,y;
     
-    pvmem = cpct_getScreenPtr (CPCT_VMEM_START,  render.o_x - 1 + (player->x * 5), render.o_y - 2 + (player->y*13));
+    if (coords == PREVIOUS){
+        x = player->px;
+        y = player->py;
+    }else{
+        x = player->x;
+        y = player->y;
+    }
+    pvmem = cpct_getScreenPtr (CPCT_VMEM_START,  board->x - 1 + (x * 5), board->y - 2 + (y*13));
     cpct_drawSpriteBlended(pvmem, G_MARKERS_0_H, G_MARKERS_0_W, g_markers_0); // Faster Sprites with XOR
+   player->updated = NO;
 }
+
+//////////////////////////////////////////////////////////////////
+// man_board_render
+//
+//
+// Returns: void.
+//
+void players_render(TBoard *board, TPlayers_List *players, u8 initial_render){
+    u8 i;
+    //Render Players
+    for (i=0; i<players->num_players; i++){
+        if ((players->list[i].active) && (players->list[i].updated)){
+            if (initial_render == NO)
+                draw_player(board, &players->list[i], PREVIOUS);
+            draw_player(board, &players->list[i], CURRENT);
+        }
+    }
+}
+
 
 //////////////////////////////////////////////////////////////////
 // sys_render_update
@@ -51,13 +112,10 @@ void draw_player(TPlayer *player){
 // Returns: void.
 //
 //
-void sys_render_update() {
-    u8 i;
-
-    for (i=0; i<render.players->num_players; i++){
-        if (render.players->list[i].active){
-            draw_player(&render.players->list[i]);
-        }
-    }
-
+void sys_render_update(u8 initial_render) {
+    //Render Board
+    board_render(render.board);
+    //Render Players
+    players_render(render.board, render.players, initial_render);
+   
 }

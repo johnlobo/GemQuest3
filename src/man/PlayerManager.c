@@ -48,6 +48,7 @@ void man_player_createPlayer(u8 x, u8 y, u8 *name, u8 life){
     players_list.list[players_list.num_players].py = y;
     players_list.list[players_list.num_players].life = life;
     players_list.list[players_list.num_players].score = 0;
+    players_list.num_players++;
 }
 
 //////////////////////////////////////////////////////////////////
@@ -76,8 +77,18 @@ TPlayers_List* man_player_get_player_list(){
 //
 // Returns: void.
 //
-void man_player_activatePlayer(u8 player, u8 activation){
+void man_player_set_active(u8 player, u8 activation){
     players_list.list[player].active = activation; 
+}
+
+//////////////////////////////////////////////////////////////////
+// man_player_activatePlayer
+//
+//
+// Returns: void.
+//
+void man_player_set_update(u8 player, u8 update){
+    players_list.list[player].updated = update; 
 }
 
 

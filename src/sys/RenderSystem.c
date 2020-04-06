@@ -48,7 +48,8 @@ void sys_render_init(TPlayers_List *pl, TBoard *b) {
 void board_render(TBoard *board){
     u8 i,j;
     u8* vmem;
-    if (board->updated = YES){
+
+    if (board->updated == YES){
     	for (j=0; j<board->height; j++){
     	    for (i=0; i<board->width; i++){
     	        vmem = cpct_getScreenPtr (CPCT_VMEM_START, board->x + (i*5), board->y + (j*13));
@@ -83,7 +84,6 @@ void draw_player(TBoard *board, TPlayer *player, u8 coords){
     }
     pvmem = cpct_getScreenPtr (CPCT_VMEM_START,  board->x - 1 + (x * 5), board->y - 2 + (y*13));
     cpct_drawSpriteBlended(pvmem, G_MARKERS_0_H, G_MARKERS_0_W, g_markers_0); // Faster Sprites with XOR
-   player->updated = NO;
 }
 
 //////////////////////////////////////////////////////////////////
@@ -96,10 +96,12 @@ void players_render(TBoard *board, TPlayers_List *players, u8 initial_render){
     u8 i;
     //Render Players
     for (i=0; i<players->num_players; i++){
-        if ((players->list[i].active) && (players->list[i].updated)){
-            if (initial_render == NO)
+        if (players->list[i].updated == YES){
+            if (initial_render == NO){
                 draw_player(board, &players->list[i], PREVIOUS);
+            }
             draw_player(board, &players->list[i], CURRENT);
+        players->list[i].updated = NO;
         }
     }
 }

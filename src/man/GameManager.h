@@ -3,7 +3,7 @@
 
 #include <cpctelera.h>
 
-void man_game_init();
+void man_game_init(u8 x, u8 y, u8 w, u8 h);
 void man_game_update();
 void man_game_render();
 

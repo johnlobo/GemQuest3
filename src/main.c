@@ -113,7 +113,7 @@ void main(void) {
 
     //Initialization
     initMain();
-    man_game_init();
+    man_game_init(20,20,8,8);
 
     // Loop forever
     while (1){

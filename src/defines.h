@@ -28,6 +28,10 @@
 #define COLORTXT_RED 4
 #define COLORTXT_MAUVE 5
 
+#define COLORTXTM1_WHITE 0
+#define COLORTXTM1_RED 1
+#define COLORTXTM1_BLUE 2
+
 #define TRANSPARENT 1
 #define OPAQUE 0
 

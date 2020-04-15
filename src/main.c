@@ -43,11 +43,11 @@ const u8 sp_palette0[16] = {
 };        // Regular palette
 
 const u8 sp_palette1[4] = {
-    0x54, // 0 - 00 - black
-    0x4b,  // 15 - 26 - white
-    0x4c, // 4 - 06 - bright red
-    0x44 // 14 - 01 - blue
-};        // Mode 1 palette
+    0x54,   // 0 - 00 - black
+    0x4b,   // 15 - 26 - white
+    0x4c,   // 4 - 06 - bright red
+    0x55,   // 12 - 02 - bright blue
+};          // Mode 1 palette
 
 //Global Variables
 u8 g_nInterrupt; // Manage Interrupt
@@ -128,9 +128,10 @@ void main(void) {
     //Initialization
     initMain();
     man_game_init(20,20,8,8);
-    cpct_drawSolidBox((u8*) 0xc000,3,10,199);
-    drawTextM1("UP/DOWN:CHANGE LEVEL: 1", 16, 160, 2, NORMALHEIGHT, OPAQUE);
-    drawTextM1("0123456789 - ABCDEFGHI", 16, 180, 1, NORMALHEIGHT, OPAQUE);
+    //cpct_drawSolidBox((u8*) 0xc000,3,10,199);
+    drawTextM1("!,-.0123456789 - ABCDEFGHI", 16, 170, COLORTXTM1_WHITE, NORMALHEIGHT, OPAQUE);
+    drawTextM1("UP/DOWN:CHANGE LEVEL: 1", 16, 150, COLORTXTM1_BLUE, DOUBLEHEIGHT, OPAQUE);
+    drawTextM1("0123456789 - ABCDEFGHI", 16, 180, COLORTXTM1_RED, NORMALHEIGHT, OPAQUE);
 
     // Loop forever
     while (1){

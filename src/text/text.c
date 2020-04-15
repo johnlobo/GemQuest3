@@ -1,14 +1,4 @@
 //-----------------------------LICENSE NOTICE------------------------------------
-//
-//  /$$$$$$$                /$$$$$$$            /$$                           /$$
-// | $$__  $$              | $$__  $$          | $$                          | $$
-// | $$  \ $$  /$$$$$$     | $$  \ $$  /$$$$$$ | $$  /$$$$$$  /$$$$$$$   /$$$$$$$
-// | $$  | $$ /$$__  $$    | $$$$$$$/ /$$__  $$| $$ |____  $$| $$__  $$ /$$__  $$
-// | $$  | $$| $$  \__/    | $$__  $$| $$  \ $$| $$  /$$$$$$$| $$  \ $$| $$  | $$
-// | $$  | $$| $$          | $$  \ $$| $$  | $$| $$ /$$__  $$| $$  | $$| $$  | $$
-// | $$$$$$$/| $$       /$$| $$  | $$|  $$$$$$/| $$|  $$$$$$$| $$  | $$|  $$$$$$$
-// |_______/ |__/      |__/|__/  |__/ \______/ |__/ \_______/|__/  |__/ \_______/
-//
 //  This program is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published by
 //  the Free Software Foundation, either version 3 of the License, or
@@ -46,12 +36,14 @@ u8 const swapColorsM0[6][4] = {
         {0x45, 0xce, 0xcd, 0xcf}    // Mauve
 };
 
-u8 const swapColorsM1[3][10] = {
-    {0xF0, 0xE0, 0xC0, 0x80, 0x00, 0x10, 0x30, 0x70, 0x40, 0x20}, // Pen 1
-    {0x0F, 0x0E, 0x0C, 0x08, 0x00, 0x01, 0x03, 0x07, 0x04, 0x02}, // Pen 2
-    {0xFF, 0xEE, 0xCC, 0x88, 0x00, 0x11, 0x33, 0x77, 0x44, 0x22}  // Pen 3
+u8 const swapColorsM1[3][8] = {
+    {0xE0, 0xC0, 0xA0, 0x80, 0x60, 0x40, 0x20, 0x00},   // Pen 1
+    {0x0E, 0x0C, 0x0A, 0x08, 0x06, 0x04, 0x02, 0x00},   // Pen 2
+    {0xEE, 0xCC, 0xAA, 0x88, 0x66, 0x44, 0x22, 0x00}    // Pen 3
     };
     
+    u8* pChar;
+    u8 colorchar[2 * 9 * 2]; // Store a copy of a char in a specific color. // need double memory for double heigth chars.
 
 
 
@@ -98,12 +90,12 @@ void strCopy(u8 source[], u8 dest[])
 void drawText(const u8 text[], u8 xPos, u8 yPos, u8 color, u8 size, u8 transparent) {
 
     u8* pvideo;
-    u8* pChar;
+    //u8* pChar;
     //u8 character;
     u8 x = 0; // general purpose.
     u8 i = 0; // chage color bucle.
     u8 color1=0, color2=0, color3=0, color4=0; // Store pair of pixel for print chars in a predefined color.
-    u8 colorchar[2 * 9 * 2]; // Store a copy of a char in a specific color. // need double memory for double heigth chars.
+    //u8 colorchar[2 * 9 * 2]; // Store a copy of a char in a specific color. // need double memory for double heigth chars.
     u8 pos; // for precalculated values.
 	u8 character;
 
@@ -216,25 +208,23 @@ void drawText(const u8 text[], u8 xPos, u8 yPos, u8 color, u8 size, u8 transpare
 void drawTextM1(const u8 text[], u8 xPos, u8 yPos, u8 color, u8 size, u8 transparent) {
 
     u8* pvideo;
-    u8* pChar;
+    //u8* pChar;
     //u8 character;
     u8 x = 0; // general purpose.
     u8 i = 0; // chage color bucle.
-    u8 color1=0, color2=0, color3=0, color4=0, color5=0, color6=0, color7=0, color8=0, color9=0, color10=0; // Store pair of pixel for print chars in a predefined color.
-    u8 colorchar[1 * 9 * 2]; // Store a copy of a char in a specific color. // need double memory for double heigth chars.
+    u8 color0=0, color1=0, color2=0, color3=0, color4=0, color5=0, color6=0, color7=0; // Store the pixels for print chars in a predefined color.
+    //u8 colorchar[1 * 9 * 2]; // Store a copy of a char in a specific color. // need double memory for double heigth chars.
     u8 pos; // for precalculated values.
 	u8 character;
 
-    color1 = swapColorsM1[color][0];
-    color2 = swapColorsM1[color][1];
-    color3 = swapColorsM1[color][2];
-    color4 = swapColorsM1[color][3];
-	color5 = swapColorsM1[color][4];
-    color6 = swapColorsM1[color][5];
-    color7 = swapColorsM1[color][6];
-    color8 = swapColorsM1[color][7];
-    color9 = swapColorsM1[color][8];
-    color10 = swapColorsM1[color][9];
+    color0 = swapColorsM1[color][0];
+    color1 = swapColorsM1[color][1];
+    color2 = swapColorsM1[color][2];
+    color3 = swapColorsM1[color][3];
+	color4 = swapColorsM1[color][4];
+    color5 = swapColorsM1[color][5];
+    color6 = swapColorsM1[color][6];
+    color7 = swapColorsM1[color][7];
 
     // String index
     x = 0;
@@ -282,60 +272,54 @@ void drawTextM1(const u8 text[], u8 xPos, u8 yPos, u8 color, u8 size, u8 transpa
 
             // Create a copy of the char in a specific color:
             for(i=0;i<9;i++){
-                pChar = (u8*) g_font_chars + (character*9) + i;
+                pChar = (u8*) g_font_chars_m1 + (character*9) + i;
 
                 if(size==1) {
                     // NORMAL CHAR
-                    if (color>1){
-                        if(*pChar == swapColorsM1[0][0]) colorchar[i]=color1;
-                        else if(*pChar == swapColorsM1[0][1]) colorchar[i]=color2;
-                        else if(*pChar == swapColorsM1[0][2]) colorchar[i]=color3;
-                        else if(*pChar == swapColorsM1[0][3]) colorchar[i]=color4;
-                        else if(*pChar == swapColorsM1[0][4]) colorchar[i]=color5;
-                        else if(*pChar == swapColorsM1[0][5]) colorchar[i]=color6;
-                        else if(*pChar == swapColorsM1[0][6]) colorchar[i]=color7;
-                        else if(*pChar == swapColorsM1[0][7]) colorchar[i]=color8;
-                        else if(*pChar == swapColorsM1[0][8]) colorchar[i]=color9;
-                        else if(*pChar == swapColorsM1[0][9]) colorchar[i]=color10;
+                    //if (color>1){
+                        if(*pChar == swapColorsM1[0][0]) colorchar[i]=color0;
+                        else if(*pChar == swapColorsM1[0][1]) colorchar[i]=color1;
+                        else if(*pChar == swapColorsM1[0][2]) colorchar[i]=color2;
+                        else if(*pChar == swapColorsM1[0][3]) colorchar[i]=color3;
+                        else if(*pChar == swapColorsM1[0][4]) colorchar[i]=color4;
+                        else if(*pChar == swapColorsM1[0][5]) colorchar[i]=color5;
+                        else if(*pChar == swapColorsM1[0][6]) colorchar[i]=color6;
+                        else if(*pChar == swapColorsM1[0][7]) colorchar[i]=color7;
                         else colorchar[i]=*pChar;
-                    }
+                        //cpct_waitHalts(6);
+                        //winape_breakpoint(1);
+                    //}
                 } else {
                     // DOUBLE HEIGHT CHAR
 
                     pos=(i*size)-(i%FONT1_W);
 
                     if(*pChar == swapColorsM1[0][0]) {
+                        colorchar[pos]=color0;
+                        colorchar[pos+FONT1_W]=color0;
+                    }
+                    else if(*pChar == swapColorsM1[0][1]) {
                         colorchar[pos]=color1;
                         colorchar[pos+FONT1_W]=color1;
                     }
-                    else if(*pChar == swapColorsM1[0][1]) {
+                    else if(*pChar == swapColorsM1[0][2]) {
                         colorchar[pos]=color2;
                         colorchar[pos+FONT1_W]=color2;
-                    }
-                    else if(*pChar == swapColorsM1[0][2]) {
+                    }else if(*pChar == swapColorsM1[0][3]) {
                         colorchar[pos]=color3;
                         colorchar[pos+FONT1_W]=color3;
-                    }else if(*pChar == swapColorsM1[0][3]) {
+                    }else if(*pChar == swapColorsM1[0][4]) {
                         colorchar[pos]=color4;
                         colorchar[pos+FONT1_W]=color4;
-                    }else if(*pChar == swapColorsM1[0][4]) {
+                    }else if(*pChar == swapColorsM1[0][5]) {
                         colorchar[pos]=color5;
                         colorchar[pos+FONT1_W]=color5;
-                    }else if(*pChar == swapColorsM1[0][5]) {
+                    }else if(*pChar == swapColorsM1[0][6]) {
                         colorchar[pos]=color6;
                         colorchar[pos+FONT1_W]=color6;
-                    }else if(*pChar == swapColorsM1[0][6]) {
+                    }else if(*pChar == swapColorsM1[0][7]) {
                         colorchar[pos]=color7;
                         colorchar[pos+FONT1_W]=color7;
-                    }else if(*pChar == swapColorsM1[0][7]) {
-                        colorchar[pos]=color8;
-                        colorchar[pos+FONT1_W]=color8;
-                    }else if(*pChar == swapColorsM1[0][8]) {
-                        colorchar[pos]=color9;
-                        colorchar[pos+FONT1_W]=color9;
-                    }else if(*pChar == swapColorsM1[0][9]) {
-                        colorchar[pos]=color10;
-                        colorchar[pos+FONT1_W]=color10;
                     }
                     else {
                         colorchar[pos]=*pChar;
@@ -345,12 +329,11 @@ void drawTextM1(const u8 text[], u8 xPos, u8 yPos, u8 color, u8 size, u8 transpa
                 }
 
             }
-
             
             pvideo = cpct_getScreenPtr(CPCT_VMEM_START, xPos, yPos);
             if(transparent) cpct_drawSpriteMaskedAlignedTable(colorchar, pvideo, FONT1_W, FONT1_H*size, g_tablatrans);
-//            else cpct_drawSprite (colorchar, pvideo, FONT1_W, FONT1_H*size);
-            else cpct_drawSprite ((u8*) g_font_chars_m1 + (character*9), pvideo, FONT1_W, FONT1_H*size);
+            else cpct_drawSprite (colorchar, pvideo, FONT1_W, FONT1_H*size);
+//            else cpct_drawSprite ((u8*) g_font_chars_m1 + (character*9), pvideo, FONT1_W, FONT1_H*size);
 
             // Correction to support narrow wide, like "i", "l" and "'".
             if(character == 48 || character == 60 || character == 57) xPos--;

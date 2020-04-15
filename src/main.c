@@ -118,7 +118,7 @@ void main(void) {
     //Initialization
     initMain();
     man_game_init(20,20,8,8);
-    cpct_drawSolidBox(0xc000,3,10,199);
+    cpct_drawSolidBox((u8*) 0xc000,3,10,199);
     drawTextM1("PRUEBA DE TEXTO....:1",0,170,1,0,0);
 
     // Loop forever

@@ -17,7 +17,9 @@
 #ifndef INPUT_SYSTEM_H__
 #define INPUT_SYSTEM_H__
 
-void sys_input_init();
+#include "../cmp/TPlayer.h"
+
+void sys_input_init(TPlayer *player);
 void sys_input_update();
 
 #endif

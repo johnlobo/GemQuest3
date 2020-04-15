@@ -28,6 +28,7 @@
 #include "text.h"
 #include "../util/util.h"
 #include "../sprites/font_chars.h"
+#include "../sprites/font_chars_m1.h"
 
 //Font Sprite Size Mode 0
 #define FONT0_W 2
@@ -348,7 +349,8 @@ void drawTextM1(const u8 text[], u8 xPos, u8 yPos, u8 color, u8 size, u8 transpa
             
             pvideo = cpct_getScreenPtr(CPCT_VMEM_START, xPos, yPos);
             if(transparent) cpct_drawSpriteMaskedAlignedTable(colorchar, pvideo, FONT1_W, FONT1_H*size, g_tablatrans);
-            else cpct_drawSprite (colorchar, pvideo, FONT1_W, FONT1_H*size);
+//            else cpct_drawSprite (colorchar, pvideo, FONT1_W, FONT1_H*size);
+            else cpct_drawSprite ((u8*) g_font_chars_m1 + (character*9), pvideo, FONT1_W, FONT1_H*size);
 
             // Correction to support narrow wide, like "i", "l" and "'".
             if(character == 48 || character == 60 || character == 57) xPos--;

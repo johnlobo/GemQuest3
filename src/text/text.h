@@ -22,5 +22,6 @@
 u8 strLength(u8 str[]);
 void strCopy(u8 *source, u8 *destination);
 void drawText(const u8 text[], u8 xPos, u8 yPos, u8 color, u8 size, u8 transparent);
+void drawTextM1(const u8 text[], u8 xPos, u8 yPos, u8 color, u8 size, u8 transparent);
 
 #endif

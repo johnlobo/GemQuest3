@@ -29,7 +29,8 @@
 
 ## 16 colours palette
 #PALETTE=0 1 2 3 6 9 11 12 13 15 16 18 20 24 25 26
-PAL={ 0 8 13 3 6 15 24 18 9 12 20 14 2 4 1 26 }
+PAL={0 8 13 3 6 15 24 18 9 12 20 14 2 4 1 26}
+PAL1={0 26 0 0}
 
 ## Default values
 #$(eval $(call IMG2SP, SET_MODE        , 0                  ))  { 0, 1, 2 }
@@ -63,6 +64,7 @@ PAL={ 0 8 13 3 6 15 24 18 9 12 20 14 2 4 1 26 }
 $(eval $(call IMG2SPRITES,assets/tiles.png,0,sp,8,12,$(PAL),,src/sprites,))
 $(eval $(call IMG2SPRITES,assets/markers.png,0,g,12,16,$(PAL),,src/sprites,))
 $(eval $(call IMG2SPRITES,assets/font_chars.png,0,g,4,675,$(PAL),,src/sprites,))
+$(eval $(call IMG2SPRITES,assets/font_chars_m1.png,1,g,4,675,$(PAL1),,src/sprites,))
 
 
 

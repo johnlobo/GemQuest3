@@ -24,22 +24,22 @@
 #include "man/GameManager.h"
 
 const u8 sp_palette0[16] = {
-    0x54, // 0 - black
-    0x4d, // 1 - bright magenta
-    0x40, // 2 - white(gray)
-    0x5c, // 3 - red
-    0x4c, // 4 - bright red
-    0x4e, // 5 - orange
-    0x4A, // 6 - bright yellow
-    0x52, // 7 - bright green
-    0x56, // 8 - green
-    0x5e, // 9 - yellow (pale green)
-    0x53, // 10 - bright cyan
-    0x5f, // 11 - pastel blue
-    0x55, // 12 - bright blue
-    0x58, // 13 - magenta
-    0x44, // 14 - blue
-    0x4b  // 15 - white
+    0x54, // 0 - 00 - black
+    0x4d, // 1 - 08 - bright magenta
+    0x40, // 2 - 13 - white(gray)
+    0x5c, // 3 - 03 - red
+    0x4c, // 4 - 06 - bright red
+    0x4e, // 5 - 15 - orange
+    0x4A, // 6 - 24 - bright yellow
+    0x52, // 7 - 18 - bright green
+    0x56, // 8 - 09 - green
+    0x5e, // 9 - 12 - yellow (pale green)
+    0x53, // 10 - 20 - bright cyan
+    0x5f, // 11 - 14 - pastel blue
+    0x55, // 12 - 02 - bright blue
+    0x58, // 13 - 04 - magenta
+    0x44, // 14 - 01 - blue
+    0x4b  // 15 - 26 - white
 };        // Regular palette
 
 //Global Variables
@@ -67,9 +67,11 @@ __at(0xb000) u8 *screenBuffer0; //size: 0xe10
 void myInterruptHandler()
 {
     i_time++;
-
-    if (++g_nInterrupt == 6)
-    {
+    g_nInterrupt++;
+    if (g_nInterrupt == 4){
+        cpct_setVideoMode(1);
+    }else if (g_nInterrupt == 6){
+        cpct_setVideoMode(0);
         cpct_scanKeyboard();
         g_nInterrupt = 0;
     }
@@ -109,11 +111,15 @@ void main(void) {
     // Disable Firmware
     cpct_disableFirmware();
     // Change the interruptions table
+    cpct_waitVSYNC();
+    cpct_waitHalts(1);
     cpct_setInterruptHandler((void*) myInterruptHandler);
 
     //Initialization
     initMain();
     man_game_init(20,20,8,8);
+    cpct_drawSolidBox(0xc000,3,10,199);
+    drawTextM1("PRUEBA DE TEXTO....:1",0,170,1,0,0);
 
     // Loop forever
     while (1){

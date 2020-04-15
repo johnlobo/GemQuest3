@@ -19,14 +19,16 @@
 #include "../man/PlayerManager.h"
 #include "../defines.h"
 
+TPlayer *inputPlayer;
+
 //////////////////////////////////////////////////////////////////
 // sys_input_init
 //
 //
 // Returns: void.
 //
-void sys_input_init() {
-   
+void sys_input_init(TPlayer *player) {
+    inputPlayer = player;
 }
 
 //////////////////////////////////////////////////////////////////
@@ -36,18 +38,16 @@ void sys_input_init() {
 // Returns: void.
 //
 void sys_input_update() {
-   TPlayer *player = man_player_get_player(0);
-   
    if (cpct_isKeyPressed(keys1.left)) {
-      player->x = player->x - 1;
+      inputPlayer->x = inputPlayer->x - 1;
    }
    if (cpct_isKeyPressed(keys1.right)) {
-      player->x = player->x + 1;
+      inputPlayer->x = inputPlayer->x + 1;
    }
    if (cpct_isKeyPressed(keys1.up)) {
-      player->y = player->y - 1;
+      inputPlayer->y = inputPlayer->y - 1;
    }
    if (cpct_isKeyPressed(keys1.down)) {
-      player->y = player->y + 1;
+      inputPlayer->y = inputPlayer->y + 1;
    }
 }

@@ -22,6 +22,7 @@
 #include "text/text.h"
 #include "util/util.h"
 #include "man/GameManager.h"
+#include "sprites/frameset_m1.h"
 
 const u8 sp_palette0[16] = {
     0x54, // 0 - 00 - black
@@ -116,6 +117,8 @@ void initMain()
 }
 
 void main(void) {
+    u8 i;
+    u8* pvideo;
     // Relocate the stack right before the Video Memory
     cpct_setStackLocation(NEW_STACK_LOCATION);
     // Disable Firmware
@@ -129,6 +132,13 @@ void main(void) {
     initMain();
     man_game_init(20,20,8,8);
     //cpct_drawSolidBox((u8*) 0xc000,3,10,199);
+    for (i=0;i<20;i++){
+        pvideo = cpct_getScreenPtr(CPCT_VMEM_START, 4*i, 150);
+        cpct_drawSprite (g_frameset_m1_0, pvideo, 1, 5);
+        cpct_drawSprite (g_frameset_m1_1, pvideo+1, 1, 5);
+        cpct_drawSprite (g_frameset_m1_2, pvideo+2, 1, 5);
+        cpct_drawSprite (g_frameset_m1_3, pvideo+3, 1, 5);
+    }
     drawTextM1("!,-.0123456789 - ABCDEFGHI", 16, 170, COLORTXTM1_WHITE, NORMALHEIGHT, OPAQUE);
     drawTextM1("UP/DOWN:CHANGE LEVEL: 1", 16, 150, COLORTXTM1_BLUE, DOUBLEHEIGHT, OPAQUE);
     drawTextM1("0123456789 - ABCDEFGHI", 16, 180, COLORTXTM1_RED, NORMALHEIGHT, OPAQUE);

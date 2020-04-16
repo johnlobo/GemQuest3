@@ -61,13 +61,13 @@ PAL1={0 26 0 0}
 ##	  hardware colour values.
 
 #$(eval $(call IMG2SPRITES,img/example.png,0,pre,24,12,$(PALETTE),mask,src/,hwpalette))
+
+
 $(eval $(call IMG2SPRITES,assets/tiles.png,0,sp,8,12,$(PAL),,src/sprites,))
 $(eval $(call IMG2SPRITES,assets/markers.png,0,g,12,16,$(PAL),,src/sprites,))
 $(eval $(call IMG2SPRITES,assets/font_chars.png,0,g,4,675,$(PAL),,src/sprites,))
 $(eval $(call IMG2SPRITES,assets/font_chars_m1.png,1,g,4,675,$(PAL1),,src/sprites,))
-
-
-
+$(eval $(call IMG2SPRITES,assets/frameset_m1.png,1,g,4,5,$(PAL1),,src/sprites,))
 
 
 ############################################################################

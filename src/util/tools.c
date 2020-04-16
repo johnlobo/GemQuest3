@@ -196,7 +196,7 @@ u8 showMessage(u8 *message, u8 type)
 	cpct_getScreenToSprite(pvmem, (u8*) &screenBuffer0, w, h);
 	//cpct_getScreenToSprite(pvmem, wincpct_getMemory((void*)0xb000), w, h);
 
-	drawWindow(x, y, w, h - 2, 15, 14);
+	drawWindow(x, y, w, h - 2, 1, 15);
 	drawText(message, x + 3, y + 12, COLORTXT_WHITE, DOUBLEHEIGHT, TRANSPARENT);
 
 	// If it's a question I'll wait Y/N... otherwise any key

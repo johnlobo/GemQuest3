@@ -232,14 +232,14 @@ void main(void) {
     mode0Screen("PLAYER",1,130);
     drawSpell("IGNIT\0",0,175,1,2,0,4);
     drawSpell("STAB\0",20,175,0,4,0,0);
-    drawSpell("DRAIN\0",0,185,2,4,0,0);
-    drawSpell("STUN\0",20,185,0,0,3,1);
+    drawSpell("DRAIN\0",0,186,2,4,0,0);
+    drawSpell("STUN\0",20,186,0,0,3,1);
     
     mode0Screen("ENEMY",40,130);
     drawSpell("IGNIT\0",40,175,1,2,0,4);
     drawSpell("STAB\0",60,175,0,4,0,0);
-    drawSpell("DRAIN\0",40,185,2,4,0,0);
-    drawSpell("STUN\0",60,185,0,0,3,1);
+    drawSpell("DRAIN\0",40,186,2,4,0,0);
+    drawSpell("STUN\0",60,186,0,0,3,1);
     
     // Loop forever
     while (1){

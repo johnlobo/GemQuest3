@@ -24,6 +24,7 @@ typedef struct {
     u8 *portrait;
     u8 x,y;
     u8 px,py;
+    i8 vx, vy;
     u8 life;
     u32 score;
     u8 updated;

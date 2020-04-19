@@ -39,15 +39,15 @@ void sys_input_init(TPlayer *player) {
 //
 void sys_input_update() {
    if (cpct_isKeyPressed(keys1.left)) {
-      inputPlayer->x = inputPlayer->x - 1;
+      inputPlayer->vx = -1;
    }
    if (cpct_isKeyPressed(keys1.right)) {
-      inputPlayer->x = inputPlayer->x + 1;
+      inputPlayer->vx =  1;
    }
    if (cpct_isKeyPressed(keys1.up)) {
-      inputPlayer->y = inputPlayer->y - 1;
+      inputPlayer->vy = -1;
    }
    if (cpct_isKeyPressed(keys1.down)) {
-      inputPlayer->y = inputPlayer->y + 1;
+      inputPlayer->vy = 1;
    }
 }

@@ -13,20 +13,44 @@
 //  You should have received a copy of the GNU Lesser General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //------------------------------------------------------------------------------
-#ifndef _PLAYER_MANAGER_H_
-#define _PLAYER_MANAGER_H_
 
 #include <cpctelera.h>
 #include "../cmp/TPlayer.h"
+#include "../man/PlayerManager.h"
+#include "../man/BoardManager.h"
+#include "../defines.h"
 
-void man_player_init();
-void man_player_createPlayer(u8 x, u8 y, u8 *name, u8 life);
-TPlayer* man_player_get_player(u8 player);
-TPlayers_List* man_player_get_player_list();
-void man_player_set_active(u8 player, u8 activation);
-void man_player_set_update(u8 player, u8 update);
-void man_player_update();
-void man_player_render();
+TPlayer *physicsPlayer;
 
-#endif
+//////////////////////////////////////////////////////////////////
+// sys_input_init
+//
+//
+// Returns: void.
+//
+void sys_physics_init(TPlayer *player) {
+    physicsPlayer = player;
+}
 
+//////////////////////////////////////////////////////////////////
+// sys_input_update
+//
+//
+// Returns: void.
+//
+void sys_physics_update() {
+    if (physicsPlayer->vx<0){ 
+        if (physicsPlayer->x > 0){
+            physicsPlayer->x = physicsPlayer->x - 1;
+            physicsPlayer->updated = YES;
+        }
+        physicsPlayer->vx = 0;
+   } else if (physicsPlayer->vx>0){
+       if (physicsPlayer->x < man_board_get_width()){
+            physicsPlayer->x = physicsPlayer->x + 1;
+            physicsPlayer->updated = YES;
+        }
+        physicsPlayer->vx = 0;
+
+   }
+}

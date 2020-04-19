@@ -3,6 +3,7 @@
 #include "PlayerManager.h"
 #include "../sys/InputSystem.h"
 #include "../sys/RenderSystem.h"
+#include "../sys/PhysicsSystem.h"
 #include "../util/util.h"
 
 //////////////////////////////////////////////////////////////////
@@ -24,6 +25,7 @@ void man_game_init(u8 x, u8 y, u8 w, u8 h){
     man_player_set_active(0,YES);
     man_player_set_update(0,YES);
     sys_input_init(man_player_get_player(0));
+    sys_physics_init(man_player_get_player(0));
     //winape_breakpoint(33);
     sys_render_init(man_player_get_player_list(), man_board_get_board());
 }
@@ -39,6 +41,7 @@ void man_game_render(){
     sys_render_update(YES);
     while (1){
         sys_input_update();
+        sys_physics_update();
         sys_render_update(NO);
     }
 }

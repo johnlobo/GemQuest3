@@ -28,6 +28,7 @@ typedef struct {
     u8 life;
     u32 score;
     u8 updated;
+    u32 last_update;
 } TPlayer;
 
 typedef struct {

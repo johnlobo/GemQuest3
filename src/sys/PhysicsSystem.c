@@ -53,4 +53,17 @@ void sys_physics_update() {
         physicsPlayer->vx = 0;
 
    }
+    if (physicsPlayer->vy<0){ 
+        if (physicsPlayer->y > 0){
+            physicsPlayer->y = physicsPlayer->y - 1;
+            physicsPlayer->updated = YES;
+        }
+        physicsPlayer->vy = 0;
+   } else if (physicsPlayer->vy>0){
+       if (physicsPlayer->y < man_board_get_height()){
+            physicsPlayer->y = physicsPlayer->y + 1;
+            physicsPlayer->updated = YES;
+        }
+        physicsPlayer->vy = 0;
+   }
 }

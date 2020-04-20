@@ -38,16 +38,21 @@ void sys_input_init(TPlayer *player) {
 // Returns: void.
 //
 void sys_input_update() {
-   if (cpct_isKeyPressed(keys1.left)) {
-      inputPlayer->vx = -1;
-   }
-   if (cpct_isKeyPressed(keys1.right)) {
-      inputPlayer->vx =  1;
-   }
-   if (cpct_isKeyPressed(keys1.up)) {
-      inputPlayer->vy = -1;
-   }
-   if (cpct_isKeyPressed(keys1.down)) {
-      inputPlayer->vy = 1;
-   }
+    // Check player idle time is over
+    if ((i_time - inputPlayer->last_update) > PLAYER_IDLE){
+        if (cpct_isKeyPressed(keys1.left)) {
+            inputPlayer->vx = -1;
+        }
+        if (cpct_isKeyPressed(keys1.right)) {
+            inputPlayer->vx =  1;
+        }
+        if (cpct_isKeyPressed(keys1.up)) {
+            inputPlayer->vy = -1;
+        }
+        if (cpct_isKeyPressed(keys1.down)) {
+            inputPlayer->vy = 1;
+        }
+        // Update last update stamp
+        inputPlayer->last_update = i_time;        
+    }
 }

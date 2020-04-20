@@ -50,6 +50,7 @@ void man_player_createPlayer(u8 x, u8 y, u8 *name, u8 life){
     players_list.list[players_list.num_players].vy = 0;
     players_list.list[players_list.num_players].life = life;
     players_list.list[players_list.num_players].score = 0;
+    players_list.list[players_list.num_players].last_update = 0;
     players_list.num_players++;
 }
 

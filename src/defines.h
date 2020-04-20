@@ -63,6 +63,16 @@
 #define min(X, Y) ((X) < (Y) ? (X) : (Y))
 #define max(X, Y) (X > Y ? X : Y)
 
+//Player input
+#define UP 0
+#define DOWN 1
+#define LEFT 2
+#define RIGHT 3
+#define PLAYER_IDLE 25
+
+//Global variables
+extern u32 i_time;  //time counter
+
 // Relocatable variables
 extern __at(0xa8DC) TKeys keys1; //size: 0x1f
 extern __at(0xa92b) TKeys keys2; //size: 0x1f

@@ -22,6 +22,8 @@
 #include "../defines.h"
 #include "../sprites/markers.h"
 #include "../sprites/tiles.h"
+#include <stdio.h>
+#include "../text/text.h"
 
 TRenderSystem render;
 //Manager Variables
@@ -94,6 +96,7 @@ void draw_player(TBoard *board, TPlayer *player, u8 coords){
 //
 void players_render(TBoard *board, TPlayers_List *players, u8 initial_render){
     u8 i;
+	u8 aux_txt[2];
     //Render Players
     for (i=0; i<players->num_players; i++){
         if (players->list[i].updated == YES){
@@ -101,7 +104,15 @@ void players_render(TBoard *board, TPlayers_List *players, u8 initial_render){
                 draw_player(board, &players->list[i], PREVIOUS);
             }
             draw_player(board, &players->list[i], CURRENT);
-        players->list[i].updated = NO;
+        	players->list[i].updated = NO;
+			
+			players->list[i].px = players->list[i].x;
+			players->list[i].py = players->list[i].y;
+			
+			sprintf(aux_txt,"X:%d",players->list[i].x);
+			drawText(aux_txt, 0, 0, COLORTXT_WHITE, NORMALHEIGHT, OPAQUE);
+			sprintf(aux_txt,"Y:%d",players->list[i].y);
+			drawText(aux_txt, 0, 10, COLORTXT_WHITE, NORMALHEIGHT, OPAQUE);
         }
     }
 }

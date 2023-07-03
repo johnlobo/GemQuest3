@@ -8,4 +8,3 @@ void man_game_update();
 void man_game_render();
 
 #endif
-

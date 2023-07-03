@@ -13,6 +13,9 @@ typedef struct {
     u8 tile;
 } TMatch;
 
-typedef TMatch TMatchList[10];
+typedef struct {
+    u8 count;
+    TMatch matches[5];
+} TMatchList;
 
 #endif

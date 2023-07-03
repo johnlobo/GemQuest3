@@ -98,7 +98,8 @@ void initMain()
     cpct_setBlendMode(CPCT_BLEND_XOR);
     cpct_setVideoMode(0);
     cpct_setPalette(sp_palette0, 16);
-    cpct_setBorder(HW_BLACK);
+    //cpct_setBorder(HW_BLACK);
+    cpct_setBorder(HW_BRIGHT_WHITE);
     // Clean up Screen filling them up with 0's
     clearScreen(BG_COLOR);
 
@@ -157,44 +158,55 @@ void mode1Scren(){
 void drawSpell(u8* name, u8 x, u8 y, u8 r, u8 g, u8 l, u8 b){
     u8* pvideo;
     u8 aux_txt[3];
+    u8 xpos;
     
     pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x, y);
     cpct_drawSolidBox(pvideo,cpct_px2byteM0(5,5),11,10);
     drawText(name, x, y+1, COLORTXT_WHITE, NORMALHEIGHT, TRANSPARENT);
+    xpos = x + 11;
     //Red
-    pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x+11, y);
-    cpct_drawSolidBox(pvideo,cpct_px2byteM0(2,2),2,10);
     if (r){
+        pvideo = cpct_getScreenPtr(CPCT_VMEM_START, xpos, y);
+        cpct_drawSolidBox(pvideo,cpct_px2byteM0(2,2),2,10);
         sprintf(aux_txt,"%d",r);
-        drawText(aux_txt, x+11, y+1, COLORTXT_WHITE, NORMALHEIGHT, TRANSPARENT);
+        drawText(aux_txt, xpos, y+1, COLORTXT_MAUVE, NORMALHEIGHT, TRANSPARENT);
+        xpos += 2;
     }
     //Green
-    pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x+13, y);
-    cpct_drawSolidBox(pvideo,cpct_px2byteM0(9,9),2,10);
     if (g){
+        pvideo = cpct_getScreenPtr(CPCT_VMEM_START, xpos, y);
+        cpct_drawSolidBox(pvideo,cpct_px2byteM0(9,9),2,10);
         sprintf(aux_txt,"%d",g);
-        drawText(aux_txt, x+13, y+1, COLORTXT_WHITE, NORMALHEIGHT, TRANSPARENT);
+        drawText(aux_txt, xpos, y+1, COLORTXT_MAUVE, NORMALHEIGHT, TRANSPARENT);
+        xpos += 2;
     }
     //Yellow
-    pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x+15, y);
-    cpct_drawSolidBox(pvideo,cpct_px2byteM0(8,8),2,10);
     if (l){
+        pvideo = cpct_getScreenPtr(CPCT_VMEM_START, xpos, y);
+        cpct_drawSolidBox(pvideo,cpct_px2byteM0(8,8),2,10);
         sprintf(aux_txt,"%d",l);
-        drawText(aux_txt, x+15, y+1, COLORTXT_WHITE, NORMALHEIGHT, TRANSPARENT);
+        drawText(aux_txt, xpos, y+1, COLORTXT_MAUVE, NORMALHEIGHT, TRANSPARENT);
+        xpos += 2;
     }
     //Blue
-    pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x+17, y);
-    cpct_drawSolidBox(pvideo,cpct_px2byteM0(3,3),2,10);
     if (b){ 
+        pvideo = cpct_getScreenPtr(CPCT_VMEM_START, xpos, y);
+        cpct_drawSolidBox(pvideo,cpct_px2byteM0(3,3),2,10);
         sprintf(aux_txt,"%d",b);
-        drawText(aux_txt, x+17, y+1, COLORTXT_WHITE, NORMALHEIGHT, TRANSPARENT);
+        drawText(aux_txt, xpos, y+1, COLORTXT_MAUVE, NORMALHEIGHT, TRANSPARENT);
     }
 }
 
-void mode0Screen(u8* name, u8 x, u8 y){
+void mode0Screen(u8* name, u8 x, u8 y, u8 enemy){
     u8* pvideo;
+    u8 color_text;
     
-    drawText(name, x, y, COLORTXTM1_WHITE, DOUBLEHEIGHT, OPAQUE);
+    if (enemy)
+        color_text = COLORTXT_RED;
+    else
+        color_text = COLORTXT_WHITE;
+    
+    drawText(name, x, y, color_text, DOUBLEHEIGHT, OPAQUE);
     drawText("00", x+20, y, COLORTXT_YELLOW, DOUBLEHEIGHT, OPAQUE);
     
     pvideo = cpct_getScreenPtr(CPCT_VMEM_START, x, y+20);
@@ -229,13 +241,13 @@ void main(void) {
     initMain();
     man_game_init(20,20,8,8);
     
-    mode0Screen("PLAYER",1,130);
+    mode0Screen("PLAYER",0,130, 0);
     drawSpell("IGNIT\0",0,175,1,2,0,4);
     drawSpell("STAB\0",20,175,0,4,0,0);
     drawSpell("DRAIN\0",0,186,2,4,0,0);
     drawSpell("STUN\0",20,186,0,0,3,1);
     
-    mode0Screen("ENEMY",40,130);
+    mode0Screen("ENEMY",40,130, 1);
     drawSpell("IGNIT\0",40,175,1,2,0,4);
     drawSpell("STAB\0",60,175,0,4,0,0);
     drawSpell("DRAIN\0",40,186,2,4,0,0);

@@ -37,6 +37,15 @@ void man_game_init(u8 x, u8 y, u8 w, u8 h){
 //
 // Returns: void.
 //
+void man_game_update(){
+}
+
+//////////////////////////////////////////////////////////////////
+// man_game_render
+//
+//
+// Returns: void.
+//
 void man_game_render(){
     sys_render_update(YES);
     while (1){

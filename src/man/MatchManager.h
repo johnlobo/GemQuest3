@@ -14,12 +14,14 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //------------------------------------------------------------------------------
 
-#ifndef INPUT_SYSTEM_H__
-#define INPUT_SYSTEM_H__
+#ifndef _MATCH_MANAGER_H_
+#define _MATCH_MANAGER_H_
 
-#include "../cmp/TPlayer.h"
+#include <cpctelera.h>
+#include "../cmp/TMatch.h"
 
-void sys_input_init(TPlayer *player);
-void sys_input_update();
+void man_match_matchlist_pop(TMatch *match);
+void man_match_matchlist_push(TMatch *match);
+void man_match_reset_match_list();
 
 #endif

@@ -14,45 +14,45 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //------------------------------------------------------------------------------
 
-#include <cpctelera.h>
-#include "../cmp/TPlayer.h"
-#include "../man/PlayerManager.h"
-#include "../defines.h"
+#include "man/MatchManager.h"
+#include "../cmp/TMatch.h"
 
-TPlayer *inputPlayer;
+
+TMatchList match_list;
+
 
 //////////////////////////////////////////////////////////////////
-// sys_input_init
+// man_board_reset_match_list
 //
 //
 // Returns: void.
 //
-void sys_input_init(TPlayer *player) {
-    inputPlayer = player;
+void man_match_reset_match_list(){
+    match_list.count = 0;
 }
 
 //////////////////////////////////////////////////////////////////
-// sys_input_update
+// man_board_matchlist_push
 //
 //
 // Returns: void.
 //
-void sys_input_update() {
-    // Check player idle time is over
-    if ((i_time - inputPlayer->last_update) > PLAYER_IDLE){
-        if (cpct_isKeyPressed(keys1.left)) {
-            inputPlayer->vx = -1;
-        }
-        if (cpct_isKeyPressed(keys1.right)) {
-            inputPlayer->vx =  1;
-        }
-        if (cpct_isKeyPressed(keys1.up)) {
-            inputPlayer->vy = -1;
-        }
-        if (cpct_isKeyPressed(keys1.down)) {
-            inputPlayer->vy = 1;
-        }
-        // Update last update stamp
-        inputPlayer->last_update = i_time;        
+void man_match_matchlist_push(TMatch *match){
+    if (match_list.count<5){
+        cpct_memcpy(&match_list.matches[match_list.count],&match,sizeof(TMatch));
+        match_list.count++;
+    }
+}
+
+//////////////////////////////////////////////////////////////////
+// man_board_matchlist_pop
+//
+//
+// Returns: void.
+//
+void man_match_matchlist_pop(TMatch *match){
+    if (match_list.count>0){
+        cpct_memcpy(&match, &match_list.matches[match_list.count],sizeof(TMatch));
+        match_list.count--;
     }
 }
